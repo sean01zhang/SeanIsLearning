@@ -33,7 +33,6 @@ public class Animations {
 						if(comp.getY() == absMax){
 							goingUp = false;
 							verCounter++;
-							System.out.println("Going down");
 						}
 					} else if (goingUp == false && comp.getY() > absMin){
 						comp.setLocation(comp.getX(), comp.getY() - 1);
@@ -41,11 +40,8 @@ public class Animations {
 						if(comp.getY() == absMin){
 							goingUp = true;
 							verCounter++;
-							System.out.println("Going up");
 						}
 					}
-
-
 					if(verCounter >= maxCount) {
 						verT.stop();
 					}
@@ -76,7 +72,6 @@ public class Animations {
 						if(comp.getX() == absMax){
 							goingRight = false;
 							horCounter++;
-							System.out.println("Going Left");
 						}
 					} else if (goingRight == false && comp.getX() > absMin){
 						comp.setLocation(comp.getX() - 1, comp.getY());
@@ -84,7 +79,6 @@ public class Animations {
 						if(comp.getX() == absMin){
 							goingRight = true;
 							horCounter++;
-							System.out.println("Going Right");
 						}
 					}
 
@@ -112,7 +106,6 @@ public class Animations {
 						if(comp.getX() == absMax){
 							goingRight = false;
 							horCounter++;
-							System.out.println("Going Left");
 						}
 					} else if (goingRight == false && comp.getX() > absMin){
 						comp.setLocation(comp.getX() - vel, comp.getY());
@@ -120,11 +113,8 @@ public class Animations {
 						if(comp.getX() == absMin){
 							goingRight = true;
 							horCounter++;
-							System.out.println("Going Right");
 						}
 					}
-
-					System.out.println("i like tacos.");
 
 					if(horCounter >= maxCount) {
 						horT.stop();

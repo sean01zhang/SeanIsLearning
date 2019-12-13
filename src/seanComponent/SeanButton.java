@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 
 
 public abstract class SeanButton extends JComponent implements MouseListener {
-	SeanBackground sbg;
+	SeanDrawable sbg;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
 	boolean borders;
@@ -25,16 +25,21 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	int pressStatus =1;
 	int radius = 0;
 
-
 	public SeanButton() {
 		super();
 		this.enableInputMethods(true);
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
+		// default location
+		this.setSize(400, 300);
+		this.setLocation(((int)screenSize.getWidth() - 200)/2, ((int)screenSize.getHeight())/2);
+
 		borders = false;
 		displayText = "";
-		sbg = new SeanBackground();
+		//background
+		sbg = new SeanDrawable(getX(),getY(),getWidth(),getHeight());
+
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
 		textColor = Color.black;
@@ -48,17 +53,19 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
-		this.displayText = s;
+		// default location
 		this.setSize(400, 300);
 		this.setLocation(((int)screenSize.getWidth() - 200)/2, ((int)screenSize.getHeight())/2);
 
 		borders = false;
-		sbg = new SeanBackground();
+		displayText = s;
+		//background
+		sbg = new SeanDrawable(getX(),getY(),getWidth(),getHeight());
+
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
 		textColor = Color.black;
 		hoverShade = new Color(125,125,125,128);
-
 		clickShade = new Color(125,125,125,128);
 	}
 
@@ -70,9 +77,9 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		if(borders){
-			sbg.draw(g,getWidth(),getHeight(),radius);
+			sbg.draw(g,radius);
 		} else {
-			sbg.draw(g,getWidth(),getHeight());
+			sbg.draw(g);
 		}
 
 		// draw foreground
@@ -178,6 +185,16 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	public void setBackgroundColor(Color c) {
 		sbg.setColor(c);
 		repaint();
+	}
+
+	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x,y,width,height);
+		sbg.setBounds(x,y,width,height);
+	}
+
+	public void setLocation(int x,int y) {
+		super.setLocation(x,y);
+		sbg.setLocation(x,y);
 	}
 
 	// *********************************************

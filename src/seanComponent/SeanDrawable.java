@@ -1,0 +1,68 @@
+package seanComponent;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+
+public class SeanDrawable extends Rectangle {
+	Color c;
+	Image img;
+
+	public SeanDrawable(Rectangle hitbox) {
+		super(hitbox);
+		c= Color.white;
+	}
+
+	public SeanDrawable(Rectangle hitbox, Color c) {
+		super(hitbox);
+		this.c = c;
+	}
+	
+	public SeanDrawable(int x,int y,int width,int height, Color c) {
+		super(x,y,width,height);
+		this.c = c;
+	}
+	
+	public SeanDrawable(int x,int y,int width,int height) {
+		super(x,y,width,height);
+		c= Color.white;
+	}
+	
+	// GETTERS AND SETTERS *******************************************
+	public void setImage(Image i,int width,int height) {
+		img = i.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+	}
+	
+	public void setImage(Image i) {
+		img = i.getScaledInstance(width,height, Image.SCALE_DEFAULT);
+	}
+
+	public Color getColor() {
+		return c;
+	}
+
+	public void setColor(Color c) {
+		this.c = c;
+	}
+	
+	
+	// DRAWING: *******************************************************
+	public void draw(Graphics g, int radius) {
+		if (null == img) {
+			g.setColor(c);
+			g.fillRoundRect(x,y,width,height,radius,radius);
+		} else {
+			g.drawImage(img, 0, 0, null);
+		}
+	}
+
+	public void draw(Graphics g) {
+		if (null == img) {
+			g.setColor(c);
+			g.fillRect(x,y,width,height);
+		} else {
+			g.drawImage(img, 0, 0, null);
+		}
+	}
+}

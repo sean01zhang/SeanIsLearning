@@ -11,6 +11,7 @@ User Interface
 4) txtarea
     - modularity for background
     - Clean up
+
 5) pure FX/animation object (vertical, horizontal shaking)
 Given a (drawable thing) <- object, pass in and perform effects on it.
 9) progress/loading bars
@@ -18,15 +19,18 @@ Given a (drawable thing) <- object, pass in and perform effects on it.
 7) cutscenes/video
 8) audio interface
 
+10) Implementation of a data structure to organize components in Display
+
 
 NGine
 1) SeanStoryInterpreter
-    - implement "option" interpretation
-    - implement the actions of the commands
-    - SETTING: maybe also add transition method
+    - SETTING: maybe also add transition method **
+    - need interactions to game engine (command central)
 2) panel that does the Visuals Engine
 
 
 COMPLETE:
   - button needs to have user-generated actions (ActionListener)
   - rounded corner implementation for bg
+  - implement "option" interpretation
+  - implement the actions of the commands

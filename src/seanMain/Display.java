@@ -1,6 +1,8 @@
 package seanMain;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,6 +52,11 @@ public class Display extends JFrame {
 		pos_y = pos_y+ getVel_y();
 		return pos_y;
 	}
+	
+	public void paintComponent(Graphics g) {
+		g.setColor(Color.black);
+		g.drawRect(0, 0, 100, 200);
+	}
 
 	// = new SeanStoryInterpreter(, null);
 
@@ -72,10 +79,12 @@ public class Display extends JFrame {
 		sta.setLocation(10, 10);
 		sta.repaint();
 		add(sta);
+		
+		
+		
 
-
-		sta.setScrollType(SeanTextArea.SCROLL_WORD);
-		sta.setSpeed(200);
+		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
+		sta.setSpeed(50);
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -87,6 +96,7 @@ public class Display extends JFrame {
 		sb = new SeanButton("hello") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				sta.setText("Hello");
 				System.out.println("eyyy... lmao!");
 			}
 		};
@@ -97,7 +107,7 @@ public class Display extends JFrame {
 		sb.repaint();
 		add(sb);
 
-		Animations.horShake(sb, 5, 5, 30, 3);
+		Animations.horShake(sb, 100, 100, 1, 20);
 
 		this.setSize(width, height);
 		this.setPreferredSize(new Dimension(width, height));
