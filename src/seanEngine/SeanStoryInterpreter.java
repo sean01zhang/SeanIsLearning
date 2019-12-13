@@ -81,7 +81,7 @@ public class SeanStoryInterpreter
 			// VisualEngine Part -> Give it body and character name.
 
 			// Testing
-			//System.out.println("CHARNAME:" + charName + "\nBODY:" + body);
+			System.out.println("CHARNAME:" + charName + "\nBODY:" + body);
 		} else if (s.startsWith("SETTING:")) {
 			// isloates the command from the body
 			String temp = s.replaceFirst("SETTING:","").trim();
@@ -91,7 +91,7 @@ public class SeanStoryInterpreter
 			temp = temp.replace(' ', '_') + ".png";
 
 			// Testing
-			//System.out.println("SETTING:" +temp);
+			System.out.println("SETTING:" +temp);
 		} else if (s.startsWith("EFFECT:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("EFFECT:", "").trim();
@@ -99,7 +99,7 @@ public class SeanStoryInterpreter
 			// tells the game engine what effect needs to be enacted
 
 			// Testing
-			//System.out.println("EFFECT:" +temp);
+			System.out.println("EFFECT:" +temp);
 		} else if (s.startsWith("OPTION:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("OPTION:", "").trim();
@@ -129,14 +129,28 @@ public class SeanStoryInterpreter
 
 			// testing
 			//System.out.println(Arrays.toString(sarr));
-			//System.out.println(Arrays.toString(cause.toArray()));
+			System.out.println(Arrays.toString(cause.toArray()));
 		} else if(s.startsWith("CHANGESTAT:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("CHANGESTAT:", "").trim();
 
 			String[] sarr = temp.split(Pattern.quote("|"));
+			String charName = sarr[0];;
+			String stat = sarr[1];
+			int amt = Integer.parseInt(sarr[3]);
 
+			// pass this into the cmd control method.
 
+			// Testing
+			System.out.println(amt + "change in " + charName + "'s stat," + stat);
+		} else if(s.startsWith("CHANGEFILE:")) {
+			// isolate the cmd from the body
+			String temp = s.replaceFirst("CHANGEFILE:", "").trim();
+
+			// change file of this class
+
+			// testing
+			System.out.println("FILE: " + temp);
 		}
 	}
 
