@@ -7,12 +7,12 @@ import javax.swing.Timer;
 import javax.swing.JComponent;
 
 public class Animations {
-	
+
 	public void rotShake(JComponent comp){
 		//int
 	}
 
-	
+
 	// VERTICAL SHAKING EFFECT ***************************************
 	static Boolean goingUp;
 	static int verCounter;
@@ -55,7 +55,7 @@ public class Animations {
 		verT.start();
 	}
 
-	
+
 	// HORIZTONTAL SHAKING ***********************************
 	static Boolean goingRight;
 	static int horCounter;
@@ -96,7 +96,7 @@ public class Animations {
 
 		horT.start();
 	}
-	
+
 	public static void horShake(JComponent comp, int max, int min, int maxCount, int interval, int vel){
 		int absMax = comp.getX() + max;
 		int absMin = comp.getX() - min;
@@ -123,6 +123,8 @@ public class Animations {
 							System.out.println("Going Right");
 						}
 					}
+
+					System.out.println("i like tacos.");
 
 					if(horCounter >= maxCount) {
 						horT.stop();
