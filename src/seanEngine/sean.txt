@@ -1,0 +1,33 @@
+;; SETTING: 	    After School
+
+;; STORY: Yukari: Hitomi,did you get to see the guidance office?
+
+;;STORY: Hitomi: Not yet.
+
+;;EFFECT: Shaking
+
+;;STORY: Yukari: What's wrong with you? Mr. 
+Saeki's been looking for you.
+
+;;STORY: Hitomi: Saeki-sensei. I don't like him.
+
+;;STORY: Yukari: Did you decide on college yet?
+
+;; OPTION:
+Yes -> [ChangeStat: CharacterName | Stat | Magnitude] 
+[ChangeFile: Filename]
+No -> [Story: Hitomi: Lmao xd you dum dum]
+[ChangeStat: CharacterName | Stat | Magnitude]
+
+;;STORY: Hitomi: I don't like studying as much as you. It's not even spring
+break yet. It's not realistic.
+
+;;STORY: Yukari: Now what are you saying?! You'll soon be a third year! You
+have to figure out where you're going!
+
+;;STORY: Hitomi: My brain's not as good as yours.
+
+;;STORY: Yukari: Bah! You're not a very logical child, Hitomi.
+
+;;STORY: Hitomi: It's not like that! I'm just not academically oriented like
+you.
