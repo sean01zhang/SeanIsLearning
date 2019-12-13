@@ -115,8 +115,4 @@ public class Display extends JFrame {
 
 
 
-	public SeanTextArea getSta() {
-		return sta;
-	}
-
 }
