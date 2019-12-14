@@ -62,7 +62,7 @@ public class Display extends JFrame{
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
 
-		/*
+		
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
@@ -112,8 +112,9 @@ public class Display extends JFrame{
 		this.setSize(width, height);
 		this.setPreferredSize(new Dimension(width, height));
 
-		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
-		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
+		SeanDrawables in = new SeanDrawables(0, 0, 20, 20);
+		SeanDrawables bg = new SeanDrawables(0, 0, 400, 400);
+		
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
 		ss = new SeanSlider(bg, in, 100, 0, "2d");
