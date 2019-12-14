@@ -127,7 +127,6 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		g.setColor(Color.black);
 		g.setFont(f);
 
-		System.out.println("What the hec " +outputText);
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
 	}
 
@@ -175,12 +174,12 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 			outputText = s;
 		} else {
 			queueString = new LinkedList<>(Arrays.asList(s.split(getScrollType())));
-			System.out.println(Arrays.toString(queueString.toArray()));
 		}
 
 		t.start();
 		repaint();
 	}
+
 
 	public String getText() {
 		return text;
@@ -193,7 +192,6 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		} else {
 			// adds to output text depending on scrolltype
 			outputText += queueString.poll();
-			System.out.println(outputText);
 
 			if (getScrollType().equals(" ")) {
 				outputText += getScrollType();

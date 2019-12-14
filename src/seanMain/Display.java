@@ -74,7 +74,6 @@ public class Display extends JFrame {
 
 		add(sta);
 
-
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
 
@@ -96,7 +95,6 @@ public class Display extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setText("Hello");
-				System.out.println("eyyy... lmao!");
 			}
 		};
 
