@@ -8,11 +8,11 @@ import javax.swing.JPanel;
 
 public abstract class SeanBGPanel extends JPanel {
 	public SeanBGPanel() {
-		
+
 	}
-	
+
 	public void paintComponent(Graphics g) {
-		
+
 	}
-	
+
 }
