@@ -7,7 +7,7 @@ import java.awt.geom.RoundRectangle2D;
 public class RoundedRect extends RoundRectangle2D {
 	int x,y,width,height;
 	int arcw,arch;
-	
+
 	public RoundedRect(int x, int y, int width, int height, int arcw,int arch) {
 		this.x = x;
 		this.y = y;
@@ -49,19 +49,16 @@ public class RoundedRect extends RoundRectangle2D {
 
 	@Override
 	public double getY() {
-		// TODO Auto-generated method stub
 		return y;
 	}
 
 	@Override
 	public double getWidth() {
-		// TODO Auto-generated method stub
 		return width;
 	}
 
 	@Override
 	public double getHeight() {
-		// TODO Auto-generated method stub
 		return height;
 	}
 
@@ -69,6 +66,6 @@ public class RoundedRect extends RoundRectangle2D {
 	public boolean isEmpty() {
 		return false;
 	}
-	
-	
+
+
 }

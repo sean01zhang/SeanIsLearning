@@ -39,6 +39,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	Queue<String> queueString;
 	Timer t;
 
+	int radius;
+
 	// Background
 	SeanDrawables sbg;
 
@@ -54,7 +56,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		queueString = new LinkedList<>();
 		// configure background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-		
+
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -69,10 +71,13 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		boundy = 10;
 		strx= boundx;
 		stry= boundy;
+
+		radius =0;
+
 		text = "";
 		this.setText("");
 	}
-	
+
 	public SeanTextArea(int width,int height) {
 		super();
 		this.enableInputMethods(true);
@@ -84,7 +89,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		queueString = new LinkedList<>();
 		// configure background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-		
+
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -99,12 +104,18 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		boundy = 10;
 		strx= boundx;
 		stry= boundy;
+
+		radius=0;
+
 		text = "";
 		this.setText("");
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
+		g.setClip(new RoundedRect(0,0,getWidth(),getHeight(),radius,radius));
+
 		// turn on anti-alias mode
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -116,7 +127,6 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		g.setColor(Color.black);
 		g.setFont(f);
 
-		System.out.println("What the hec " +outputText);
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
 	}
 
@@ -132,7 +142,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void setScrollType(String s) {
 		this.scrollType = s;
 	}
-	
+
 	public void setBackgroundImage(Image i) {
 		sbg.setImage(i);
 	}
@@ -140,7 +150,11 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void setBackgroundColor(Color c) {
 		sbg.setColor(c);
 	}
-	
+
+	public void setRadius(int r) {
+		radius = r;
+	}
+
 	public String getScrollType() {
 		if (this.scrollType.equals("Word")) {
 			return " ";
@@ -154,18 +168,18 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void setText(String s) {
 	 	text = s;
 		outputText = "";
-		
+
 		// sets output text depending on what scrolltype is set
 		if (getScrollType().equals("None")) {
 			outputText = s;
 		} else {
 			queueString = new LinkedList<>(Arrays.asList(s.split(getScrollType())));
-			System.out.println(Arrays.toString(queueString.toArray()));
 		}
 
 		t.start();
 		repaint();
 	}
+
 
 	public String getText() {
 		return text;
@@ -178,12 +192,11 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		} else {
 			// adds to output text depending on scrolltype
 			outputText += queueString.poll();
-			System.out.println(outputText);
-			
+
 			if (getScrollType().equals(" ")) {
 				outputText += getScrollType();
 			}
-			
+
 			if(endofstring<getHeight()) {
 				stry=10;
 			} else {
@@ -205,7 +218,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 			} else {
 				stry= (int) Math.max(stry+omega,getHeight()-endofstring+stry-boundy);
 			}
-			
+
 			repaint();
 		}
 	}

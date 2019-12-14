@@ -66,21 +66,18 @@ public class Display extends JFrame {
 		this.sta = new SeanTextArea();
 		sta.setSize(200, 100);
 		sta.setLocation(10, 10);
-		
-		
-		
+
+
+
 		sta.repaint();
-		
-		
+		sta.setRadius(20);
+
 		add(sta);
-		
-		
-		
 
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
-		
-		
+
+
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
@@ -98,19 +95,18 @@ public class Display extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setText("Hello");
-				System.out.println("eyyy... lmao!");
 			}
 		};
 
 
 		sb.setBounds(300, 30, 100, 50);
 		sb.setRoundCorners(30);
-		
-		
+
+
 		sb.repaint();
 		add(sb);
 
-		
+
 		Animations.horShake(sb, 100, 100, 1, 20);
 
 		this.setSize(width, height);
