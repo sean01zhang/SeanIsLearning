@@ -28,6 +28,8 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import seanComponent.SeanButton;
+import seanComponent.SeanDrawables;
+import seanComponent.SeanSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
@@ -48,22 +50,22 @@ public class Display extends JFrame{
 		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
 		sbgpanel.resizePanel(getWidth(),getHeight());
 	}
-	
+
 	public Display() {
 		this.setLayout(null);
 		this.setSize(600, 400);
 		this.setPreferredSize(new Dimension(600,400));
-		
+
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();
 		    }
 		});
-		
+
 		// STA Stuffs
 
 		this.sta = new SeanTextArea();
-		
+
 		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
 
 		sta.repaint();
@@ -76,13 +78,13 @@ public class Display extends JFrame{
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}*/
-		
+
 		add(sta);
 
-		
 
 
-		
+
+
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -109,16 +111,26 @@ public class Display extends JFrame{
 
 		Animations.horShake(sb, 100, 100, 1, 20);
 
-		
+
 		try {
 			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
+
 		add(sbgpanel);
-		
+
+		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
+		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
+		in.setColor(Color.RED);
+		bg.setColor(Color.GREEN);
+		SeanSlider ss = new SeanSlider(bg, in, 0, 100, "normal");
+		add(ss);
+		ss.setVisible(true);
+
+		this.setSize(width, height);
+		this.setPreferredSize(new Dimension(width, height));
 
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +138,7 @@ public class Display extends JFrame{
 		this.setVisible(true);
 
 
-		sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
+		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}
 

@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 
+@SuppressWarnings("serial")
 public class SeanDrawables extends Rectangle {
 	Color c;
 	Image img=null;
