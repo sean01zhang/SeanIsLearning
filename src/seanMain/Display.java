@@ -103,7 +103,7 @@ public class Display extends JFrame {
 
 
 		sb.setBounds(300, 30, 100, 50);
-		sb.setBorders(true, 30);
+		sb.setRoundCorners(true, 30);
 		sb.repaint();
 		add(sb);
 

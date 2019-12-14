@@ -4,7 +4,6 @@ To do:
 User Interface
 1) button **
   - modularity
-  - rounded corner implementation for button (1/2 - rounded hover)
 3) sliders
   - animation
   - Still need to implement
@@ -34,3 +33,4 @@ COMPLETE:
   - rounded corner implementation for bg
   - implement "option" interpretation
   - implement the actions of the commands
+  - rounded corner implementation for button (1/2 - rounded hover)

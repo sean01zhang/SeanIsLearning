@@ -154,13 +154,18 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 // MOUSEWHEEL STUFF ***********************************************
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		Double omega = e.getPreciseWheelRotation();
-		// move the text position
-		if(omega >= 0) {
-			stry= (int) Math.min(stry+omega,boundx );
+		if(endofstring<getHeight()) {
+			stry=10;
 		} else {
-			stry= (int) Math.max(stry+omega,getHeight()-endofstring+stry-boundy);
+			Double omega = e.getPreciseWheelRotation();
+			// move the text position
+			if(omega >= 0) {
+				stry= (int) Math.min(stry+omega,boundx );
+			} else {
+				stry= (int) Math.max(stry+omega,getHeight()-endofstring+stry-boundy);
+			}
+			
+			repaint();
 		}
-		repaint();
 	}
 }
