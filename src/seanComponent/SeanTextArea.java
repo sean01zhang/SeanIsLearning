@@ -122,7 +122,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		// paint background
 		sbg.setBounds(0, 0, getWidth(), getHeight());
-		sbg.draw(g,20);
+		sbg.draw(g);
 		// paint string
 		g.setColor(Color.black);
 		g.setFont(f);

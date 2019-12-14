@@ -9,7 +9,10 @@ import java.awt.RenderingHints;
 
 public class SeanDrawables extends Rectangle {
 	Color c;
-	Image img;
+	Image img=null;
+	Image scaled=null;
+	int imageWidth;
+	int imageHeight;
 
 	public SeanDrawables(Rectangle hitbox) {
 		super(hitbox);
@@ -32,12 +35,27 @@ public class SeanDrawables extends Rectangle {
 	}
 	
 	// GETTERS AND SETTERS *******************************************
-	public void setImage(Image i,int width,int height) {
-		img = i.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+	public void setImage(Image i) {
+		img = i;
+		scaled = i.getScaledInstance(width,height, Image.SCALE_SMOOTH);
+		imageWidth =img.getWidth(null);
+		imageHeight = img.getHeight(null);
 	}
 	
-	public void setImage(Image i) {
-		img = i.getScaledInstance(width,height, Image.SCALE_DEFAULT);
+	public void rescaleImage() {
+		if(scaled == null) {
+			
+		} else {
+			double imgAspect = imageWidth/(double)imageHeight;
+			double frameAspect = getWidth()/getHeight();
+			
+			if(imgAspect > frameAspect) {
+				System.out.println(getHeight() +" " + getWidth() + " "+ (int)(getHeight()/imgAspect)+" " +(getHeight()/imgAspect));
+				scaled = img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH);
+			} else {
+				scaled = img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH);
+			}
+		}
 	}
 
 	public Color getColor() {
@@ -50,21 +68,13 @@ public class SeanDrawables extends Rectangle {
 	
 	
 	// DRAWING: *******************************************************
-	public void draw(Graphics g, int radius) {
-		if (null == img) {
-			g.setColor(c);
-			g.fillRoundRect(x,y,width,height,radius,radius);
-		} else {
-			g.drawImage(img, 0, 0, null);
-		}
-	}
-
 	public void draw(Graphics g) {
-		if (null == img) {
+		if (null == scaled) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);
 		} else {
-			g.drawImage(img, 0, 0, null);
+			g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
+						-((scaled.getHeight(null)-height)/2), null);
 		}
 	}
 }

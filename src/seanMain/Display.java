@@ -7,8 +7,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,63 +31,58 @@ import seanComponent.SeanButton;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
+import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
 
-public class Display extends JFrame {
-	int width = 600;
-	int height = 400;
+public class Display extends JFrame{
 	Panel p;
 	SeanStoryInterpreter sip;
 	File f;
 	JTextArea jta;
 	SeanTextArea sta;
 	Timer t;
-
+	SeanBGPanel sbgpanel;
 	SeanButton sb;
 
-	int vel_x;
-
-	int vel_y;
-	int pos_y;
-	int acc;
-
-
-	// = new SeanStoryInterpreter(, null);
-
+	public void invokeResize() {
+		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
+		sbgpanel.resizePanel(getWidth(),getHeight());
+	}
+	
 	public Display() {
-
 		this.setLayout(null);
-
-		// panel stuffs
-
-		//this.p = new Panel(); p.setSize(width, height);
-		//add(p);
-		//p.setLocation(0, 0);
-		//p.repaint();
-
-
+		this.setSize(600, 400);
+		this.setPreferredSize(new Dimension(600,400));
+		
+		this.addComponentListener(new ComponentAdapter() {
+		    public void componentResized(ComponentEvent componentEvent) {
+		        invokeResize();
+		    }
+		});
+		
 		// STA Stuffs
 
 		this.sta = new SeanTextArea();
-		sta.setSize(200, 100);
-		sta.setLocation(10, 10);
-
-
+		
+		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
 
 		sta.repaint();
 		sta.setRadius(20);
-
-		add(sta);
-
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
-
-
+		/*
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}
+		}*/
+		
+		add(sta);
+
+		
+
+
+		
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -109,8 +109,16 @@ public class Display extends JFrame {
 
 		Animations.horShake(sb, 100, 100, 1, 20);
 
-		this.setSize(width, height);
-		this.setPreferredSize(new Dimension(width, height));
+		
+		try {
+			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		add(sbgpanel);
+		
 
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -121,8 +129,6 @@ public class Display extends JFrame {
 		sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}
-
-
 
 
 }
