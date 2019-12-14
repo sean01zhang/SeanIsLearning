@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 
 
 public abstract class SeanButton extends JComponent implements MouseListener {
-	SeanDrawable sbg;
+	SeanDrawables sbg;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
 	boolean borders;
@@ -38,7 +38,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		borders = false;
 		displayText = "";
 		//background
-		sbg = new SeanDrawable(getX(),getY(),getWidth(),getHeight());
+		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
 
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
@@ -60,7 +60,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		borders = false;
 		displayText = s;
 		//background
-		sbg = new SeanDrawable(getX(),getY(),getWidth(),getHeight());
+		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
 
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
@@ -71,6 +71,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		sbg.setBounds(0,0,getWidth(),getHeight());
 
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;
@@ -186,16 +187,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		sbg.setColor(c);
 		repaint();
 	}
-
-	public void setBounds(int x, int y, int width, int height) {
-		super.setBounds(x,y,width,height);
-		sbg.setBounds(x,y,width,height);
-	}
-
-	public void setLocation(int x,int y) {
-		super.setLocation(x,y);
-		sbg.setLocation(x,y);
-	}
+	
 
 	// *********************************************
 

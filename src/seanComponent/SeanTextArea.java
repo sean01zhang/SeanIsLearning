@@ -39,7 +39,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	Timer t;
 
 	// Background
-	SeanDrawable sbg;
+	SeanDrawables sbg;
 
 	// CONSTRUCTORS *****************************************
 	public SeanTextArea() {
@@ -50,7 +50,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		sbg = new SeanDrawable(getX(),getY(),getWidth(),getHeight());
+		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
 
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -64,10 +64,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		f = new Font("Arial", Font.PLAIN, 20);
 		boundx = 10;
 		boundy = 10;
-		boundw = this.getWidth() - 20;
-		boundh = this.getHeight() - 20;
 		strx= boundx;
-		stry=boundy;
+		stry= boundy;
 		text = "";
 		this.setText("");
 	}
@@ -79,11 +77,14 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		// paint background
+		sbg.setBounds(0, 0, getWidth(), getHeight());
 		sbg.draw(g,20);
 		// paint string
 		g.setColor(Color.black);
 		g.setFont(f);
-		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,boundw);
+
+		System.out.println("What the hec " +outputText);
+		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
 	}
 
 	// SETTERS AND GETTERS ********************************************
@@ -112,11 +113,13 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void setText(String s) {
 	 	text = s;
 		outputText = "";
+		
 		// sets output text depending on what scrolltype is set
 		if (getScrollType().equals("None")) {
 			outputText = s;
 		} else {
 			queueString = new LinkedList<>(Arrays.asList(s.split(getScrollType())));
+			System.out.println(Arrays.toString(queueString.toArray()));
 		}
 
 		t.start();
@@ -124,7 +127,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	}
 
 	public String getText() {
-		return this.text;
+		return text;
 	}
 
 // SCROLLING FOR THE TEXT BOX ******************************************
@@ -134,11 +137,17 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		} else {
 			// adds to output text depending on scrolltype
 			outputText += queueString.poll();
-
-			if (getScrollType().equals(getScrollType())) {
+			System.out.println(outputText);
+			
+			if (getScrollType().equals(" ")) {
 				outputText += getScrollType();
 			}
-			stry = getHeight()-endofstring+stry-boundy;
+			
+			if(endofstring<getHeight()) {
+				stry=10;
+			} else {
+				stry = getHeight()-endofstring+stry-boundy;
+			}
 		}
 	}
 

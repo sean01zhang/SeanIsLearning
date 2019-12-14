@@ -3,6 +3,8 @@ package seanMain;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import seanComponent.SeanDrawables;
+
 public class seanIsLearning {
 	public static void main(String[]args) {
 		Display sean = new Display();
@@ -17,6 +19,8 @@ public class seanIsLearning {
 
 		//System.out.println(sean.sip.readLine());
 
-
+		SeanDrawables s = new SeanDrawables(0,0,20,20);
+		
+		System.out.println(s.getBounds().toString());
 	}
 }

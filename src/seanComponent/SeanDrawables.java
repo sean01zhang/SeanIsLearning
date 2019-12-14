@@ -5,26 +5,26 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
-public class SeanDrawable extends Rectangle {
+public class SeanDrawables extends Rectangle {
 	Color c;
 	Image img;
 
-	public SeanDrawable(Rectangle hitbox) {
+	public SeanDrawables(Rectangle hitbox) {
 		super(hitbox);
 		c= Color.white;
 	}
 
-	public SeanDrawable(Rectangle hitbox, Color c) {
+	public SeanDrawables(Rectangle hitbox, Color c) {
 		super(hitbox);
 		this.c = c;
 	}
 	
-	public SeanDrawable(int x,int y,int width,int height, Color c) {
+	public SeanDrawables(int x,int y,int width,int height, Color c) {
 		super(x,y,width,height);
 		this.c = c;
 	}
 	
-	public SeanDrawable(int x,int y,int width,int height) {
+	public SeanDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
 		c= Color.white;
 	}
