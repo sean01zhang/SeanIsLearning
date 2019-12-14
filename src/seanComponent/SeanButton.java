@@ -84,7 +84,6 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		// overlay with shades to get "hover" or "pressed" effect
 		switch (pressStatus) {
 			case 0:
-				System.out.println("CLICKED");
 				g.setColor(clickShade);
 				g.fillRect(0,0 ,getWidth(), getHeight());
 				break;

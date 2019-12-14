@@ -20,6 +20,7 @@ Given a (drawable thing) <- object, pass in and perform effects on it.
 
 10) Implementation of a data structure to organize components in Display
 
+11) Make SeanDrawables rotatable
 
 NGine
 1) SeanStoryInterpreter
