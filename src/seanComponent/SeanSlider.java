@@ -8,11 +8,9 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.JComponent;
 
-import seanMain.Display;
-
+@SuppressWarnings("serial")
 public class SeanSlider extends JComponent implements MouseListener, MouseMotionListener{
 	
 	Point compCoords = new Point();
@@ -36,14 +34,20 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		
+		setTestColor();
+		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(1000, 1000);
 		this.setLocation(20, 20);
 		
-		if(type.equals("linear")){
+		if(type.equals("horizontal")){
 			bg.height = in.height;
+			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
+			in.setBounds(0, 0, in.width, in.height);
+		} else if (type.equals("vertical")){
+			bg.width = in.width;
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		}
@@ -119,6 +123,30 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		return currentValue2;
 	}
 
+	public void setTestColor(){
+		int[] par = new int[3];
+		
+		par[0] = (int)(255*(double)currentValue2/max);
+		par[1] = (int)(255*(double)currentValue/max);
+		par[2] = (int)(255*(double)(1 - (currentValue/max)));
+		
+		for(int i = 0; i < par.length; i++){
+			if(i == 0 && Math.abs(currentValue2) > Math.abs(max)){
+				par[i] = (int)(255*(double)max/currentValue2);
+			} else if (i == 1 && Math.abs(currentValue) > Math.abs(max)){
+				par[i] = (int)(255*(double)max/currentValue);
+			} else if (i == 2 && Math.abs(currentValue) > Math.abs(max)){
+				par[i] = (int)(255*(double)(1 - (max/currentValue)));
+			}
+			if(par[i] < 0){
+				par[i] = -par[i];
+			}
+			System.out.println(par[i]);
+		}
+		
+		bg.setColor(new Color(par[0], par[1], par[2]));
+	}
+	
 	//Mouse Listener Stuffs *************************************************
 	
 	@Override
@@ -154,8 +182,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		ssOutput.setText(getValue() + ", " + getValue2());
-		bg.setColor(new Color((int)(255*(double)currentValue/max), (int)((double)currentValue/max), (int)(255*(double)currentValue/max)));
-		System.out.println((int)(255*(double)currentValue/max));
+		setTestColor();
 		repaint();
 	}
 
