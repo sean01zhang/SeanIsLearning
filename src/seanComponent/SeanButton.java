@@ -16,8 +16,6 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	SeanDrawables sbg;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
-	Boolean borders;
-	Boolean roundCorners;
 	Font f;
 	final int PRESSED = 0;
 	final int DEFAULT = 1;
@@ -25,17 +23,15 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	int pressStatus =1;
 	int radius = 0;
 
-
 	public SeanButton() {
 		super();
+		this.setOpaque(false);
 		this.enableInputMethods(true);
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
 		this.setSize(200, 100);
 
-		borders = false;
-		roundCorners = true;
 		displayText = "";
 		//background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
@@ -49,19 +45,16 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 
 	public SeanButton(String s) {
 		super();
+		this.setOpaque(false);
 		this.enableInputMethods(true);
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
 		this.setSize(200, 100);
 
-		borders = false;
-		roundCorners = true;
 		displayText = s;
 		//background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-
-		
 
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
@@ -74,15 +67,14 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		super.paintComponent(g);
 		sbg.setBounds(0,0,getWidth(),getHeight());
 
+		g.setClip(new RoundedRect(0,0,getWidth(),getHeight(),radius,radius));
+
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		if(roundCorners){
-			sbg.draw(g,radius);
-		} else {
-			sbg.draw(g);
-		}
+		// draw bg
+		sbg.draw(g);
 
 		// draw foreground
 		g.setColor(textColor);
@@ -94,19 +86,11 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 			case 0:
 				System.out.println("CLICKED");
 				g.setColor(clickShade);
-				if(roundCorners) {
-					g.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
-				} else {
-					g.fillRect(0,0 ,getWidth(), getHeight());
-				}
+				g.fillRect(0,0 ,getWidth(), getHeight());
 				break;
 			case 2:
 				g.setColor(hoverShade);
-				if(roundCorners) {
-					g.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
-				} else {
-					g.fillRect(0,0 ,getWidth(), getHeight());
-				}
+				g.fillRect(0,0 ,getWidth(), getHeight());
 				break;
 			default:
 				break;
@@ -129,8 +113,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		repaint();
 	}
 
-	public void setRoundCorners(Boolean b, int r) {
-		this.borders = b;
+	public void setRoundCorners(int r) {
 		this.radius = r;
 		repaint();
 	}

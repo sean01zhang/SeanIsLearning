@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.Shape;
@@ -46,12 +47,44 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		super();
 		this.enableInputMethods(true);
 		this.addMouseWheelListener(this);
+		this.setOpaque(false);
+		this.setSize(400,200);
 		// Default Scrolling Type
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
+		
+		t = new Timer(70, new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	scrollText();
+	        	repaint();
+	        }
+	    });
+		t.start();
 
+		// Default Font Metrics
+		f = new Font("Arial", Font.PLAIN, 20);
+		boundx = 10;
+		boundy = 10;
+		strx= boundx;
+		stry= boundy;
+		text = "";
+		this.setText("");
+	}
+	
+	public SeanTextArea(int width,int height) {
+		super();
+		this.enableInputMethods(true);
+		this.addMouseWheelListener(this);
+		this.setOpaque(false);
+		this.setSize(width,height);
+		// Default Scrolling Type
+		scrollType = SCROLL_NONE;
+		queueString = new LinkedList<>();
+		// configure background
+		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
+		
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -99,7 +132,15 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void setScrollType(String s) {
 		this.scrollType = s;
 	}
+	
+	public void setBackgroundImage(Image i) {
+		sbg.setImage(i);
+	}
 
+	public void setBackgroundColor(Color c) {
+		sbg.setColor(c);
+	}
+	
 	public String getScrollType() {
 		if (this.scrollType.equals("Word")) {
 			return " ";

@@ -3,6 +3,7 @@ package seanMain;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,9 +12,11 @@ import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -43,20 +46,6 @@ public class Display extends JFrame {
 	int pos_y;
 	int acc;
 
-	public int getVel_y() {
-		vel_y = Math.max(0,vel_y+ acc);
-		return vel_y;
-	}
-
-	public int getPos_y() {
-		pos_y = pos_y+ getVel_y();
-		return pos_y;
-	}
-	
-	public void paintComponent(Graphics g) {
-		g.setColor(Color.black);
-		g.drawRect(0, 0, 100, 200);
-	}
 
 	// = new SeanStoryInterpreter(, null);
 
@@ -77,7 +66,12 @@ public class Display extends JFrame {
 		this.sta = new SeanTextArea();
 		sta.setSize(200, 100);
 		sta.setLocation(10, 10);
+		
+		
+		
 		sta.repaint();
+		
+		
 		add(sta);
 		
 		
@@ -85,6 +79,13 @@ public class Display extends JFrame {
 
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
+		
+		
+		try {
+			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -103,10 +104,13 @@ public class Display extends JFrame {
 
 
 		sb.setBounds(300, 30, 100, 50);
-		sb.setRoundCorners(true, 30);
+		sb.setRoundCorners(30);
+		
+		
 		sb.repaint();
 		add(sb);
 
+		
 		Animations.horShake(sb, 100, 100, 1, 20);
 
 		this.setSize(width, height);
