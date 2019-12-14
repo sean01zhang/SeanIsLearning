@@ -117,7 +117,7 @@ public class Display extends JFrame{
 		
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
-		ss = new SeanSlider(bg, in, 100, 0, "2d");
+		ss = new SeanSlider(bg, in, 100, 0, "");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
