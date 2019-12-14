@@ -43,6 +43,9 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 	// Background
 	SeanDrawables sbg;
+	
+	// Animations
+	Animations anime;
 
 	// CONSTRUCTORS *****************************************
 	public SeanTextArea() {
@@ -76,6 +79,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 		text = "";
 		this.setText("");
+		
+		anime = new Animations(this);
 	}
 
 	public SeanTextArea(int width,int height) {
@@ -109,6 +114,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 		text = "";
 		this.setText("");
+		
+		anime = new Animations(this);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -183,6 +190,10 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 	public String getText() {
 		return text;
+	}
+	
+	public Animations getAnime() {
+		return anime;
 	}
 
 // SCROLLING FOR THE TEXT BOX ******************************************

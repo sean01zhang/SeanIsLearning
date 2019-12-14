@@ -22,6 +22,8 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	final int HOVER = 2;
 	int pressStatus =1;
 	int radius = 0;
+	
+	Animations anime;
 
 	public SeanButton() {
 		super();
@@ -41,6 +43,8 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		textColor = Color.black;
 		hoverShade = new Color(125,125,125,128);
 		clickShade = new Color(75,75,75,128);
+		
+		anime = new Animations(this);
 	}
 
 	public SeanButton(String s) {
@@ -61,6 +65,8 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		textColor = Color.black;
 		hoverShade = new Color(125,125,125,128);
 		clickShade = new Color(75,75,75,128);
+		
+		anime = new Animations(this);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -124,6 +130,10 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 
 	public void setBackgroundImage(Image i) {
 		sbg.setImage(i);
+	}
+	
+	public Animations getAnime() {
+		return anime;
 	}
 
 

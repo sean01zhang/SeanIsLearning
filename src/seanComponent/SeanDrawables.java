@@ -1,5 +1,6 @@
 package seanComponent;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -14,25 +15,28 @@ public class SeanDrawables extends Rectangle {
 	Image scaled=null;
 	int imageWidth;
 	int imageHeight;
+	double radians;
+	double rx = 0;
+	double ry =0;
+	float opacity = (float) 1.0;
 
-	public SeanDrawables(Rectangle hitbox) {
-		super(hitbox);
-		c= Color.white;
-	}
 
-	public SeanDrawables(Rectangle hitbox, Color c) {
-		super(hitbox);
-		this.c = c;
-	}
-	
 	public SeanDrawables(int x,int y,int width,int height, Color c) {
 		super(x,y,width,height);
 		this.c = c;
+		radians =0;
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
 		c= Color.white;
+		radians =0;
+	}
+	
+	public SeanDrawables(int x,int y,int width,int height,float opacity) {
+		super(x,y,width,height);
+		c= Color.white;
+		radians =0;
 	}
 	
 	// GETTERS AND SETTERS *******************************************
@@ -67,9 +71,45 @@ public class SeanDrawables extends Rectangle {
 		this.c = c;
 	}
 	
+	public void setRadians(double rad) {
+		radians = rad;
+	}
+	
+	public double getRadians() {
+		return radians;
+	}
+	
+	public void setPivotX(double rx) {
+		this.rx = rx;
+	}
+	
+	public double getPivotX() {
+		return rx;
+	}
+	
+	public void setPivotY(double ry) {
+		this.ry = ry;
+	}
+	
+	public double getRotationY() {
+		return ry;
+	}
+	
+	public float getOpacity() {
+		return opacity;
+	}
+	
+	public void setOpacity(float o) {
+		opacity =o;
+	}
 	
 	// DRAWING: *******************************************************
 	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.rotate(radians,rx,ry);
+		
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+		
 		if (null == scaled) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);

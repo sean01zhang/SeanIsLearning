@@ -45,7 +45,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		
 		bg.draw(g);
 		in.draw(g);
-		System.out.println(in.getX() + ", " + in.getY());
+		//System.out.println(in.getX() + ", " + in.getY());
 	}
 	
 	public void setValue(int value){

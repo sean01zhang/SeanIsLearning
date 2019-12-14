@@ -2,27 +2,13 @@ package seanMain;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.geom.RoundRectangle2D;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
@@ -30,7 +16,6 @@ import javax.swing.Timer;
 import seanComponent.SeanButton;
 import seanComponent.SeanDrawables;
 import seanComponent.SeanSlider;
-import seanComponent.SeanTextArea;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
 import seanComponent.SeanBGPanel;
@@ -47,15 +32,17 @@ public class Display extends JFrame{
 	SeanButton sb;
 
 	public void invokeResize() {
-		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
+		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
 		sbgpanel.resizePanel(getWidth(),getHeight());
 	}
 
 	public Display() {
 		this.setLayout(null);
 		this.setSize(600, 400);
-		this.setPreferredSize(new Dimension(600,400));
-
+		this.setPreferredSize(new Dimension(800,600));
+		this.setMinimumSize(new Dimension(800,600));
+		
+		
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();
@@ -66,12 +53,14 @@ public class Display extends JFrame{
 
 		this.sta = new SeanTextArea();
 
-		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
+		sta.setBounds(50,getHeight()-155,700,125);
 
 		sta.repaint();
 		sta.setRadius(20);
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
+		sta.setBackgroundColor(new Color(255,255,255,190));
+		
 		/*
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
@@ -80,11 +69,6 @@ public class Display extends JFrame{
 		}*/
 
 		add(sta);
-
-
-
-
-
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -107,9 +91,8 @@ public class Display extends JFrame{
 
 		sb.repaint();
 		add(sb);
-
-
-		Animations.horShake(sb, 100, 100, 1, 20);
+		
+		sb.getAnime().horShake(100, 100, 1, 20);
 
 
 		try {
@@ -118,6 +101,8 @@ public class Display extends JFrame{
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
+		
+		
 
 		add(sbgpanel);
 
@@ -129,15 +114,18 @@ public class Display extends JFrame{
 		add(ss);
 		ss.setVisible(true);
 
-		this.setSize(width, height);
-		this.setPreferredSize(new Dimension(width, height));
-
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		//sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
+		//sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
+		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
+		
+		sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
 
-
+		
 		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}

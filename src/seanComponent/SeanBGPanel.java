@@ -10,14 +10,16 @@ import javax.swing.JPanel;
 public class SeanBGPanel extends JPanel {
 	SeanDrawables background;
 	Queue<SeanDrawables> foreground;
+	Animations anime;
 	
 	public SeanBGPanel(int x, int y, int width, int height,Image bg) {
 		super();
 		this.setOpaque(false);
 		this.setBounds(x, y, width, height);
-		background = new SeanDrawables(this.getBounds());
+		background = new SeanDrawables(x,y,width,height);
 		background.setImage(bg);
 		foreground = new LinkedList<>();
+		anime = new Animations(this);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -39,6 +41,14 @@ public class SeanBGPanel extends JPanel {
 		background.rescaleImage();
 		this.setBounds(0,0,width,height);
 		repaint();
+	}
+	
+	public SeanDrawables getBG() {
+		return background;
+	}
+	
+	public Animations getAnime() {
+		return anime;
 	}
 
 }

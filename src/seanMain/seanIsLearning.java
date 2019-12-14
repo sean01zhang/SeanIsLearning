@@ -3,6 +3,7 @@ package seanMain;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import seanComponent.Animations;
 import seanComponent.SeanDrawables;
 
 public class seanIsLearning {

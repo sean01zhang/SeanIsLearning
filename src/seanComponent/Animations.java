@@ -7,18 +7,122 @@ import javax.swing.Timer;
 import javax.swing.JComponent;
 
 public class Animations {
+	JComponent comp;
+	
+	public Animations(JComponent jc) {
+		comp = jc;
+	}
+	
+	Timer fadT;
+	
+	// FADING ***************************************************************
+	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int miliseconds) {
+		float difference = finalOpacity -initialOpacity;
+		float rate = difference*5/miliseconds;
+		
+		fadT = new Timer(5,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sd.setOpacity(sd.getOpacity()+rate);
+				comp.repaint();
+				if ((-difference/Math.abs(difference))*(sd.getOpacity()-finalOpacity)<=0) {
+					fadT.stop();
+				}
+			}
+		});
+		
+		fadT.start();
+	}
+	
+	
+	// ROTATIONAL SHAKING ***************************************************
+	int rotCounter;
+	Boolean CW;
+	Timer rotT;
+	
+	public void rotShake(SeanDrawables sd, double radL,double radR, int x, int y,int maxCount,int interval){
+		rotCounter=0;
+		CW=true;
+		double origPos = sd.getRadians();
+		sd.setPivotX(x);
+		sd.setPivotY(y);
+		
+		rotT = new Timer(interval, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CW && sd.getRadians() < origPos+radL) {
+					sd.setRadians(sd.getRadians()+0.05);
+					comp.repaint();
+					if(sd.getRadians()>=origPos+radL) {
+						CW=false;
+						rotCounter++;
+					}
+				} else {
+					sd.setRadians(sd.getRadians()-0.05);
+					comp.repaint();
+					if(sd.getRadians()<=origPos-radR) {
+						CW=true;
+						rotCounter++;
+					}
+					
+				}
+				
+				if(rotCounter >= maxCount) {
+					rotT.stop();
+					sd.setRadians(0);
+					comp.repaint();
+				}
+			}	
+		});
 
-	public void rotShake(JComponent comp){
-		//int
+		rotT.start();
+	}
+	
+	public void rotShake(SeanDrawables sd, double radL,double radR, int x, int y,int maxCount,int interval,int vel){
+		rotCounter=0;
+		CW=true;
+		double origPos = sd.getRadians();
+		sd.setPivotX(x);
+		sd.setPivotY(y);
+		
+		rotT = new Timer(interval, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CW && sd.getRadians() < origPos+radL) {
+					sd.setRadians(sd.getRadians()+vel);
+					comp.repaint();
+					if(sd.getRadians()>=origPos+radL) {
+						CW=false;
+						rotCounter++;
+					}
+				} else {
+					sd.setRadians(sd.getRadians()-vel);
+					comp.repaint();
+					if(sd.getRadians()<=origPos-radR) {
+						CW=true;
+						rotCounter++;
+					}
+					
+				}
+				
+				if(rotCounter >= maxCount) {
+					rotT.stop();
+					sd.setRadians(0);
+					comp.repaint();
+				}
+			}	
+		});
+
+		rotT.start();
 	}
 
 
 	// VERTICAL SHAKING EFFECT ***************************************
-	static Boolean goingUp;
-	static int verCounter;
-	static Timer verT;
+	Boolean goingUp;
+	int verCounter;
+	Timer verT;
 
-	public static void vertShake(JComponent comp, int max, int min, int maxCount, int interval){
+	public void vertShake(int max, int min, int maxCount, int interval){
 		int absMax = comp.getY() + max;
 		int absMin = comp.getY() - min;
 		goingUp = true;
@@ -53,11 +157,11 @@ public class Animations {
 
 
 	// HORIZTONTAL SHAKING ***********************************
-	static Boolean goingRight;
-	static int horCounter;
-	static Timer horT;
+	Boolean goingRight;
+	int horCounter;
+	Timer horT;
 
-	public static void horShake(JComponent comp, int max, int min, int maxCount, int interval){
+	public void horShake(int max, int min, int maxCount, int interval){
 		int absMax = comp.getX() + max;
 		int absMin = comp.getX() - min;
 		goingRight = true;
@@ -91,7 +195,7 @@ public class Animations {
 		horT.start();
 	}
 
-	public static void horShake(JComponent comp, int max, int min, int maxCount, int interval, int vel){
+	public void horShake(int max, int min, int maxCount, int interval, int vel){
 		int absMax = comp.getX() + max;
 		int absMin = comp.getX() - min;
 		goingRight = true;
