@@ -37,6 +37,7 @@ public class SeanDrawables extends Rectangle {
 		super(x,y,width,height);
 		c= Color.white;
 		radians =0;
+		this.opacity = opacity;
 	}
 	
 	// GETTERS AND SETTERS *******************************************

@@ -13,9 +13,36 @@ public class Animations {
 		comp = jc;
 	}
 	
-	Timer fadT;
+	// SLIDE IN/OUT ***************************************************************
+	
+	Timer slideT;
+	double counter;
+	
+	public void slideh(SeanDrawables sd,int initialPos, int finalPos) {
+		int difference = finalPos - initialPos;
+		double increment= Math.PI/5;
+		counter =0;
+		
+		
+		slideT = new Timer(5, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sd.setLocation((int)(difference*Math.max(Math.sin(counter)/counter,0)+initialPos)
+							   ,(int)sd.getY());
+				
+				counter += increment;
+				comp.repaint();
+			}
+		});
+	}
+	
+	
+	
+	
 	
 	// FADING ***************************************************************
+	Timer fadT;
+	
 	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int miliseconds) {
 		float difference = finalOpacity -initialOpacity;
 		float rate = difference*5/miliseconds;

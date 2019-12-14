@@ -73,6 +73,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		super.paintComponent(g);
 		sbg.setBounds(0,0,getWidth(),getHeight());
 
+		// round corners 4 ever
 		g.setClip(new RoundedRect(0,0,getWidth(),getHeight(),radius,radius));
 
 		// antialias
