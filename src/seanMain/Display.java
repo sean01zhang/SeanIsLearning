@@ -30,6 +30,7 @@ public class Display extends JFrame{
 	Timer t;
 	SeanBGPanel sbgpanel;
 	SeanButton sb;
+	SeanSlider ss;
 
 	public void invokeResize() {
 		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
@@ -41,8 +42,8 @@ public class Display extends JFrame{
 		this.setSize(600, 400);
 		this.setPreferredSize(new Dimension(800,600));
 		this.setMinimumSize(new Dimension(800,600));
-		
-		
+
+
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();
@@ -60,13 +61,13 @@ public class Display extends JFrame{
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
-		
+
 		/*
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}*/
+		}
 
 		add(sta);
 
@@ -91,7 +92,7 @@ public class Display extends JFrame{
 
 		sb.repaint();
 		add(sb);
-		
+
 		sb.getAnime().horShake(100, 100, 1, 20);
 
 
@@ -101,31 +102,37 @@ public class Display extends JFrame{
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
-		
 
-		add(sbgpanel);
+
+
+		//add(sbgpanel);
+
+		int width = 600;
+		int height = 400;
+		this.setSize(width, height);
+		this.setPreferredSize(new Dimension(width, height));
 
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
 		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
-		SeanSlider ss = new SeanSlider(bg, in, 0, 100, "normal");
-		add(ss);
+		ss = new SeanSlider(bg, in, 100, 0, "2d");
 		ss.setVisible(true);
+		ss.repaint();
+		add(ss);
 
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
+
 		//sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
 		//sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
 		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
-		
+
 		sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
 
-		
+
 		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}
