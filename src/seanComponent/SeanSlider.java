@@ -1,5 +1,6 @@
 package seanComponent;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -10,16 +11,20 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComponent;
 
+import seanMain.Display;
+
 public class SeanSlider extends JComponent implements MouseListener, MouseMotionListener{
 	
 	Point compCoords = new Point();
 	
 	SeanDrawables bg;
 	SeanDrawables in;
+	SeanTextArea ssOutput;
 	String type; //circular, straight, wavy, 2D (ex. a map), etc.
 	int max;
 	int min;
 	int currentValue;
+	int currentValue2;
 	
 	public SeanSlider(SeanDrawables bg, SeanDrawables in, int max, int min, String type){
 		compCoords = null;
@@ -28,12 +33,28 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		this.type = type;
 		this.max = max;
 		this.min = min;
+		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
+		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
-		this.setSize(200, 200);
+		this.setSize(1000, 1000);
 		this.setLocation(20, 20);
+		
+		if(type.equals("linear")){
+			bg.height = in.height;
+			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
+			in.setBounds(0, 0, in.width, in.height);
+		}
+		
+		ssOutput = new SeanTextArea();
+		ssOutput.setText(getValue() + "," + getValue2());
+		ssOutput.setBounds(250, 100, 200, 100);
+		ssOutput.setRadius(30);
+		ssOutput.setScrollType(SeanTextArea.SCROLL_CHAR);
+		ssOutput.setSpeed(50);
+		add(ssOutput);
 	}
 	
 	public void paintComponent(Graphics g){
@@ -45,11 +66,17 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		
 		bg.draw(g);
 		in.draw(g);
-		System.out.println(in.getX() + ", " + in.getY());
+		//System.out.println(in.getX() + ", " + in.getY());
 	}
 	
 	public void setValue(int value){
 		currentValue = value;
+	}
+	
+	public void setValue2(int value2){
+		if(type.equals("2d")){
+			currentValue2 = value2;
+		}
 	}
 	
 	public void setMin(int min){
@@ -59,17 +86,17 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 	public void setInLocation(int x, int y){
 		int modX;
 		int modY;
-		if(x >= bg.getMaxX()){
-			modX = (int)bg.getMaxX() - (int)in.getMaxX();
-		} else if (x <= bg.getMinX()){
-			modX = (int)bg.getMinX() - (int)in.getMinX();
+		if(x + in.width >= bg.width){
+			modX = bg.width - in.width;
+		} else if (x <= 0){
+			modX = 0;
 		} else {
 			modX = x;
 		}
-		if(y >= bg.getMaxY()){
-			modY = (int)bg.getMaxY() - (int)in.getMaxY();
-		} else if (y <= bg.getMinY()){
-			modY = (int)bg.getMinY() - (int)in.getMinY();
+		if(y + in.width >= bg.height){
+			modY = bg.height - in.height;
+		} else if (y <= 0){
+			modY = 0;
 		} else {
 			modY = y;
 		}
@@ -86,6 +113,10 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 	
 	public int getValue(){
 		return currentValue;
+	}
+	
+	public int getValue2(){
+		return currentValue2;
 	}
 
 	//Mouse Listener Stuffs *************************************************
@@ -115,15 +146,17 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		//Point currCoords = e.getLocationOnScreen();
-		if(in.width < e.getX() && in.width > e.getX()){
+		//if the inside drawing is selected and dragged, it will follow
+		/*if(e.getX() < in.getX() + in.width && e.getX() > in.getX() && e.getY() < in.getY() + in.height && e.getY() > in.getY()){
 			setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
-		} else {
-			
-		}
-		
+		}*/
+		setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
+		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
+		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
+		ssOutput.setText(getValue() + ", " + getValue2());
+		bg.setColor(new Color((int)(255*(double)currentValue/max), (int)((double)currentValue/max), (int)(255*(double)currentValue/max)));
+		System.out.println((int)(255*(double)currentValue/max));
 		repaint();
-		System.out.println(e.getX() + ", " + e.getY());
 	}
 
 	@Override

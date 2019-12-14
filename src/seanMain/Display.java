@@ -45,7 +45,8 @@ public class Display extends JFrame{
 	Timer t;
 	SeanBGPanel sbgpanel;
 	SeanButton sb;
-
+	SeanSlider ss;
+	
 	public void invokeResize() {
 		sta.setBounds(10,getHeight()-130,getWidth()-20,100);
 		sbgpanel.resizePanel(getWidth(),getHeight());
@@ -72,19 +73,14 @@ public class Display extends JFrame{
 		sta.setRadius(20);
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
-		/*
+		
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
-		}*/
+		}
 
 		add(sta);
-
-
-
-
-
 
 		f = new File("src/seanEngine/sean.txt");
 
@@ -119,19 +115,22 @@ public class Display extends JFrame{
 			e2.printStackTrace();
 		}
 
-		add(sbgpanel);
+		//add(sbgpanel);
+		
+		int width = 600;
+		int height = 400;
+		this.setSize(width, height);
+		this.setPreferredSize(new Dimension(width, height));
 
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
 		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
-		SeanSlider ss = new SeanSlider(bg, in, 0, 100, "normal");
-		add(ss);
+		ss = new SeanSlider(bg, in, 100, 0, "2d");
 		ss.setVisible(true);
-
-		this.setSize(width, height);
-		this.setPreferredSize(new Dimension(width, height));
-
+		ss.repaint();
+		add(ss);
+		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
