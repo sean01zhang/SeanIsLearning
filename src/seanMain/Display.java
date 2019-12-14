@@ -23,6 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import seanComponent.SeanButton;
+import seanComponent.SeanDrawables;
+import seanComponent.SeanSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
@@ -63,7 +65,7 @@ public class Display extends JFrame {
 
 		// STA Stuffs
 
-		this.sta = new SeanTextArea();
+		/*this.sta = new SeanTextArea();
 		sta.setSize(200, 100);
 		sta.setLocation(10, 10);
 
@@ -76,14 +78,15 @@ public class Display extends JFrame {
 
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
-
+		
 
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		*/
+		
 		f = new File("src/seanEngine/sean.txt");
 
 		sip = new SeanStoryInterpreter(f,this);
@@ -97,7 +100,7 @@ public class Display extends JFrame {
 				sta.setText("Hello");
 			}
 		};
-
+		
 
 		sb.setBounds(300, 30, 100, 50);
 		sb.setRoundCorners(30);
@@ -108,7 +111,15 @@ public class Display extends JFrame {
 
 
 		Animations.horShake(sb, 100, 100, 1, 20);
-
+		
+		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
+		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
+		in.setColor(Color.RED);
+		bg.setColor(Color.GREEN);
+		SeanSlider ss = new SeanSlider(bg, in, 0, 100, "normal");
+		add(ss);
+		ss.setVisible(true);
+		
 		this.setSize(width, height);
 		this.setPreferredSize(new Dimension(width, height));
 
@@ -118,7 +129,7 @@ public class Display extends JFrame {
 		this.setVisible(true);
 
 
-		sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
+		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}
 
