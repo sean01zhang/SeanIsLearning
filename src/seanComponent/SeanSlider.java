@@ -68,8 +68,8 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setClip(new Rectangle((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight()));
-		
+		//g.setClip(new Rectangle((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight()));
+		System.out.println(bg.getX() + ", " + bg.getY() + ", " + bg.getWidth() + ", " +bg.getHeight());
 		bg.draw(g);
 		in.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
