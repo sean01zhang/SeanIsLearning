@@ -25,7 +25,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 	int currentValue;
 	int currentValue2;
 	
-	public SeanSlider(SeanDrawables bg, SeanDrawables in, int max, int min, String type){
+	public SeanSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
@@ -35,13 +35,24 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		
+		//setting round corners takes out clip function...
+		//in.setCornerRadii(radiiBg);
+		//bg.setCornerRadii(radiiIn);
+		
 		setTestColor();
 		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
-		this.setSize(1000, 1000);
-		this.setLocation(20, 20);
+		this.setSize(bg.width, bg.height);
+		//this.setSize(1000, 1000);
+		this.setLocation((int)bg.getX(), (int)bg.getY());
+		
+		
+		System.out.println(in.getX());
+		System.out.println(in.getY());
+		System.out.println(bg.getX());
+		System.out.println(bg.getY());
 		
 		if(type.equals("horizontal")){
 			bg.height = in.height;
@@ -53,13 +64,17 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 			in.setBounds(0, 0, in.width, in.height);
 		}
 		
-		ssOutput = new SeanTextArea();
+		in.setLocation(0, 0);
+		bg.setLocation(0, 0);
+		
+		//text area stuff
+		/*ssOutput = new SeanTextArea();
 		ssOutput.setText(getValue() + "," + getValue2());
 		ssOutput.setBounds(250, 100, 200, 100);
 		ssOutput.setRadius(30);
 		ssOutput.setScrollType(SeanTextArea.SCROLL_CHAR);
 		ssOutput.setSpeed(50);
-		add(ssOutput);
+		add(ssOutput);*/
 	}
 	
 	public void paintComponent(Graphics g){
@@ -69,10 +84,13 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		//g.setClip(new Rectangle((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight()));
-		System.out.println(bg.getX() + ", " + bg.getY() + ", " + bg.getWidth() + ", " +bg.getHeight());
+		//g.setClip(new Rectangle(0, 0, 50, 50));
+		//System.out.println(bg.getX() + ", " + bg.getY() + ", " + bg.getWidth() + ", " +bg.getHeight());
 		bg.draw(g);
 		in.draw(g);
+		g2d.setColor(new Color(212, 212, 212));
 		//System.out.println(in.getX() + ", " + in.getY());
+		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
 	
 	public void setValue(int value){
@@ -143,7 +161,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 			if(par[i] < 0){
 				par[i] = -par[i];
 			}
-			System.out.println(par[i]);
+			//System.out.println(par[i]);
 		}
 		
 		bg.setColor(new Color(par[0], par[1], par[2]));
@@ -183,11 +201,9 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
-		ssOutput.setText(getValue() + ", " + getValue2());
+		//ssOutput.setText(getValue() + ", " + getValue2());
 		setTestColor();
 		repaint();
-		//repaint((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight());
-		//repaint(50, 50, 1, 1);
 	}
 
 	@Override
