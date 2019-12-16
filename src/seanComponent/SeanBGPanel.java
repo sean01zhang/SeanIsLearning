@@ -40,6 +40,7 @@ public class SeanBGPanel extends JPanel {
 	public void resizePanel(int width, int height) {
 		background.setBounds(0,0,width,height);
 		background.rescaleImage();
+		//
 		this.setBounds(0,0,width,height);
 		repaint();
 	}
