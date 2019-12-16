@@ -10,22 +10,26 @@ import javax.swing.JPanel;
 
 public class SeanBGPanel extends JPanel {
 	SeanDrawables background;
-	ArrayList<SeanDrawables> foreground;
+	ArrayList<SeanDrawableForeground> foreground;
 	Animations anime;
 	
 	public SeanBGPanel(int x, int y, int width, int height,Image bg) {
 		super();
 		this.setOpaque(false);
 		this.setBounds(x, y, width, height);
+		// how to center:
 		background = new SeanDrawables(x,y,width,height);
 		background.setImage(bg);
-		foreground = new ArrayList<SeanDrawables>();
+		background.setLocation((background.getScaledImage().getWidth(null)-width)/-2,
+				(background.getScaledImage().getHeight(null)-height)/-2);
+		
+		foreground = new ArrayList<SeanDrawableForeground>();
 		anime = new Animations(this);
 	}
 
 	public void paintComponent(Graphics g) {
 		// draws bg
-		background.draw(g);
+		//background.draw(g);
 		
 		// draws foreground
 		if(foreground.isEmpty()) {
@@ -38,9 +42,15 @@ public class SeanBGPanel extends JPanel {
 	}
 	
 	public void resizePanel(int width, int height) {
-		background.setBounds(0,0,width,height);
+		background.setBounds((background.getScaledImage().getWidth(null)-width)/-2,
+				(background.getScaledImage().getHeight(null)-height)/-2,width,height);
 		background.rescaleImage();
-		//
+		
+		for (SeanDrawableForeground sd : foreground) {
+			sd.setBounds(sd.getPreferredBounds(getX(), getY(), getWidth(), getHeight()));
+			sd.rescaleImage();
+		}
+		
 		this.setBounds(0,0,width,height);
 		repaint();
 	}
@@ -53,7 +63,7 @@ public class SeanBGPanel extends JPanel {
 		return anime;
 	}
 	
-	public void addDrawables(SeanDrawables sd) {
+	public void addDrawables(SeanDrawableForeground sd) {
 		foreground.add(sd);
 	}
 	

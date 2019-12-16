@@ -13,7 +13,7 @@ import java.awt.geom.AffineTransform;
 public class SeanDrawables extends Rectangle {
 	Color c;
 	Image img=null;
-	Image scaled=null;
+	private Image scaled=null;
 	int imageWidth;
 	int imageHeight;
 	double radians;
@@ -48,25 +48,29 @@ public class SeanDrawables extends Rectangle {
 	// GETTERS AND SETTERS *******************************************
 	public void setImage(Image i) {
 		img = i;
-		scaled = i.getScaledInstance(width,height, Image.SCALE_SMOOTH);
+		setScaledImage(i);
 		imageWidth =img.getWidth(null);
 		imageHeight = img.getHeight(null);
+		rescaleImage();
 	}
 	
 	public void rescaleImage() {
-		if(scaled != null) {
+		if(getScaledImage() != null) {
 			if (SEAN_RESIZE == resizeMethod) {
+				System.out.println("oop");
+				System.out.println(getWidth() + " "+ getHeight());
+				
 				double imgAspect = imageWidth/(double)imageHeight;
 				double frameAspect = getWidth()/getHeight();
 				
 				if(imgAspect > frameAspect) {
 					System.out.println(getHeight() +" " + getWidth() + " "+ (int)(getHeight()/imgAspect)+" " +(getHeight()/imgAspect));
-					scaled = img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH);
+					setScaledImage(img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH));
 				} else {
-					scaled = img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH);
+					setScaledImage(img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH));
 				}
 			} else {
-				scaled = img.getScaledInstance((int)getWidth(),(int)getHeight(), Image.SCALE_SMOOTH);
+				setScaledImage(img.getScaledInstance((int)getWidth(),(int)getHeight(), Image.SCALE_SMOOTH));
 			}
 		}
 	}
@@ -129,20 +133,30 @@ public class SeanDrawables extends Rectangle {
 		if(cornerRadii !=0)
 		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
 		
-		if (null == scaled) {
+		if (null == getScaledImage()) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);
 		} else {
 			if (resizeMethod == SEAN_RESIZE) {
+				/*
 				g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
-						-((scaled.getHeight(null)-height)/2), null);
+						-((scaled.getHeight(null)-height)/2), null);*/
+				g.drawImage(getScaledImage(), x, y,null);
 			} else {
-				g.drawImage(scaled, 0, 0,null);
+				g.drawImage(getScaledImage(), x, y,null);
 			}
 			
 		}
 		
 		if(cornerRadii !=0)
 		g.setClip(null);
+	}
+
+	public Image getScaledImage() {
+		return scaled;
+	}
+
+	public void setScaledImage(Image scaled) {
+		this.scaled = scaled;
 	}
 }

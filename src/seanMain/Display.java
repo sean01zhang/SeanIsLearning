@@ -2,6 +2,8 @@ package seanMain;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
@@ -14,6 +16,7 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import seanComponent.SeanButton;
+import seanComponent.SeanDrawableForeground;
 import seanComponent.SeanDrawables;
 import seanComponent.SeanSlider;
 import seanComponent.SeanTextArea;
@@ -33,7 +36,7 @@ public class Display extends JFrame{
 	SeanSlider ss;
 
 	public void invokeResize() {
-		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
+		//sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
 		sbgpanel.resizePanel(getWidth(),getHeight());
 	}
 
@@ -62,14 +65,14 @@ public class Display extends JFrame{
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
 
-		/*
+		
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 
-		*/
+		
 
 		add(sta);
 
@@ -89,14 +92,14 @@ public class Display extends JFrame{
 		sb.setRoundCorners(30);
 		add(sb);
 
-		sb.getAnime().horShake(100, 100, 1, 20);
+		//sb.getAnime().horShake(100, 100, 1, 20);
 
 		try {
 			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
-
+	
 		add(sbgpanel);
 		
 		this.pack();
@@ -110,12 +113,22 @@ public class Display extends JFrame{
 		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
 		//sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
 
-		sbgpanel.addDrawables(new SeanDrawables(600,0,400,sbgpanel.getHeight(),0.5f));
+		sbgpanel.addDrawables(new SeanDrawableForeground (150,0,200,getHeight(),0.5f) {
+			@Override
+			public Rectangle getPreferredBounds(int x, int y, int width, int height) {
+				return new Rectangle((getScaledImage().getWidth(null)-width)/-2,(getScaledImage().getHeight(null)-height)/-2,200,height);
+			}
+			
+		});
+
 		try {
 			sbgpanel.getDrawables(0).setImage(ImageIO.read(new File("src/images/nagisa_with_umbrella.png")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
+		
+		//sb.getAnime().slideh(sb, 1000, -100);
 	}
 
 
