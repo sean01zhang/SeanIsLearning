@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.AffineTransform;
 
 import javax.swing.JComponent;
 
@@ -79,8 +80,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		// draw bg
+		
 		sbg.draw(g);
 
 		// draw foreground

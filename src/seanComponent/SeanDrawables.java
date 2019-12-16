@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
 
 @SuppressWarnings("serial")
 public class SeanDrawables extends Rectangle {
@@ -19,6 +20,7 @@ public class SeanDrawables extends Rectangle {
 	double rx = 0;
 	double ry =0;
 	float opacity = (float) 1.0;
+	int cornerRadii =0;
 
 
 	public SeanDrawables(int x,int y,int width,int height, Color c) {
@@ -111,6 +113,8 @@ public class SeanDrawables extends Rectangle {
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
+		g.setClip(new RoundedRect(0,0,(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
+		
 		if (null == scaled) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);
@@ -118,5 +122,7 @@ public class SeanDrawables extends Rectangle {
 			g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
 						-((scaled.getHeight(null)-height)/2), null);
 		}
+		
+		g.setClip(null);
 	}
 }

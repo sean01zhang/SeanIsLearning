@@ -99,7 +99,7 @@ public class Display extends JFrame{
 
 
 		try {
-			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/anime-background.jpeg")));
+			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -126,7 +126,7 @@ public class Display extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
-		//sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
+		sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
 		//sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
 		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
 

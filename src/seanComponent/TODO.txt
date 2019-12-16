@@ -7,9 +7,10 @@ User Interface
 3) sliders
   - animation
   - Still need to implement
+  
 4) txtarea
-    - modularity for background
-    - Clean up
+    - modularity for background ???
+    - Cleaned up textarea
 
 5) pure FX/animation object (vertical, horizontal shaking)
 Given a (drawable thing) <- object, pass in and perform effects on it.
@@ -20,7 +21,7 @@ Given a (drawable thing) <- object, pass in and perform effects on it.
 
 10) Implementation of a data structure to organize components in Display
 
-11) Make SeanDrawables rotatable
+11) 
 
 NGine
 1) SeanStoryInterpreter
@@ -35,3 +36,4 @@ COMPLETE:
   - implement "option" interpretation
   - implement the actions of the commands
   - rounded corner implementation for button (1/2 - rounded hover)
+  - Make SeanDrawables rotatable
