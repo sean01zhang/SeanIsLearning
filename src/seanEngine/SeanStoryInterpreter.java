@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 import seanMain.Display;
+import seanMain.Display2;
 
 public class SeanStoryInterpreter
 {
@@ -14,7 +15,7 @@ public class SeanStoryInterpreter
 	Boolean firstTime;
 	Boolean autoRead;
 
-	public SeanStoryInterpreter(File f, Display d)
+	public SeanStoryInterpreter(File f, Display display)
 	{
 		currentStory = f;
 
@@ -24,7 +25,7 @@ public class SeanStoryInterpreter
 			input.useDelimiter(";;");
 		} catch (Exception e) {}
 
-		this.d = d;
+		this.d = display;
 		firstTime= true;
 		autoRead= false;
 	}
