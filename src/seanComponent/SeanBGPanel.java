@@ -2,6 +2,7 @@ package seanComponent;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,7 +10,7 @@ import javax.swing.JPanel;
 
 public class SeanBGPanel extends JPanel {
 	SeanDrawables background;
-	Queue<SeanDrawables> foreground;
+	ArrayList<SeanDrawables> foreground;
 	Animations anime;
 	
 	public SeanBGPanel(int x, int y, int width, int height,Image bg) {
@@ -18,7 +19,7 @@ public class SeanBGPanel extends JPanel {
 		this.setBounds(x, y, width, height);
 		background = new SeanDrawables(x,y,width,height);
 		background.setImage(bg);
-		foreground = new LinkedList<>();
+		foreground = new ArrayList<SeanDrawables>();
 		anime = new Animations(this);
 	}
 
@@ -30,7 +31,7 @@ public class SeanBGPanel extends JPanel {
 		if(foreground.isEmpty()) {
 			
 		} else {
-			for (SeanDrawables sd :(SeanDrawables[])foreground.toArray()) {
+			for (SeanDrawables sd : foreground) {
 				sd.draw(g);
 			}
 		}
@@ -49,6 +50,14 @@ public class SeanBGPanel extends JPanel {
 	
 	public Animations getAnime() {
 		return anime;
+	}
+	
+	public void addDrawables(SeanDrawables sd) {
+		foreground.add(sd);
+	}
+	
+	public SeanDrawables getDrawables(int index) {
+		return foreground.get(index);
 	}
 
 }

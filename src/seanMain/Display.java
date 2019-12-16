@@ -39,7 +39,7 @@ public class Display extends JFrame{
 
 	public Display() {
 		this.setLayout(null);
-		this.setSize(600, 400);
+		this.setSize(800, 600);
 		this.setPreferredSize(new Dimension(800,600));
 		this.setMinimumSize(new Dimension(800,600));
 
@@ -62,12 +62,14 @@ public class Display extends JFrame{
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
 
-		
+
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+
+		*/
 
 		add(sta);
 
@@ -97,7 +99,7 @@ public class Display extends JFrame{
 
 
 		try {
-			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
+			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/anime-background.jpeg")));
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -105,22 +107,19 @@ public class Display extends JFrame{
 
 
 
-		//add(sbgpanel);
+		add(sbgpanel);
 
-		int width = 600;
-		int height = 400;
-		this.setSize(width, height);
-		this.setPreferredSize(new Dimension(width, height));
-
-		SeanDrawables in = new SeanDrawables(0, 0, 20, 20);
-		SeanDrawables bg = new SeanDrawables(0, 0, 400, 400);
-		
+		/*
+		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
+		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
 		ss = new SeanSlider(bg, in, 100, 0, "");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
+
+		*/
 
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,8 +130,15 @@ public class Display extends JFrame{
 		//sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
 		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
 
-		sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
+		//sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
 
+		sbgpanel.addDrawables(new SeanDrawables(600,0,500,sbgpanel.getHeight(),0.5f));
+		try {
+			sbgpanel.getDrawables(0).setImage(ImageIO.read(new File("src/images/nagisa_with_umbrella.png")));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
