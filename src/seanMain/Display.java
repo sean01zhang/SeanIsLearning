@@ -62,7 +62,7 @@ public class Display extends JFrame{
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
 
-
+		/*
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
