@@ -130,9 +130,9 @@ public class SeanDrawables extends Rectangle {
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
-		if(cornerRadii !=0)
+		/*if(cornerRadii !=0)
 		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
-		
+		*/
 		if (null == getScaledImage()) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);
@@ -148,8 +148,8 @@ public class SeanDrawables extends Rectangle {
 			
 		}
 		
-		if(cornerRadii !=0)
-		g.setClip(null);
+		/*if(cornerRadii !=0)
+		g.setClip(null);*/
 	}
 
 	public Image getScaledImage() {

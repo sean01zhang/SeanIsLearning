@@ -116,10 +116,10 @@ public class Display2 extends JFrame{
 		//Modern look settings
 		SeanDrawables in = new SeanDrawables(200, 100, 400, 50);
 		SeanDrawables bg = new SeanDrawables(200, 100, 400, 50);
-		in.setColor(Color.GRAY);
-		bg.setColor(Color.WHITE);
+		in.setColor(Color.WHITE);
+		bg.setColor(Color.LIGHT_GRAY);
 		
-		ss = new SeanSlider(bg, in, 100, 0, 10, 30, "modern hor");
+		ss = new SeanSlider(bg, in, 20, 0, 30, 10, "modern hor");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);

@@ -24,6 +24,8 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 	int min;
 	int currentValue;
 	int currentValue2;
+	int radiiIn;
+	int radiiBg;
 	
 	public SeanSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
@@ -34,10 +36,12 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		this.min = min;
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
+		this.radiiIn = radiiIn;
+		this.radiiBg = radiiBg;
 		
 		//setting round corners takes out clip function...
-		//in.setCornerRadii(radiiBg);
-		//bg.setCornerRadii(radiiIn);
+		in.setCornerRadii(radiiIn);
+		bg.setCornerRadii(radiiBg);
 		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
@@ -45,11 +49,12 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		this.setSize(bg.width, bg.height);
 		this.setLocation((int)bg.getX(), (int)bg.getY());
 		
-		
+		/*
 		System.out.println(in.getX());
 		System.out.println(in.getY());
 		System.out.println(bg.getX());
 		System.out.println(bg.getY());
+		*/
 		
 		if(type.equals("horizontal")){
 			bg.height = in.height;
@@ -60,7 +65,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("modern hor")){
-			
+			in.setCornerRadii(radiiBg);
 		} else if (type.equals("modern vert")){
 			
 		} else if (type.equals("color picker")){
@@ -86,12 +91,9 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		//g.setClip(new Rectangle((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight()));
-		//g.setClip(new Rectangle(0, 0, 50, 50));
-		//System.out.println(bg.getX() + ", " + bg.getY() + ", " + bg.getWidth() + ", " +bg.getHeight());
+		g.setClip(new RoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
 		in.draw(g);
-		g2d.setColor(new Color(212, 212, 212));
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
@@ -206,13 +208,24 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		} else {
 			setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
 		}
-		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
-		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
+		if(type.equals("modern hor") || type.equals("modern vert")){
+			if(max - (int)((max - min)*((double)(bg.getX() - in.getX())/bg.width)) + min > 0){
+				currentValue = max - (int)((max - min)*((double)(bg.getX() - in.getX())/bg.width)) + min;
+				currentValue2 = 0;
+			} else {
+				currentValue = 0;
+				currentValue2 = 0;
+			}
+		} else {
+			currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
+			currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
+		}
 		//ssOutput.setText(getValue() + ", " + getValue2());
 		if(type.equals("color picker")){
 			setTestColor();
 		}
 		repaint();
+		System.out.println(getValue() + "," + getValue2());
 	}
 
 	@Override
