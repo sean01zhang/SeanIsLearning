@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -67,6 +68,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setClip(new Rectangle((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight()));
 		
 		bg.draw(g);
 		in.draw(g);
@@ -183,8 +185,9 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		ssOutput.setText(getValue() + ", " + getValue2());
 		setTestColor();
+		repaint();
 		//repaint((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight());
-		repaint(50, 50, 1, 1);
+		//repaint(50, 50, 1, 1);
 	}
 
 	@Override
