@@ -21,6 +21,9 @@ public class SeanDrawables extends Rectangle {
 	double ry =0;
 	float opacity = (float) 1.0;
 	int cornerRadii =0;
+	int resizeMethod=0;
+	final int SEAN_RESIZE = 0;
+	final int STRETCH_RESIZE =1;
 
 
 	public SeanDrawables(int x,int y,int width,int height, Color c) {
@@ -51,17 +54,19 @@ public class SeanDrawables extends Rectangle {
 	}
 	
 	public void rescaleImage() {
-		if(scaled == null) {
-			
-		} else {
-			double imgAspect = imageWidth/(double)imageHeight;
-			double frameAspect = getWidth()/getHeight();
-			
-			if(imgAspect > frameAspect) {
-				System.out.println(getHeight() +" " + getWidth() + " "+ (int)(getHeight()/imgAspect)+" " +(getHeight()/imgAspect));
-				scaled = img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH);
+		if(scaled != null) {
+			if (SEAN_RESIZE == resizeMethod) {
+				double imgAspect = imageWidth/(double)imageHeight;
+				double frameAspect = getWidth()/getHeight();
+				
+				if(imgAspect > frameAspect) {
+					System.out.println(getHeight() +" " + getWidth() + " "+ (int)(getHeight()/imgAspect)+" " +(getHeight()/imgAspect));
+					scaled = img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH);
+				} else {
+					scaled = img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH);
+				}
 			} else {
-				scaled = img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH);
+				scaled = img.getScaledInstance((int)getWidth(),(int)getHeight(), Image.SCALE_SMOOTH);
 			}
 		}
 	}
@@ -113,16 +118,23 @@ public class SeanDrawables extends Rectangle {
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
-		g.setClip(new RoundedRect(0,0,(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
+		if(cornerRadii !=0)
+		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
 		
 		if (null == scaled) {
 			g.setColor(c);
 			g.fillRect(x,y,width,height);
 		} else {
-			g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
+			if (resizeMethod == SEAN_RESIZE) {
+				g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
 						-((scaled.getHeight(null)-height)/2), null);
+			} else {
+				g.drawImage(scaled, 0, 0,null);
+			}
+			
 		}
 		
+		if(cornerRadii !=0)
 		g.setClip(null);
 	}
 }
