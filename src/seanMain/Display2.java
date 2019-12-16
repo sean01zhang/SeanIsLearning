@@ -21,7 +21,7 @@ import seanComponent.Animations;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
 
-public class Display extends JFrame{
+public class Display2 extends JFrame{
 	Panel p;
 	SeanStoryInterpreter sip;
 	File f;
@@ -37,7 +37,7 @@ public class Display extends JFrame{
 		sbgpanel.resizePanel(getWidth(),getHeight());
 	}
 
-	public Display() {
+	public Display2() {
 		this.setLayout(null);
 		this.setSize(800, 600);
 		this.setPreferredSize(new Dimension(800,600));
@@ -74,8 +74,6 @@ public class Display extends JFrame{
 		add(sta);
 
 		f = new File("src/seanEngine/sean.txt");
-
-		sip = new SeanStoryInterpreter(f,this);
 
 
 		// button testing time
