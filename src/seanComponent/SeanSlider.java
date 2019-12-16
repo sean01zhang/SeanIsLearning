@@ -183,7 +183,8 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		ssOutput.setText(getValue() + ", " + getValue2());
 		setTestColor();
-		repaint();
+		//repaint((int)bg.getX(), (int)bg.getY(), (int)bg.getWidth(), (int)bg.getHeight());
+		repaint(50, 50, 1, 1);
 	}
 
 	@Override

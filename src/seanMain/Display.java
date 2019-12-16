@@ -107,20 +107,19 @@ public class Display extends JFrame{
 
 
 
-		add(sbgpanel);
+		//add(sbgpanel);
 
-		/*
+		
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
 		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
 		in.setColor(Color.RED);
 		bg.setColor(Color.GREEN);
-		ss = new SeanSlider(bg, in, 100, 0, "2d");
+		ss = new SeanSlider(bg, in, 100, 0, "");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
-
-		*/
-
+		
+		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
