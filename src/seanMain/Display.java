@@ -107,9 +107,9 @@ public class Display extends JFrame{
 
 
 
-		add(sbgpanel);
+		//add(sbgpanel);
 
-		/*
+		
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
 		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
 		in.setColor(Color.RED);
@@ -119,7 +119,7 @@ public class Display extends JFrame{
 		ss.repaint();
 		add(ss);
 
-		*/
+		
 
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
