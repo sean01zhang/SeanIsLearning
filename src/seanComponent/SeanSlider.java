@@ -39,13 +39,10 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		//in.setCornerRadii(radiiBg);
 		//bg.setCornerRadii(radiiIn);
 		
-		setTestColor();
-		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(bg.width, bg.height);
-		//this.setSize(1000, 1000);
 		this.setLocation((int)bg.getX(), (int)bg.getY());
 		
 		
@@ -62,9 +59,15 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 			bg.width = in.width;
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
+		} else if (type.equals("modern hor")){
+			
+		} else if (type.equals("modern vert")){
+			
+		} else if (type.equals("color picker")){
+			setTestColor();
 		}
 		
-		in.setLocation(0, 0);
+		//in.setLocation(0, 0);
 		bg.setLocation(0, 0);
 		
 		//text area stuff
@@ -112,14 +115,14 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		int modY;
 		if(x + in.width >= bg.width){
 			modX = bg.width - in.width;
-		} else if (x <= 0){
+		} else if (x <= 0 && !type.equals("modern hor")){
 			modX = 0;
 		} else {
 			modX = x;
 		}
 		if(y + in.width >= bg.height){
 			modY = bg.height - in.height;
-		} else if (y <= 0){
+		} else if (y <= 0 && !type.equals("modern vert")){
 			modY = 0;
 		} else {
 			modY = y;
@@ -198,11 +201,17 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 		/*if(e.getX() < in.getX() + in.width && e.getX() > in.getX() && e.getY() < in.getY() + in.height && e.getY() > in.getY()){
 			setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
 		}*/
-		setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
+		if(type.equals("modern hor") || type.equals("modern vert")){
+			setInLocation(e.getX() - (int)(in.width), e.getY() - (int)(in.height/2));
+		} else {
+			setInLocation(e.getX() - (int)(in.width/2), e.getY() - (int)(in.height/2));
+		}
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		//ssOutput.setText(getValue() + ", " + getValue2());
-		setTestColor();
+		if(type.equals("color picker")){
+			setTestColor();
+		}
 		repaint();
 	}
 

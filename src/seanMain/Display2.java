@@ -107,15 +107,19 @@ public class Display2 extends JFrame{
 		//add(sbgpanel);
 
 		/*
+		//Color picker settings
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
-		SeanDrawables bg = new SeanDrawables(0, 0, 200, 200);
+		SeanDrawables bg = new SeanDrawables(50, 50, 300, 300);
+		in.setColor(Color.RED);
 		*/
 		
-		SeanDrawables in = new SeanDrawables(0, 100, 20, 20);
-		SeanDrawables bg = new SeanDrawables(0, 100, 400, 50);
-		in.setColor(Color.RED);
-		//bg.setColor(Color.GREEN);
-		ss = new SeanSlider(bg, in, 100, 0, 10, 30, "");
+		//Modern look settings
+		SeanDrawables in = new SeanDrawables(200, 100, 400, 50);
+		SeanDrawables bg = new SeanDrawables(200, 100, 400, 50);
+		in.setColor(Color.GRAY);
+		bg.setColor(Color.WHITE);
+		
+		ss = new SeanSlider(bg, in, 100, 0, 10, 30, "modern hor");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
@@ -132,7 +136,7 @@ public class Display2 extends JFrame{
 
 		//sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
 
-		sbgpanel.addDrawables(new SeanDrawables(600,0,400,sbgpanel.getHeight(),0.5f));
+		//sbgpanel.addDrawables(new SeanDrawables(600,0,400,sbgpanel.getHeight(),0.5f));
 		try {
 			sbgpanel.getDrawables(0).setImage(ImageIO.read(new File("src/images/nagisa_with_umbrella.png")));
 		} catch (IOException e1) {
