@@ -118,9 +118,8 @@ public class Display extends JFrame{
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
-
 		
-
+		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
