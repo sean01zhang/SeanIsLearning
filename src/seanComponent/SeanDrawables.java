@@ -111,6 +111,14 @@ public class SeanDrawables extends Rectangle {
 		opacity =o;
 	}
 	
+	public int getCornerRadii() {
+		return cornerRadii;
+	}
+	
+	public void setCornerRadii(int cornerRadii) {
+		this.cornerRadii = cornerRadii;
+	}
+	
 	// DRAWING: *******************************************************
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
