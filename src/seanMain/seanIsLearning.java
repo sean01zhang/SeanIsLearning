@@ -20,10 +20,10 @@ public class seanIsLearning {
 
 		//System.out.println(sean.sip.readLine());
 
-		
-		
+
+
 		SeanDrawables s = new SeanDrawables(0,0,20,20);
-		
+
 		System.out.println(s.getBounds().toString());
 	}
 }
