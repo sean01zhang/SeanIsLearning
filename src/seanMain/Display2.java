@@ -15,9 +15,10 @@ import javax.swing.Timer;
 
 import seanComponent.SeanButton;
 import seanComponent.SeanDrawables;
-import seanComponent.SeanSlider;
+import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
+import seanComponent.MapDrawables;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
 
@@ -30,7 +31,7 @@ public class Display2 extends JFrame{
 	Timer t;
 	SeanBGPanel sbgpanel;
 	SeanButton sb;
-	SeanSlider ss;
+	MapSlider ss;
 
 	public void invokeResize() {
 		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
@@ -114,12 +115,12 @@ public class Display2 extends JFrame{
 		*/
 		
 		//Modern look settings
-		SeanDrawables in = new SeanDrawables(200, 100, 400, 50);
-		SeanDrawables bg = new SeanDrawables(200, 100, 400, 50);
+		MapDrawables in = new MapDrawables(200, 100, 400, 50);
+		MapDrawables bg = new MapDrawables(200, 100, 400, 50);
 		in.setColor(Color.WHITE);
 		bg.setColor(Color.LIGHT_GRAY);
 		
-		ss = new SeanSlider(bg, in, 20, 0, 30, 10, "modern hor");
+		ss = new MapSlider(bg, in, 20, 0, 30, 10, "modern hor");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);

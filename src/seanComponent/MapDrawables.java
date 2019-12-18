@@ -10,7 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
 @SuppressWarnings("serial")
-public class SeanDrawables extends Rectangle {
+public class MapDrawables extends Rectangle {
 	Color c;
 	Image img=null;
 	private Image scaled=null;
@@ -26,19 +26,19 @@ public class SeanDrawables extends Rectangle {
 	final int STRETCH_RESIZE =1;
 
 
-	public SeanDrawables(int x,int y,int width,int height, Color c) {
+	public MapDrawables(int x,int y,int width,int height, Color c) {
 		super(x,y,width,height);
 		this.c = c;
 		radians =0;
 	}
 	
-	public SeanDrawables(int x,int y,int width,int height) {
+	public MapDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
 		c= Color.white;
 		radians =0;
 	}
 	
-	public SeanDrawables(int x,int y,int width,int height,float opacity) {
+	public MapDrawables(int x,int y,int width,int height,float opacity) {
 		super(x,y,width,height);
 		c= Color.white;
 		radians =0;
@@ -130,8 +130,10 @@ public class SeanDrawables extends Rectangle {
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
+		/*
 		if(cornerRadii !=0)
 		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
+		*/
 		
 		if (null == getScaledImage()) {
 			g.setColor(c);
@@ -148,8 +150,9 @@ public class SeanDrawables extends Rectangle {
 			
 		}
 		
+		/*
 		if(cornerRadii !=0)
-		g.setClip(null);
+		g.setClip(null);*/
 	}
 
 	public Image getScaledImage() {

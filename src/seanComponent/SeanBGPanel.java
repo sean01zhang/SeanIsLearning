@@ -29,7 +29,7 @@ public class SeanBGPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		// draws bg
-		//background.draw(g);
+		background.draw(g);
 		
 		// draws foreground
 		if(foreground.isEmpty()) {

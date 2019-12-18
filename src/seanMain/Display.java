@@ -18,7 +18,7 @@ import javax.swing.Timer;
 import seanComponent.SeanButton;
 import seanComponent.SeanDrawableForeground;
 import seanComponent.SeanDrawables;
-import seanComponent.SeanSlider;
+import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
 import seanComponent.SeanBGPanel;
@@ -33,7 +33,7 @@ public class Display extends JFrame{
 	Timer t;
 	SeanBGPanel sbgpanel;
 	SeanButton sb;
-	SeanSlider ss;
+	MapSlider ss;
 
 	public void invokeResize() {
 		//sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);

@@ -12,12 +12,12 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 
 @SuppressWarnings("serial")
-public class SeanSlider extends JComponent implements MouseListener, MouseMotionListener{
+public class MapSlider extends JComponent implements MouseListener, MouseMotionListener{
 	
 	Point compCoords = new Point();
 	
-	SeanDrawables bg;
-	SeanDrawables in;
+	MapDrawables bg;
+	MapDrawables in;
 	SeanTextArea ssOutput;
 	String type; //circular, straight, wavy, 2D (ex. a map), etc.
 	int max;
@@ -27,7 +27,7 @@ public class SeanSlider extends JComponent implements MouseListener, MouseMotion
 	int radiiIn;
 	int radiiBg;
 	
-	public SeanSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
+	public MapSlider(MapDrawables bg, MapDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
