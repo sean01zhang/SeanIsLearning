@@ -1,14 +1,16 @@
-package seanComponent;
+package seanGeometry;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedRect extends RoundRectangle2D {
+public class SeanRoundedRect extends RoundRectangle2D implements SeanShape {
 	int x,y,width,height;
 	int arcw,arch;
 
-	public RoundedRect(int x, int y, int width, int height, int arcw,int arch) {
+	public SeanRoundedRect(int x, int y, int width, int height, int arcw,int arch) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -66,6 +68,20 @@ public class RoundedRect extends RoundRectangle2D {
 	public boolean isEmpty() {
 		return false;
 	}
+	
+	public void draw(Graphics g) {
+		g.fillRoundRect(x,y,width,height,arcw,arch);
+	}
 
-
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		arch = 30;
+		arcw = 30;
+		System.out.println("ARCP: " +arcw + " "+arch);
+		System.out.println("DSF " + this.getBounds());
+	}
 }

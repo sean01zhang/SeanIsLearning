@@ -8,6 +8,10 @@ import java.util.Queue;
 
 import javax.swing.JPanel;
 
+import seanMisc.Animations;
+import seanMisc.SeanDrawableForeground;
+import seanMisc.SeanDrawables;
+
 public class SeanBGPanel extends JPanel {
 	SeanDrawables background;
 	ArrayList<SeanDrawableForeground> foreground;
@@ -18,8 +22,7 @@ public class SeanBGPanel extends JPanel {
 		this.setOpaque(false);
 		this.setBounds(x, y, width, height);
 		// how to center:
-		background = new SeanDrawables(x,y,width,height);
-		background.setImage(bg);
+		background = new SeanDrawables(x,y,width,height,1.0f,bg);
 		background.setLocation((background.getScaledImage().getWidth(null)-width)/-2,
 				(background.getScaledImage().getHeight(null)-height)/-2);
 		
@@ -29,7 +32,7 @@ public class SeanBGPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		// draws bg
-		//background.draw(g);
+		background.draw(g);
 		
 		// draws foreground
 		if(foreground.isEmpty()) {
@@ -42,9 +45,10 @@ public class SeanBGPanel extends JPanel {
 	}
 	
 	public void resizePanel(int width, int height) {
-		background.setBounds((background.getScaledImage().getWidth(null)-width)/-2,
-				(background.getScaledImage().getHeight(null)-height)/-2,width,height);
+		background.setSize(width, height);
 		background.rescaleImage();
+		background.setLocation((background.getScaledImageWidth()-width)/-2,
+				(background.getScaledImageHeight()-height)/-2);
 		
 		for (SeanDrawableForeground sd : foreground) {
 			sd.setBounds(sd.getPreferredBounds(getX(), getY(), getWidth(), getHeight()));
