@@ -11,6 +11,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 
+import seanGeometry.SeanRoundedRect;
+
 @SuppressWarnings("serial")
 public class MapSlider extends JComponent implements MouseListener, MouseMotionListener{
 	
@@ -91,7 +93,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setClip(new RoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
+		g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
 		in.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());

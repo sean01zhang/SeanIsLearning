@@ -12,6 +12,8 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JComponent;
 
+import seanGeometry.SeanRoundedRect;
+
 
 public abstract class SeanButton extends JComponent implements MouseListener {
 	SeanDrawables sbg;
@@ -75,7 +77,7 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		sbg.setBounds(0,0,getWidth(),getHeight());
 
 		// round corners 4 ever
-		g.setClip(new RoundedRect(0,0,getWidth(),getHeight(),radius,radius));
+		g.setClip(new SeanRoundedRect(0,0,getWidth(),getHeight(),radius,radius));
 
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;

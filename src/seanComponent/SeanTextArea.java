@@ -22,6 +22,8 @@ import java.util.Arrays;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
+import seanGeometry.SeanRoundedRect;
+
 public class SeanTextArea extends JComponent implements MouseWheelListener {
 	// string related
 	String outputText;
@@ -121,7 +123,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		g.setClip(new RoundedRect(0,0,getWidth(),getHeight(),radius,radius));
+		g.setClip(new SeanRoundedRect(0,0,getWidth(),getHeight(),radius,radius));
 
 		// turn on anti-alias mode
 		Graphics2D g2d = (Graphics2D) g;

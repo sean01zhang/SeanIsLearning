@@ -44,10 +44,8 @@ public class SeanBGPanel extends JPanel {
 	public void resizePanel(int width, int height) {
 		background.setSize(width, height);
 		background.rescaleImage();
-		
-		background.setLocation((background.scaledImageWidth-width)/-2,
-				(background.scaledImageHeight-height)/-2);
-		
+		background.setLocation((background.getScaledImageWidth()-width)/-2,
+				(background.getScaledImageHeight()-height)/-2);
 		
 		for (SeanDrawableForeground sd : foreground) {
 			sd.setBounds(sd.getPreferredBounds(getX(), getY(), getWidth(), getHeight()));

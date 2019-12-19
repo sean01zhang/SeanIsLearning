@@ -1,14 +1,15 @@
-package seanComponent;
+package seanGeometry;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedRect extends RoundRectangle2D {
+public class SeanRoundedRect extends RoundRectangle2D implements SeanShape {
 	int x,y,width,height;
 	int arcw,arch;
 
-	public RoundedRect(int x, int y, int width, int height, int arcw,int arch) {
+	public SeanRoundedRect(int x, int y, int width, int height, int arcw,int arch) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -66,6 +67,8 @@ public class RoundedRect extends RoundRectangle2D {
 	public boolean isEmpty() {
 		return false;
 	}
-
-
+	
+	public void draw(Graphics g) {
+		g.drawRoundRect((int)getX(), (int)getY(), (int)getWidth(), (int)getHeight(), (int)getArcWidth(), (int)getArcHeight());
+	}
 }

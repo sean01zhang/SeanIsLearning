@@ -7,7 +7,10 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+
+import seanGeometry.SeanShape;
 
 @SuppressWarnings("serial")
 public class SeanDrawables extends Rectangle {
@@ -28,7 +31,7 @@ public class SeanDrawables extends Rectangle {
 	int prevHeight=0;
 	int scaledImageWidth;
 	int scaledImageHeight;
-
+	SeanShape shapeToDraw;
 
 	public SeanDrawables(int x,int y,int width,int height, Color c) {
 		super(x,y,width,height);
@@ -55,6 +58,15 @@ public class SeanDrawables extends Rectangle {
 		prevHeight= height;
 	}
 	
+	public SeanDrawables(Shape s, float opacity, Color c) {
+		super(s.getBounds());
+		this.c = c;
+		radians =0;
+		shapeToDraw = s;
+		prevWidth = width;
+		prevHeight= height;
+	}
+	
 	// GETTERS AND SETTERS *******************************************
 	public void setImage(Image i) {
 		img = i;
@@ -62,33 +74,6 @@ public class SeanDrawables extends Rectangle {
 		imageWidth =img.getWidth(null);
 		imageHeight = img.getHeight(null);
 		rescaleImage();
-	}
-	
-	
-	
-	public void rescaleImage() {
-		if(getScaledImage() != null) {
-			if (SEAN_RESIZE == resizeMethod) {
-				System.out.println("oop");
-				System.out.println(getWidth() + " "+ getHeight());
-				
-				double imgAspect = imageWidth/(double)imageHeight;
-				double frameAspect = getWidth()/getHeight();
-				
-				if(imgAspect > frameAspect) {
-					scaledImageWidth =(int)(getHeight()*imgAspect);
-					scaledImageHeight = height;
-				} else {
-					scaledImageWidth = width;
-					scaledImageHeight = (int)(width/imgAspect);
-				}
-			} else {
-				scaledImageWidth = width;
-				scaledImageHeight = height;
-			}
-			
-			setScaledImage(img.getScaledInstance(scaledImageWidth,scaledImageHeight, Image.SCALE_SMOOTH));
-		}
 	}
 
 	public Color getColor() {
@@ -139,35 +124,6 @@ public class SeanDrawables extends Rectangle {
 		this.cornerRadii = cornerRadii;
 	}
 	
-	// DRAWING: *******************************************************
-	public void draw(Graphics g) {
-		Graphics2D g2d = (Graphics2D)g;
-		g2d.rotate(radians,rx,ry);
-		
-		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-		
-		if(cornerRadii !=0)
-		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
-		
-		if (null == getScaledImage()) {
-			g.setColor(c);
-			g.fillRect(x,y,width,height);
-		} else {
-			if (resizeMethod == SEAN_RESIZE) {
-				/*
-				g.drawImage(scaled, -(scaled.getWidth(null)-width)/2, 
-						-((scaled.getHeight(null)-height)/2), null);*/
-				g.drawImage(getScaledImage(), x, y,null);
-			} else {
-				g.drawImage(getScaledImage(), x, y,null);
-			}
-			
-		}
-		
-		if(cornerRadii !=0)
-		g.setClip(null);
-	}
-
 	public Image getScaledImage() {
 		return scaled;
 	}
@@ -192,5 +148,44 @@ public class SeanDrawables extends Rectangle {
 		this.scaledImageHeight = scaledImageHeight;
 	}
 	
+	// DRAWING: *******************************************************
+	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.rotate(radians,rx,ry);
+		
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+
+		if (null == getScaledImage()) {
+			g.setColor(c);
+			shapeToDraw.draw(g);
+		} else {
+			g.drawImage(getScaledImage(), x, y,null);
+		}
+
+	}
 	
+	public void rescaleImage() {
+		if(getScaledImage() != null) {
+			if (SEAN_RESIZE == resizeMethod) {
+				System.out.println("oop");
+				System.out.println(getWidth() + " "+ getHeight());
+				
+				double imgAspect = imageWidth/(double)imageHeight;
+				double frameAspect = getWidth()/getHeight();
+				
+				if(imgAspect > frameAspect) {
+					scaledImageWidth =(int)(getHeight()*imgAspect);
+					scaledImageHeight = height;
+				} else {
+					scaledImageWidth = width;
+					scaledImageHeight = (int)(width/imgAspect);
+				}
+			} else {
+				scaledImageWidth = width;
+				scaledImageHeight = height;
+			}
+			
+			setScaledImage(img.getScaledInstance(scaledImageWidth,scaledImageHeight, Image.SCALE_SMOOTH));
+		}
+	}
 }
