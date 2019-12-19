@@ -40,6 +40,8 @@ public class Display extends JFrame{
 		this.setMinimumSize(new Dimension(800,600));
 		this.setUndecorated(true);
 		
+
+		
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();

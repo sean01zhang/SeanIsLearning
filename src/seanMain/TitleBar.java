@@ -10,10 +10,10 @@ import javax.swing.JPanel;
 import seanComponent.SeanTextArea;
 import seanEngine.SeanStoryInterpreter;
 
-public class ContentPanel extends JPanel {
+public class TitleBar extends JPanel {
 	
 	
-	public ContentPanel() {
+	public TitleBar() {
 		
 	}
 	

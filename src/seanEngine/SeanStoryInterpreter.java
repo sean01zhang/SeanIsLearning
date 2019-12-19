@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.regex.Pattern;
 
-import seanMain.ContentPanel;
+import seanMain.TitleBar;
 import seanMain.Display;
 import seanMain.Display2;
 
