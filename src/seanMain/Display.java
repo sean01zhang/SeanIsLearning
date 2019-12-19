@@ -18,6 +18,7 @@ import javax.swing.Timer;
 import seanComponent.SeanButton;
 import seanComponent.SeanDrawableForeground;
 import seanComponent.SeanDrawables;
+import seanComponent.SeanSliderV2;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.Animations;
@@ -65,13 +66,13 @@ public class Display extends JFrame{
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
 
-		
+		/*
 		try {
 			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		*/
 		
 
 		add(sta);
@@ -129,6 +130,8 @@ public class Display extends JFrame{
 		
 		
 		//sb.getAnime().slideh(sb, 1000, -100);
+		
+		SeanSliderV2 ssv2 = new SeanSliderV2(100,100,400,20);
 	}
 
 
