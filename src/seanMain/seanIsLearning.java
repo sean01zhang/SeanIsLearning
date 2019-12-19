@@ -3,8 +3,8 @@ package seanMain;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import seanComponent.Animations;
-import seanComponent.SeanDrawables;
+import seanMisc.Animations;
+import seanMisc.SeanDrawables;
 
 public class seanIsLearning {
 	public static void main(String[]args) {

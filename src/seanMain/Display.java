@@ -2,28 +2,22 @@ package seanMain;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
-
 import seanComponent.SeanButton;
-import seanComponent.SeanDrawableForeground;
-import seanComponent.SeanDrawables;
-import seanComponent.SeanSliderV2;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
-import seanComponent.Animations;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
+import seanMisc.SeanDrawableForeground;
 
 public class Display extends JFrame{
 	Panel p;
@@ -131,7 +125,6 @@ public class Display extends JFrame{
 		
 		//sb.getAnime().slideh(sb, 1000, -100);
 		
-		SeanSliderV2 ssv2 = new SeanSliderV2(100,100,400,20);
 	}
 
 

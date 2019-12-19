@@ -1,4 +1,4 @@
-package seanComponent;
+package seanMisc;
 
 import java.awt.Color;
 import java.awt.Rectangle;

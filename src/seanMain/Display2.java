@@ -14,13 +14,13 @@ import javax.swing.JTextArea;
 import javax.swing.Timer;
 
 import seanComponent.SeanButton;
-import seanComponent.SeanDrawables;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
-import seanComponent.Animations;
 import seanComponent.MapDrawables;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
+import seanMisc.Animations;
+import seanMisc.SeanDrawables;
 
 public class Display2 extends JFrame{
 	Panel p;

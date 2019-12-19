@@ -23,6 +23,9 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import seanGeometry.SeanRoundedRect;
+import seanMisc.Animations;
+import seanMisc.SeanDrawables;
+import seanMisc.SeanUtil;
 
 public class SeanTextArea extends JComponent implements MouseWheelListener {
 	// string related

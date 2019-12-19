@@ -1,4 +1,4 @@
-package seanComponent;
+package seanMisc;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -10,6 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 
+import seanGeometry.SeanRoundedRect;
 import seanGeometry.SeanShape;
 
 @SuppressWarnings("serial")
@@ -23,7 +24,6 @@ public class SeanDrawables extends Rectangle {
 	double rx = 0;
 	double ry =0;
 	float opacity = (float) 1.0;
-	int cornerRadii =0;
 	int resizeMethod=0;
 	final int SEAN_RESIZE = 0;
 	final int STRETCH_RESIZE =1;
@@ -33,9 +33,9 @@ public class SeanDrawables extends Rectangle {
 	int scaledImageHeight;
 	SeanShape shapeToDraw;
 
-	public SeanDrawables(int x,int y,int width,int height, Color c) {
-		super(x,y,width,height);
-		this.c = c;
+	public SeanDrawables(SeanShape s) {
+		super(s.getBounds());
+		this.shapeToDraw = s;
 		radians =0;
 		prevWidth = width;
 		prevHeight= height;
@@ -43,6 +43,7 @@ public class SeanDrawables extends Rectangle {
 	
 	public SeanDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
+		shapeToDraw = new SeanRoundedRect(x,y,width,height,0,0);
 		c= Color.white;
 		radians =0;
 		prevWidth = width;
@@ -51,6 +52,7 @@ public class SeanDrawables extends Rectangle {
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity) {
 		super(x,y,width,height);
+		shapeToDraw = new SeanRoundedRect(x,y,width,height,0,0);
 		c= Color.white;
 		radians =0;
 		this.opacity = opacity;
@@ -58,13 +60,23 @@ public class SeanDrawables extends Rectangle {
 		prevHeight= height;
 	}
 	
-	public SeanDrawables(Shape s, float opacity, Color c) {
+	public SeanDrawables(SeanShape s, float opacity, Color c) {
 		super(s.getBounds());
 		this.c = c;
 		radians =0;
 		shapeToDraw = s;
 		prevWidth = width;
 		prevHeight= height;
+	}
+	
+	public SeanDrawables(int x,int y,int width,int height,float opacity,Image i) {
+		super(x,y,width,height);
+		c= Color.white;
+		radians =0;
+		this.opacity = opacity;
+		prevWidth = width;
+		prevHeight= height;
+		setImage(i);
 	}
 	
 	// GETTERS AND SETTERS *******************************************
@@ -116,14 +128,6 @@ public class SeanDrawables extends Rectangle {
 		opacity =o;
 	}
 	
-	public int getCornerRadii() {
-		return cornerRadii;
-	}
-	
-	public void setCornerRadii(int cornerRadii) {
-		this.cornerRadii = cornerRadii;
-	}
-	
 	public Image getScaledImage() {
 		return scaled;
 	}
@@ -161,7 +165,8 @@ public class SeanDrawables extends Rectangle {
 		} else {
 			g.drawImage(getScaledImage(), x, y,null);
 		}
-
+		
+		//g2d.rotate(0);
 	}
 	
 	public void rescaleImage() {
