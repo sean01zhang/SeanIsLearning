@@ -12,11 +12,11 @@ public class SeanStoryInterpreter
 {
 	File currentStory;
 	public Scanner input;
-	ContentPanel d;
+	Display d;
 	Boolean firstTime;
 	Boolean autoRead;
 
-	public SeanStoryInterpreter(File f, ContentPanel contentPanel)
+	public SeanStoryInterpreter(File f, Display d)
 	{
 		currentStory = f;
 
@@ -26,7 +26,7 @@ public class SeanStoryInterpreter
 			input.useDelimiter(";;");
 		} catch (Exception e) {}
 
-		this.d = contentPanel;
+		this.d = d;
 		firstTime= true;
 		autoRead= false;
 	}
