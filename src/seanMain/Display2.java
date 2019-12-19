@@ -19,11 +19,11 @@ import seanComponent.SeanTextArea;
 import seanComponent.MapDrawables;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
+import seanGeometry.SeanRoundedRect;
 import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 
 public class Display2 extends JFrame{
-	Panel p;
 	SeanStoryInterpreter sip;
 	File f;
 	JTextArea jta;
@@ -79,16 +79,14 @@ public class Display2 extends JFrame{
 
 		// button testing time
 
-		sb = new SeanButton("hello") {
+		sb = new SeanButton(new SeanRoundedRect(300,30,100,50,30,30),"hello") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setText("Hello");
 			}
 		};
 
-
-		sb.setBounds(300, 30, 100, 50);
-		sb.setRoundCorners(30);
+			
 
 
 		sb.repaint();

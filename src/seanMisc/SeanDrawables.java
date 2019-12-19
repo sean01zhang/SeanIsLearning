@@ -35,7 +35,9 @@ public class SeanDrawables extends Rectangle {
 
 	public SeanDrawables(SeanShape s) {
 		super(s.getBounds());
+		c = Color.white;
 		this.shapeToDraw = s;
+		System.out.println("Hi im using this one0");
 		radians =0;
 		prevWidth = width;
 		prevHeight= height;
@@ -48,6 +50,7 @@ public class SeanDrawables extends Rectangle {
 		radians =0;
 		prevWidth = width;
 		prevHeight= height;
+		System.out.println("Hi im using this one1");
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity) {
@@ -58,6 +61,7 @@ public class SeanDrawables extends Rectangle {
 		this.opacity = opacity;
 		prevWidth = width;
 		prevHeight= height;
+		System.out.println("Hi im using this one2");
 	}
 	
 	public SeanDrawables(SeanShape s, float opacity, Color c) {
@@ -67,6 +71,7 @@ public class SeanDrawables extends Rectangle {
 		shapeToDraw = s;
 		prevWidth = width;
 		prevHeight= height;
+		System.out.println("Hi im using this one3");
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity,Image i) {
@@ -77,6 +82,7 @@ public class SeanDrawables extends Rectangle {
 		prevWidth = width;
 		prevHeight= height;
 		setImage(i);
+		System.out.println("Hi im using this one4");
 	}
 	
 	// GETTERS AND SETTERS *******************************************
@@ -152,6 +158,14 @@ public class SeanDrawables extends Rectangle {
 		this.scaledImageHeight = scaledImageHeight;
 	}
 	
+	public void setBounds(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		resize();
+	}
+	
 	// DRAWING: *******************************************************
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
@@ -166,7 +180,15 @@ public class SeanDrawables extends Rectangle {
 			g.drawImage(getScaledImage(), x, y,null);
 		}
 		
-		//g2d.rotate(0);
+		g2d.rotate(-radians,rx,ry);
+	}
+	
+	public void resize() {
+		if(img != null) {
+			rescaleImage();
+		} else {
+			shapeToDraw.setBounds(x, y, (int)getWidth(), (int)getHeight());
+		}
 	}
 	
 	public void rescaleImage() {

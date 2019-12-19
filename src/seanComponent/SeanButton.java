@@ -13,13 +13,14 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JComponent;
 
 import seanGeometry.SeanRoundedRect;
+import seanGeometry.SeanShape;
 import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
 
 
 public abstract class SeanButton extends JComponent implements MouseListener {
-	SeanDrawables sbg;
+	SeanDrawables sbg,soly;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
 	Font f;
@@ -27,31 +28,8 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	final int DEFAULT = 1;
 	final int HOVER = 2;
 	int pressStatus =1;
-	int radius = 0;
 	
 	Animations anime;
-
-	public SeanButton() {
-		super();
-		this.setOpaque(false);
-		this.enableInputMethods(true);
-		this.addMouseListener(this);
-		this.setFocusable(true);
-		this.setVisible(true);
-		this.setSize(200, 100);
-
-		displayText = "";
-		//background
-		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-
-		// Default Font
-		f = new Font("Arial", Font.PLAIN, 20);
-		textColor = Color.black;
-		hoverShade = new Color(125,125,125,128);
-		clickShade = new Color(75,75,75,128);
-		
-		anime = new Animations(this);
-	}
 
 	public SeanButton(String s) {
 		super();
@@ -65,6 +43,10 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		displayText = s;
 		//background
 		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
+		
+		//overlay
+		soly = new SeanDrawables(getX(),getY(),getWidth(),getHeight(),0f);
+		
 
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
@@ -74,13 +56,36 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		
 		anime = new Animations(this);
 	}
+	
+	public SeanButton(SeanShape ss, String s) {
+		super();
+		this.setOpaque(false);
+		this.enableInputMethods(true);
+		this.addMouseListener(this);
+		this.setFocusable(true);
+		this.setVisible(true);
+		this.setSize(200, 100);
+
+		displayText = s;
+		//background
+		sbg = new SeanDrawables(ss);
+		
+
+		// Default Font
+		f = new Font("Arial", Font.PLAIN, 20);
+		textColor = Color.black;
+		hoverShade = new Color(125,125,125,128);
+		clickShade = new Color(75,75,75,128);
+		
+		//overlay
+		soly = new SeanDrawables(ss,0f,hoverShade);
+		
+		anime = new Animations(this);
+	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		sbg.setBounds(0,0,getWidth(),getHeight());
-
-		// round corners 4 ever
-		g.setClip(new SeanRoundedRect(0,0,getWidth(),getHeight(),radius,radius));
 
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;
@@ -96,16 +101,19 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		// overlay with shades to get "hover" or "pressed" effect
 		switch (pressStatus) {
 			case 0:
-				g.setColor(clickShade);
-				g.fillRect(0,0 ,getWidth(), getHeight());
+				soly.setColor(clickShade);
+				soly.setOpacity(1f);
 				break;
 			case 2:
-				g.setColor(hoverShade);
-				g.fillRect(0,0 ,getWidth(), getHeight());
+				soly.setColor(hoverShade);
+				soly.setOpacity(1f);
 				break;
 			default:
+				soly.setOpacity(0f);
 				break;
 		}
+		
+		soly.draw(g);
 	}
 
 	// SETTERS AND GETTERS:  *********************************************
@@ -124,11 +132,6 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 		repaint();
 	}
 
-	public void setRoundCorners(int r) {
-		this.radius = r;
-		repaint();
-	}
-
 	public void setBackgroundColor(Color c) {
 		sbg.setColor(c);
 		repaint();
@@ -140,6 +143,12 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	
 	public Animations getAnime() {
 		return anime;
+	}
+	
+	public void setBoundsModified(int x, int y, int width, int height) {
+		this.setBounds(x,y,width,height);
+		sbg.setBounds(x, y, width, height);
+		soly.setBounds(x, y, width, height);
 	}
 
 

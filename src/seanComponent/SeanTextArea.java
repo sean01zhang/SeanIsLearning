@@ -23,6 +23,7 @@ import javax.swing.JComponent;
 import javax.swing.Timer;
 
 import seanGeometry.SeanRoundedRect;
+import seanGeometry.SeanShape;
 import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
@@ -63,8 +64,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-
+		sbg = new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),30,30));
+				
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -98,8 +99,8 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-
+		sbg = new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),20,20));
+		
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -126,14 +127,12 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		g.setClip(new SeanRoundedRect(0,0,getWidth(),getHeight(),radius,radius));
-
 		// turn on anti-alias mode
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
+		
 		// paint background
-		sbg.setBounds(0, 0, getWidth(), getHeight());
 		sbg.draw(g);
 		// paint string
 		g.setColor(Color.black);
@@ -200,6 +199,12 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	public Animations getAnime() {
 		return anime;
 	}
+	
+	public void setBoundsModified(int x, int y, int width, int height) {
+		this.setBounds(x,y,width,height);
+		sbg.setBounds(0, 0, width, height);
+	}
+	
 
 // SCROLLING FOR THE TEXT BOX ******************************************
 	public void scrollText() {
