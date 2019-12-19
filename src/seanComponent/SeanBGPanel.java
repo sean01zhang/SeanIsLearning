@@ -36,15 +36,18 @@ public class SeanBGPanel extends JPanel {
 			
 		} else {
 			for (SeanDrawables sd : foreground) {
-				sd.draw(g);
+				//sd.draw(g);
 			}
 		}
 	}
 	
 	public void resizePanel(int width, int height) {
-		background.setBounds((background.getScaledImage().getWidth(null)-width)/-2,
-				(background.getScaledImage().getHeight(null)-height)/-2,width,height);
+		background.setSize(width, height);
 		background.rescaleImage();
+		
+		background.setLocation((background.scaledImageWidth-width)/-2,
+				(background.scaledImageHeight-height)/-2);
+		
 		
 		for (SeanDrawableForeground sd : foreground) {
 			sd.setBounds(sd.getPreferredBounds(getX(), getY(), getWidth(), getHeight()));

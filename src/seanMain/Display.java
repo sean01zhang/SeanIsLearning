@@ -37,7 +37,7 @@ public class Display extends JFrame{
 	MapSlider ss;
 
 	public void invokeResize() {
-		//sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
+		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
 		sbgpanel.resizePanel(getWidth(),getHeight());
 	}
 
@@ -117,7 +117,7 @@ public class Display extends JFrame{
 		sbgpanel.addDrawables(new SeanDrawableForeground (150,0,200,getHeight(),0.5f) {
 			@Override
 			public Rectangle getPreferredBounds(int x, int y, int width, int height) {
-				return new Rectangle((getScaledImage().getWidth(null)-width)/-2,(getScaledImage().getHeight(null)-height)/-2,200,height);
+				return new Rectangle((getScaledImageWidth()-width)/-2,(getScaledImageHeight()-height)/-2,200,height);
 			}
 			
 		});

@@ -24,18 +24,26 @@ public class SeanDrawables extends Rectangle {
 	int resizeMethod=0;
 	final int SEAN_RESIZE = 0;
 	final int STRETCH_RESIZE =1;
+	int prevWidth=0;
+	int prevHeight=0;
+	int scaledImageWidth;
+	int scaledImageHeight;
 
 
 	public SeanDrawables(int x,int y,int width,int height, Color c) {
 		super(x,y,width,height);
 		this.c = c;
 		radians =0;
+		prevWidth = width;
+		prevHeight= height;
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
 		c= Color.white;
 		radians =0;
+		prevWidth = width;
+		prevHeight= height;
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity) {
@@ -43,6 +51,8 @@ public class SeanDrawables extends Rectangle {
 		c= Color.white;
 		radians =0;
 		this.opacity = opacity;
+		prevWidth = width;
+		prevHeight= height;
 	}
 	
 	// GETTERS AND SETTERS *******************************************
@@ -54,6 +64,8 @@ public class SeanDrawables extends Rectangle {
 		rescaleImage();
 	}
 	
+	
+	
 	public void rescaleImage() {
 		if(getScaledImage() != null) {
 			if (SEAN_RESIZE == resizeMethod) {
@@ -64,14 +76,18 @@ public class SeanDrawables extends Rectangle {
 				double frameAspect = getWidth()/getHeight();
 				
 				if(imgAspect > frameAspect) {
-					System.out.println(getHeight() +" " + getWidth() + " "+ (int)(getHeight()/imgAspect)+" " +(getHeight()/imgAspect));
-					setScaledImage(img.getScaledInstance((int)(getHeight()*imgAspect),height, Image.SCALE_SMOOTH));
+					scaledImageWidth =(int)(getHeight()*imgAspect);
+					scaledImageHeight = height;
 				} else {
-					setScaledImage(img.getScaledInstance(width,(int)(width/imgAspect), Image.SCALE_SMOOTH));
+					scaledImageWidth = width;
+					scaledImageHeight = (int)(width/imgAspect);
 				}
 			} else {
-				setScaledImage(img.getScaledInstance((int)getWidth(),(int)getHeight(), Image.SCALE_SMOOTH));
+				scaledImageWidth = width;
+				scaledImageHeight = height;
 			}
+			
+			setScaledImage(img.getScaledInstance(scaledImageWidth,scaledImageHeight, Image.SCALE_SMOOTH));
 		}
 	}
 
@@ -159,4 +175,22 @@ public class SeanDrawables extends Rectangle {
 	public void setScaledImage(Image scaled) {
 		this.scaled = scaled;
 	}
+
+	public int getScaledImageWidth() {
+		return scaledImageWidth;
+	}
+
+	public void setScaledImageWidth(int scaledImageWidth) {
+		this.scaledImageWidth = scaledImageWidth;
+	}
+
+	public int getScaledImageHeight() {
+		return scaledImageHeight;
+	}
+
+	public void setScaledImageHeight(int scaledImageHeight) {
+		this.scaledImageHeight = scaledImageHeight;
+	}
+	
+	
 }
