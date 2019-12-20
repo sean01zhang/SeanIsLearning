@@ -147,8 +147,8 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	
 	public void setBoundsModified(int x, int y, int width, int height) {
 		this.setBounds(x,y,width,height);
-		sbg.setBounds(x, y, width, height);
-		soly.setBounds(x, y, width, height);
+		sbg.setBounds(0, 0, width, height);
+		soly.setBounds(0, 0, width, height);
 	}
 
 

@@ -48,7 +48,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	int radius;
 
 	// Background
-	SeanDrawables sbg;
+	private SeanDrawables sbg;
 	
 	// Animations
 	Animations anime;
@@ -64,7 +64,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		sbg = new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),30,30));
+		setBG(new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),30,30)));
 				
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		sbg = new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),20,20));
+		setBG(new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),20,20)));
 		
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -133,7 +133,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		// paint background
-		sbg.draw(g);
+		getBG().draw(g);
 		// paint string
 		g.setColor(Color.black);
 		g.setFont(f);
@@ -155,11 +155,11 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	}
 
 	public void setBackgroundImage(Image i) {
-		sbg.setImage(i);
+		getBG().setImage(i);
 	}
 
 	public void setBackgroundColor(Color c) {
-		sbg.setColor(c);
+		getBG().setColor(c);
 	}
 
 	public void setRadius(int r) {
@@ -202,7 +202,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	
 	public void setBoundsModified(int x, int y, int width, int height) {
 		this.setBounds(x,y,width,height);
-		sbg.setBounds(0, 0, width, height);
+		getBG().setBounds(0, 0, width, height);
 	}
 	
 
@@ -242,5 +242,13 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 			repaint();
 		}
+	}
+
+	public SeanDrawables getBG() {
+		return sbg;
+	}
+
+	public void setBG(SeanDrawables sbg) {
+		this.sbg = sbg;
 	}
 }

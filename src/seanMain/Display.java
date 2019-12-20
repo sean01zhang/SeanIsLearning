@@ -25,12 +25,16 @@ import seanMisc.SeanDrawableForeground;
 public class Display extends JFrame{
 	SeanTextArea sta;
 	SeanStoryInterpreter sip;
+	SeanBGPanel sbgpanel;
+	SeanButton sb;
 	File f;
+	TitleBar tb;
 	
 	public void invokeResize() {
-		//sta.setBoundsModified(0,getHeight()-155,800,125);
+		sta.setBoundsModified(10,getHeight()-135,780,125);
 		//sta.setBoundsModified((getWidth()-700)/2,getHeight()-155,700,125);
-		//sbgpanel.resizePanel(getWidth(),getHeight());
+		sbgpanel.resizePanel(getWidth(),getHeight());
+		tb.setBoundsModified(10,10,getWidth()-20,30);
 	}
 	
 	public Display() {
@@ -47,12 +51,17 @@ public class Display extends JFrame{
 		        invokeResize();
 		    }
 		});
+		
+		//TITLEBAR STUFUFS
+		tb = new TitleBar(this);
+		tb.setBoundsModified(10,10,getWidth()-20,30);
+		add(tb);
 
 		// STA Stuffs
 
 				this.sta = new SeanTextArea();
 
-				sta.setBoundsModified(0,0,780,125);
+				sta.setBoundsModified(10,getHeight()-135,780,125);
 
 				sta.repaint();
 				sta.setRadius(20);
@@ -74,7 +83,7 @@ public class Display extends JFrame{
 				f = new File("src/seanEngine/sean.txt");
 
 				sip = new SeanStoryInterpreter(f,this);
-		/*
+		
 				
 				// button testing time
 				sb = new SeanButton(new SeanRoundedRect(0,0,getWidth(),getHeight(),20,20),"hello") {
@@ -90,9 +99,9 @@ public class Display extends JFrame{
 				add(sb);
 
 			
-				*/
+				
 				//sb.getAnime().horShake(100, 100, 1, 20);
-				/*
+				
 				try {
 					sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
 				} catch (IOException e2) {
@@ -126,7 +135,11 @@ public class Display extends JFrame{
 				
 				//sb.getAnime().slideh(sb, 1000, -100);
 				
-				*/
+				
+				
+				
+				
+				
 				
 				this.setVisible(true);
 		
