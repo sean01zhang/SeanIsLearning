@@ -12,14 +12,17 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
 
 import seanGeometry.SeanRoundedRect;
+import seanMisc.SeanDrawables;
 
 @SuppressWarnings("serial")
 public class MapSlider extends JComponent implements MouseListener, MouseMotionListener{
 	
 	Point compCoords = new Point();
 	
-	MapDrawables bg;
-	MapDrawables in;
+	SeanDrawables bg;
+	SeanDrawables in;
+	SeanDrawables helloWorld;
+	SeanRoundedRect defRect;
 	SeanTextArea ssOutput;
 	String type; //circular, straight, wavy, 2D (ex. a map), etc.
 	int max;
@@ -29,7 +32,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 	int radiiIn;
 	int radiiBg;
 	
-	public MapSlider(MapDrawables bg, MapDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
+	public MapSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
@@ -41,16 +44,14 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		this.radiiIn = radiiIn;
 		this.radiiBg = radiiBg;
 		
-		//setting round corners takes out clip function...
-		in.setCornerRadii(radiiIn);
-		bg.setCornerRadii(radiiBg);
-		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(bg.width, bg.height);
 		this.setLocation((int)bg.getX(), (int)bg.getY());
 		
+		defRect = new SeanRoundedRect(200, 200, 100, 100, 30, 30);
+		helloWorld = new SeanDrawables(defRect, 1f, Color.WHITE);
 		/*
 		System.out.println(in.getX());
 		System.out.println(in.getY());
@@ -67,7 +68,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("modern hor")){
-			in.setCornerRadii(radiiBg);
 		} else if (type.equals("modern vert")){
 			
 		} else if (type.equals("color picker")){
@@ -93,9 +93,11 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
+		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
 		in.draw(g);
+		defRect.draw(g);
+		//helloWorld.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}

@@ -54,7 +54,6 @@ public class TitleBar extends SeanTextArea implements MouseListener,MouseMotionL
 			public void mousePressed(MouseEvent e){
 				d.setState(JFrame.ICONIFIED);
 			}
-			
 		};
 		
 		
