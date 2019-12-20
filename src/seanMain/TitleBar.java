@@ -21,7 +21,8 @@ public class TitleBar extends SeanTextArea implements MouseListener,MouseMotionL
 	Point mouseInitial;
 	Display d;
 	SeanButton exit;
-	SeanButton mini;
+	SeanButton mini,max;
+	int toggleMax =0;
 	
 	public TitleBar(Display d) {
 		super();
@@ -56,30 +57,55 @@ public class TitleBar extends SeanTextArea implements MouseListener,MouseMotionL
 			
 		};
 		
+		
+		
+		max = new SeanButton(new SeanEllipse(0,0,getHeight()-4,getHeight()-4),"") {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(toggleMax ==0) {
+					d.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					toggleMax =1;
+				} else {
+					d.setExtendedState(JFrame.NORMAL);
+					toggleMax =0;
+				}
+				
+			}
+			
+			public void mousePressed(MouseEvent e){
+				if(toggleMax ==0) {
+					d.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					toggleMax =1;
+				} else {
+					d.setExtendedState(JFrame.NORMAL);
+					toggleMax =0;
+				}
+			}
+			
+		};
+		
 		exit.setBoundsModified(this.getWidth()-50, 2, getHeight()-4, getHeight()-4);
-		mini.setBoundsModified(this.getWidth()-80, 2, getHeight()-4, getHeight()-4);
+		mini.setBoundsModified(this.getWidth()-110, 2, getHeight()-4, getHeight()-4);
+		max.setBoundsModified(this.getWidth()-80, 2, getHeight()-4, getHeight()-4);
 		
-		
-		System.out.println("W: " + getWidth()+ " H: " +getHeight());
 		try {
 			exit.setBackgroundImage(ImageIO.read(new File("src/images/exit.png")));
 			mini.setBackgroundImage(ImageIO.read(new File("src/images/mini.png")));
+			max.setBackgroundImage(ImageIO.read(new File("src/images/max.png")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
 		this.add(exit);
 		this.add(mini);
+		this.add(max);
 	}
 
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		Point newLocation = e.getLocationOnScreen();
-		
-		
 		d.setLocation(newLocation.x-mouseInitial.x-this.getX(),newLocation.y-mouseInitial.y-this.getY());
-		System.out.println("oof" );
 	}
 
 	@Override
@@ -118,12 +144,12 @@ public class TitleBar extends SeanTextArea implements MouseListener,MouseMotionL
 		
 	}
 	
-	
 	public void setBoundsModified(int x, int y, int width, int height) {
 		this.setBounds(x,y,width,height);
 		this.getBG().setBounds(0, 0, width, height);
-		exit.setBoundsModified(getWidth()-50, 2, getHeight()-4, getHeight()-4);
-		mini.setBoundsModified(this.getWidth()-80, 2, getHeight()-4, getHeight()-4);
+		exit.setBoundsModified(getWidth()-28, 2, getHeight()-4, getHeight()-4);
+		mini.setBoundsModified(this.getWidth()-58, 2, getHeight()-4, getHeight()-4);
+		max.setBoundsModified(this.getWidth()-88, 2, getHeight()-4, getHeight()-4);
 	}
 	
 }
