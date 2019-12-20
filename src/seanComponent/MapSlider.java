@@ -6,10 +6,13 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.JComponent;
+import javax.swing.Timer;
 
 import seanGeometry.SeanRoundedRect;
 import seanMisc.SeanDrawables;
@@ -29,6 +32,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 	int currentValue2;
 	int radiiIn;
 	int radiiBg;
+	Timer t;
 
 	public MapSlider(int x, int y, SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
@@ -80,6 +84,15 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		ssOutput.setScrollType(SeanTextArea.SCROLL_CHAR);
 		ssOutput.setSpeed(50);
 		add(ssOutput);*/
+		
+		t = new Timer(10,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				repaint();
+				
+			}
+			
+		});
 	}
 
 	public void paintComponent(Graphics g){
@@ -126,8 +139,12 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		} else {
 			modY = y;
 		}
-		in.setLocation(modX + 200, modY + 200);
-		System.out.println(in.getLocation().x + ", " + in.getLocation().y);
+		
+		in.setBounds(modX, modY,400,50);
+		
+		
+		repaint();
+		System.out.println("PSDOFDSF: " + in.getBounds());
 		//System.out.println(bg.getLocation().x + ", " + bg.getLocation().y);
 	}
 

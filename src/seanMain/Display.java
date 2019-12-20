@@ -66,7 +66,7 @@ public class Display extends JFrame{
 			           this.getY()), "img");
 		} catch (Exception e) {}
 		
-		this.setCursor(c);
+		//this.setCursor(c);
 		
 		
 		//TITLEBAR STUFUFS
