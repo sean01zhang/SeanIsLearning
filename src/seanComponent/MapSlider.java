@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -30,33 +27,27 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 	int min;
 	int currentValue;
 	int currentValue2;
-	int radiiIn;
-	int radiiBg;
+	int arcW;
+	int arcH;
 	Timer t;
 
-	public MapSlider(int x, int y, SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
+	public MapSlider(int x, int y, SeanDrawables bg, SeanDrawables in, int max, int min, int arcW, int arcH, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
 		this.type = type;
 		this.max = max;
 		this.min = min;
+		this.arcW = arcW;
+		this.arcH = arcH;
 		currentValue = (int)((max - min)*(in.getX()/(bg.width - in.width))) + min;
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
-		this.radiiIn = radiiIn;
-		this.radiiBg = radiiBg;
 
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(bg.width, bg.height);
 		this.setLocation(x, y);
-		/*
-		System.out.println(in.getX());
-		System.out.println(in.getY());
-		System.out.println(bg.getX());
-		System.out.println(bg.getY());
-		*/
 
 		if(type.equals("horizontal")){
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, in.height);
@@ -73,9 +64,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			setTestColor();
 		}
 
-		//in.setLocation(0, 0);
-		//bg.setLocation(0, 0);
-
 		//text area stuff
 		/*ssOutput = new SeanTextArea();
 		ssOutput.setText(getValue() + "," + getValue2());
@@ -84,15 +72,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		ssOutput.setScrollType(SeanTextArea.SCROLL_CHAR);
 		ssOutput.setSpeed(50);
 		add(ssOutput);*/
-		
-		t = new Timer(10,new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				repaint();
-				
-			}
-			
-		});
 	}
 
 	public void paintComponent(Graphics g){
@@ -101,7 +80,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
+		g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, arcW, arcH));
 		bg.draw(g);
 		in.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
@@ -140,12 +119,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			modY = y;
 		}
 		
-		in.setBounds(modX, modY,400,50);
-		
-		
-		repaint();
-		System.out.println("PSDOFDSF: " + in.getBounds());
-		//System.out.println(bg.getLocation().x + ", " + bg.getLocation().y);
+		in.setLocation(modX, modY);
 	}
 
 	public void setBgLocation(int x, int y){
@@ -241,7 +215,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			setTestColor();
 		}
 		repaint();
-		//System.out.println(getValue() + "," + getValue2());
+		System.out.println(getValue() + "," + getValue2());
 	}
 
 	@Override

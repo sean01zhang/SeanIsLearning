@@ -105,22 +105,21 @@ public class Display2 extends JFrame{
 
 		//add(sbgpanel);
 
-		/*
+		
 		//Color picker settings
+		//why is in a rounded rectangle!!!
 		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
-		SeanDrawables bg = new SeanDrawables(50, 50, 300, 300);
+		SeanDrawables bg = new SeanDrawables(0, 0, 300, 300);
 		in.setColor(Color.RED);
-		*/
 
 		//Modern look settings
-		//SeanDrawables in = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
-		//SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
-		SeanDrawables in = new SeanDrawables(200, 0, 400, 50);
-		SeanDrawables bg = new SeanDrawables(0, 0, 400, 50);
+		//why is in a rounded rectangle!!!
+		/*SeanDrawables in = new SeanDrawables(-400, 0, 400, 50);
+		SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(0, 0, 400, 50, 30, 30));
 		in.setColor(Color.WHITE);
-		bg.setColor(Color.LIGHT_GRAY);
-
-		ss = new MapSlider(100, 100, bg, in, 20, 0, 30, 10, "modern hor");
+		bg.setColor(Color.LIGHT_GRAY);*/
+		
+		ss = new MapSlider(100, 100, bg, in, 20, 0, 30, 30, "color picker");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);

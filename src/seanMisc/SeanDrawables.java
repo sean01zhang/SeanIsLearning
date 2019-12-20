@@ -141,7 +141,7 @@ public class SeanDrawables extends Rectangle {
 	public void setScaledImage(Image scaled) {
 		this.scaled = scaled;
 	}
-
+	
 	public int getScaledImageWidth() {
 		return scaledImageWidth;
 	}

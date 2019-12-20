@@ -63,7 +63,7 @@ public class SeanRoundedRect extends RoundRectangle2D implements SeanShape {
 	public double getHeight() {
 		return height;
 	}
-
+	
 	@Override
 	public boolean isEmpty() {
 		return false;
