@@ -16,13 +16,11 @@ import seanMisc.SeanDrawables;
 
 @SuppressWarnings("serial")
 public class MapSlider extends JComponent implements MouseListener, MouseMotionListener{
-	
+
 	Point compCoords = new Point();
-	
+
 	SeanDrawables bg;
 	SeanDrawables in;
-	SeanDrawables helloWorld;
-	SeanRoundedRect defRect;
 	SeanTextArea ssOutput;
 	String type; //circular, straight, wavy, 2D (ex. a map), etc.
 	int max;
@@ -31,8 +29,8 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 	int currentValue2;
 	int radiiIn;
 	int radiiBg;
-	
-	public MapSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
+
+	public MapSlider(int x, int y, SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
@@ -43,22 +41,19 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		currentValue2 = (int)((max - min)*(in.getY()/(bg.height - in.height))) + min;
 		this.radiiIn = radiiIn;
 		this.radiiBg = radiiBg;
-		
+
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(bg.width, bg.height);
-		this.setLocation((int)bg.getX(), (int)bg.getY());
-		
-		defRect = new SeanRoundedRect(0, 0, 100, 50, 30, 30);
-		helloWorld = new SeanDrawables(defRect, 1f, Color.WHITE);
+		this.setLocation(x, y);
 		/*
 		System.out.println(in.getX());
 		System.out.println(in.getY());
 		System.out.println(bg.getX());
 		System.out.println(bg.getY());
 		*/
-		
+
 		if(type.equals("horizontal")){
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, in.height);
 			in.setBounds(0, 0, in.width, in.height);
@@ -67,15 +62,16 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("modern hor")){
-		} else if (type.equals("modern vert")){
 			
+		} else if (type.equals("modern vert")){
+
 		} else if (type.equals("color picker")){
 			setTestColor();
 		}
-		
+
 		//in.setLocation(0, 0);
-		bg.setLocation(0, 0);
-		
+		//bg.setLocation(0, 0);
+
 		//text area stuff
 		/*ssOutput = new SeanTextArea();
 		ssOutput.setText(getValue() + "," + getValue2());
@@ -85,7 +81,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		ssOutput.setSpeed(50);
 		add(ssOutput);*/
 	}
-	
+
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		// turn on anti-alias mode
@@ -94,27 +90,25 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
-		//in.draw(g);
-		//defRect.draw(g);
-		helloWorld.draw(g);
+		in.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
-	
+
 	public void setValue(int value){
 		currentValue = value;
 	}
-	
+
 	public void setValue2(int value2){
 		if(type.equals("2d")){
 			currentValue2 = value2;
 		}
 	}
-	
+
 	public void setMin(int min){
 		this.min = min;
 	}
-	
+
 	public void setInLocation(int x, int y){
 		int modX;
 		int modY;
@@ -132,32 +126,34 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		} else {
 			modY = y;
 		}
-		in.setLocation(modX, modY);
+		in.setLocation(modX + 200, modY + 200);
+		System.out.println(in.getLocation().x + ", " + in.getLocation().y);
+		//System.out.println(bg.getLocation().x + ", " + bg.getLocation().y);
 	}
-	
+
 	public void setBgLocation(int x, int y){
 		bg.setLocation(x, y);
 	}
-	
+
 	public void setMax(int max){
 		this.max = max;
 	}
-	
+
 	public int getValue(){
 		return currentValue;
 	}
-	
+
 	public int getValue2(){
 		return currentValue2;
 	}
 
 	public void setTestColor(){
 		int[] par = new int[3];
-		
+
 		par[0] = (int)(255*(double)currentValue2/max);
 		par[1] = (int)(255*(double)currentValue/max);
 		par[2] = (int)(255*(double)(1 - (currentValue/max)));
-		
+
 		for(int i = 0; i < par.length; i++){
 			if(i == 0 && Math.abs(currentValue2) > Math.abs(max)){
 				par[i] = (int)(255*(double)max/currentValue2);
@@ -171,12 +167,12 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			}
 			//System.out.println(par[i]);
 		}
-		
+
 		bg.setColor(new Color(par[0], par[1], par[2]));
 	}
-	
+
 	//Mouse Listener Stuffs *************************************************
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("clicked");
@@ -228,10 +224,10 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			setTestColor();
 		}
 		repaint();
-		System.out.println(getValue() + "," + getValue2());
+		//System.out.println(getValue() + "," + getValue2());
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-	}	
+	}
 }
