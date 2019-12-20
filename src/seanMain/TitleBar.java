@@ -38,11 +38,19 @@ public class TitleBar extends SeanTextArea implements MouseListener,MouseMotionL
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
 			}
+			
+			public void mousePressed(MouseEvent e){
+				System.exit(0);
+			}
 		};
 		
 		mini = new SeanButton(new SeanEllipse(0,0,getHeight()-4,getHeight()-4),"") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				d.setState(JFrame.ICONIFIED);
+			}
+			
+			public void mousePressed(MouseEvent e){
 				d.setState(JFrame.ICONIFIED);
 			}
 			
