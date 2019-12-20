@@ -50,7 +50,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		this.setSize(bg.width, bg.height);
 		this.setLocation((int)bg.getX(), (int)bg.getY());
 		
-		defRect = new SeanRoundedRect(200, 200, 100, 100, 30, 30);
+		defRect = new SeanRoundedRect(0, 0, 100, 50, 30, 30);
 		helloWorld = new SeanDrawables(defRect, 1f, Color.WHITE);
 		/*
 		System.out.println(in.getX());
@@ -94,10 +94,10 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
-		bg.draw(g);
-		in.draw(g);
-		defRect.draw(g);
-		//helloWorld.draw(g);
+		//bg.draw(g);
+		//in.draw(g);
+		//defRect.draw(g);
+		helloWorld.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
