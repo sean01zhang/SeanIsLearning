@@ -68,6 +68,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("modern hor")){
+			
 		} else if (type.equals("modern vert")){
 			
 		} else if (type.equals("color picker")){
@@ -96,7 +97,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
 		in.draw(g);
-		defRect.draw(g);
+		//defRect.draw(g);
 		//helloWorld.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame

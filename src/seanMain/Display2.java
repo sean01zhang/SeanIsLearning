@@ -116,7 +116,7 @@ public class Display2 extends JFrame{
 		//SeanDrawables in = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
 		//SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
 		SeanDrawables in = new SeanDrawables(200, 100, 400, 50);
-		SeanDrawables bg = new SeanDrawables(200, 100, 400, 50);
+		SeanDrawables bg = new SeanDrawables(0, 0, 400, 50);
 		in.setColor(Color.WHITE);
 		bg.setColor(Color.LIGHT_GRAY);
 		
