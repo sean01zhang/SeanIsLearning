@@ -21,8 +21,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 
 	SeanDrawables bg;
 	SeanDrawables in;
-	SeanDrawables helloWorld;
-	SeanRoundedRect defRect;
 	SeanTextArea ssOutput;
 	String type; //circular, straight, wavy, 2D (ex. a map), etc.
 	int max;
@@ -32,7 +30,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 	int radiiIn;
 	int radiiBg;
 
-	public MapSlider(SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
+	public MapSlider(int x, int y, SeanDrawables bg, SeanDrawables in, int max, int min, int radiiBg, int radiiIn, String type){
 		compCoords = null;
 		this.bg = bg;
 		this.in = in;
@@ -48,10 +46,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		this.addMouseMotionListener(this);
 		this.setOpaque(false);
 		this.setSize(bg.width, bg.height);
-		this.setLocation((int)bg.getX(), (int)bg.getY());
-
-		defRect = new SeanRoundedRect(0, 0, 100, 50, 30, 30);
-		helloWorld = new SeanDrawables(defRect, 1f, Color.WHITE);
+		this.setLocation(x, y);
 		/*
 		System.out.println(in.getX());
 		System.out.println(in.getY());
@@ -67,7 +62,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("modern hor")){
-
+			
 		} else if (type.equals("modern vert")){
 
 		} else if (type.equals("color picker")){
@@ -75,7 +70,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		}
 
 		//in.setLocation(0, 0);
-		bg.setLocation(0, 0);
+		//bg.setLocation(0, 0);
 
 		//text area stuff
 		/*ssOutput = new SeanTextArea();
@@ -96,8 +91,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
 		bg.draw(g);
 		in.draw(g);
-		//defRect.draw(g);
-		//helloWorld.draw(g);
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
@@ -133,7 +126,9 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		} else {
 			modY = y;
 		}
-		in.setLocation(modX, modY);
+		in.setLocation(modX + 200, modY + 200);
+		System.out.println(in.getLocation().x + ", " + in.getLocation().y);
+		//System.out.println(bg.getLocation().x + ", " + bg.getLocation().y);
 	}
 
 	public void setBgLocation(int x, int y){
@@ -229,7 +224,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			setTestColor();
 		}
 		repaint();
-		System.out.println(getValue() + "," + getValue2());
+		//System.out.println(getValue() + "," + getValue2());
 	}
 
 	@Override
