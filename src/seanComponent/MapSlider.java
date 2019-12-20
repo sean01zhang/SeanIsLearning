@@ -60,8 +60,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		*/
 		
 		if(type.equals("horizontal")){
-			bg.height = in.height;
-			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, bg.height);
+			bg.setBounds((int)bg.getX(), (int)bg.getY(), bg.width, in.height);
 			in.setBounds(0, 0, in.width, in.height);
 		} else if (type.equals("vertical")){
 			bg.width = in.width;
@@ -94,7 +93,7 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
 		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, radiiBg, radiiBg));
-		//bg.draw(g);
+		bg.draw(g);
 		//in.draw(g);
 		//defRect.draw(g);
 		helloWorld.draw(g);
