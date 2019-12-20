@@ -1,8 +1,11 @@
 package seanMain;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -29,6 +32,7 @@ public class Display extends JFrame{
 	SeanButton sb;
 	File f;
 	TitleBar tb;
+	Cursor c;
 	
 	public void invokeResize() {
 		sta.setBoundsModified(10,getHeight()-135,780,125);
@@ -51,6 +55,19 @@ public class Display extends JFrame{
 		        invokeResize();
 		    }
 		});
+		
+		ComponentResizer cr = new ComponentResizer();
+		cr.registerComponent(this);
+		
+		
+		
+		try {
+			c = this.getToolkit().createCustomCursor(ImageIO.read(new File("src/images/cursor.png")) , new Point(this.getX(), 
+			           this.getY()), "img");
+		} catch (Exception e) {}
+		
+		//this.setCursor(c);
+		
 		
 		//TITLEBAR STUFUFS
 		tb = new TitleBar(this);

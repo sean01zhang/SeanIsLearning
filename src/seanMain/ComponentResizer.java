@@ -354,6 +354,8 @@ public class ComponentResizer extends MouseAdapter
 		SwingUtilities.convertPointToScreen(dragged, source);
 
 		changeBounds(source, direction, bounds, pressed, dragged);
+		
+		
 	}
 
 	protected void changeBounds(Component source, int direction, Rectangle bounds, Point pressed, Point current)

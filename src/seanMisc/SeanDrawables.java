@@ -166,6 +166,12 @@ public class SeanDrawables extends Rectangle {
 		resize();
 	}
 	
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+		resize();
+	}
+	
 	// DRAWING: *******************************************************
 	public void draw(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
