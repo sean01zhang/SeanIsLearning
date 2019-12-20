@@ -113,8 +113,10 @@ public class Display2 extends JFrame{
 		*/
 		
 		//Modern look settings
-		MapDrawables in = new MapDrawables(200, 100, 400, 50);
-		MapDrawables bg = new MapDrawables(200, 100, 400, 50);
+		//SeanDrawables in = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
+		//SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(200, 100, 400, 50, 30, 30));
+		SeanDrawables in = new SeanDrawables(200, 100, 400, 50);
+		SeanDrawables bg = new SeanDrawables(200, 100, 400, 50);
 		in.setColor(Color.WHITE);
 		bg.setColor(Color.LIGHT_GRAY);
 		
