@@ -31,12 +31,12 @@ public class SeanDrawables extends Rectangle {
 	int prevHeight=0;
 	int scaledImageWidth;
 	int scaledImageHeight;
-	SeanShape shapeToDraw;
+	private SeanShape shapeToDraw;
 
 	public SeanDrawables(SeanShape s) {
 		super(s.getBounds());
 		c = Color.white;
-		this.shapeToDraw = s;
+		this.setShapeToDraw(s);
 		System.out.println("Hi im using this one0");
 		radians =0;
 		prevWidth = width;
@@ -45,7 +45,7 @@ public class SeanDrawables extends Rectangle {
 	
 	public SeanDrawables(int x,int y,int width,int height) {
 		super(x,y,width,height);
-		shapeToDraw = new SeanRoundedRect(x,y,width,height,0,0);
+		setShapeToDraw(new SeanRoundedRect(x,y,width,height,0,0));
 		c= Color.white;
 		radians =0;
 		prevWidth = width;
@@ -55,7 +55,7 @@ public class SeanDrawables extends Rectangle {
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity) {
 		super(x,y,width,height);
-		shapeToDraw = new SeanRoundedRect(x,y,width,height,0,0);
+		setShapeToDraw(new SeanRoundedRect(x,y,width,height,0,0));
 		c= Color.white;
 		radians =0;
 		this.opacity = opacity;
@@ -68,7 +68,7 @@ public class SeanDrawables extends Rectangle {
 		super(s.getBounds());
 		this.c = c;
 		radians =0;
-		shapeToDraw = s;
+		setShapeToDraw(s);
 		prevWidth = width;
 		prevHeight= height;
 		System.out.println("Hi im using this one3");
@@ -181,7 +181,7 @@ public class SeanDrawables extends Rectangle {
 
 		if (null == getScaledImage()) {
 			g.setColor(c);
-			shapeToDraw.draw(g);
+			getShapeToDraw().draw(g);
 		} else {
 			g.drawImage(getScaledImage(), x, y,null);
 		}
@@ -193,7 +193,7 @@ public class SeanDrawables extends Rectangle {
 		if(img != null) {
 			rescaleImage();
 		} else {
-			shapeToDraw.setBounds(x, y, (int)getWidth(), (int)getHeight());
+			getShapeToDraw().setBounds(x, y, (int)getWidth(), (int)getHeight());
 		}
 	}
 	
@@ -220,5 +220,13 @@ public class SeanDrawables extends Rectangle {
 			
 			setScaledImage(img.getScaledInstance(scaledImageWidth,scaledImageHeight, Image.SCALE_SMOOTH));
 		}
+	}
+
+	public SeanShape getShapeToDraw() {
+		return shapeToDraw;
+	}
+
+	public void setShapeToDraw(SeanShape shapeToDraw) {
+		this.shapeToDraw = shapeToDraw;
 	}
 }

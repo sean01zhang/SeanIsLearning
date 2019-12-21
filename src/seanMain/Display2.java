@@ -34,8 +34,7 @@ public class Display2 extends JFrame{
 	MapSlider ss;
 
 	public void invokeResize() {
-		sta.setBounds((getWidth()-700)/2,getHeight()-155,700,125);
-		sbgpanel.resizePanel(getWidth(),getHeight());
+		
 	}
 
 	public Display2() {
@@ -50,61 +49,6 @@ public class Display2 extends JFrame{
 		        invokeResize();
 		    }
 		});
-
-		// STA Stuffs
-
-		this.sta = new SeanTextArea();
-
-		sta.setBounds(50,getHeight()-155,700,125);
-
-		sta.repaint();
-		sta.setRadius(20);
-		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
-		sta.setSpeed(50);
-		sta.setBackgroundColor(new Color(255,255,255,190));
-
-		/*
-		try {
-			sta.setBackgroundImage(ImageIO.read(new File("src/images/raining.jpeg")));
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		*/
-
-		add(sta);
-
-		f = new File("src/seanEngine/sean.txt");
-
-
-		// button testing time
-
-		sb = new SeanButton(new SeanRoundedRect(300,30,100,50,30,30),"hello") {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				sta.setText("Hello");
-			}
-		};
-
-
-
-
-		sb.repaint();
-		add(sb);
-
-		sb.getAnime().horShake(100, 100, 1, 20);
-
-
-		try {
-			sbgpanel = new SeanBGPanel(0,0,getWidth(),getHeight(),ImageIO.read(new File("src/images/raining.jpeg")));
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
-
-
-
-		//add(sbgpanel);
-
 		
 		//Color picker settings
 		//why is in a rounded rectangle!!!
@@ -129,22 +73,6 @@ public class Display2 extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-
-		sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
-		//sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
-		//sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
-
-		//sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400);
-
-		//sbgpanel.addDrawables(new SeanDrawables(600,0,400,sbgpanel.getHeight(),0.5f));
-		try {
-			sbgpanel.getDrawables(0).setImage(ImageIO.read(new File("src/images/nagisa_with_umbrella.png")));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		//sta.setText("AYY LMAO SD DSF SD F A SD DSF ASD DSF S A Q D DDD");
 
 	}
 

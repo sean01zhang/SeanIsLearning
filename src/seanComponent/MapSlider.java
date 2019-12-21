@@ -80,9 +80,10 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, arcW, arcH));
+		//g.setClip(new SeanRoundedRect(0, 0, bg.width, bg.height, arcW, arcH));
 		bg.draw(g);
 		in.draw(g);
+		
 		//System.out.println(in.getX() + ", " + in.getY());
 		//in. getX, getY --> 0,0 with respect to where position of bg is on frame
 	}
@@ -215,7 +216,6 @@ public class MapSlider extends JComponent implements MouseListener, MouseMotionL
 			setTestColor();
 		}
 		repaint();
-		System.out.println(getValue() + "," + getValue2());
 	}
 
 	@Override

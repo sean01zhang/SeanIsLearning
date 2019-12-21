@@ -130,6 +130,8 @@ public class MapDrawables extends Rectangle {
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
 		
+		
+		
 		/*
 		if(cornerRadii !=0)
 		g.setClip(new RoundedRect((int)this.getX(),(int)this.getY(),(int)getWidth(),(int)getHeight(),cornerRadii,cornerRadii));
