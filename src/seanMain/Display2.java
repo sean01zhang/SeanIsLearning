@@ -67,8 +67,8 @@ public class Display2 extends JFrame{
 		ss.repaint();
 		add(ss);
 		
-		Animations anim = new Animations(ss);
-		anim.horShake(5, 5, 2000, 1);
+		//Animations anim = new Animations(ss);
+		//anim.horShake(5, 5, 2000, 1);
 		
 		SeanTextArea sta = new SeanTextArea(new SeanRoundedRect(0,0,20,2,0,0));
 		sta.setBoundsModified(200, 200, 200, 100);
@@ -79,6 +79,9 @@ public class Display2 extends JFrame{
 		
 		Animations anim2 = new Animations(sta);
 		anim2.fadeOutText(sta, 255, 0, 100);
+		
+		Animations anim3 = new Animations(ss);
+		anim3.expand(bg, 100, 10000);
 		
 		//anim.hor
 		//min, max, maxCount, interval
