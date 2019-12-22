@@ -28,7 +28,7 @@ import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
 
-public class SeanTextArea extends JComponent implements MouseWheelListener {
+public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	// string related
 	String outputText;
 	String text;

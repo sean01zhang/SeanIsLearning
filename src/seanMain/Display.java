@@ -48,21 +48,13 @@ public class Display extends JFrame{
 		this.setSize(800, 600);
 		this.setPreferredSize(new Dimension(800,600));
 		this.setMinimumSize(new Dimension(800,600));
-		//this.setUndecorated(true);
-		
-		//this.setBackground(new Color(0, 0, 0, 0));
-		this.setContentPane(new ShadowPane());
 		
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();
 		    }
 		});
-		
-		
-		//ComponentResizer cr = new ComponentResizer();
-		//cr.registerComponent(this);
-		
+
 		
 		/*
 		try {
@@ -71,13 +63,6 @@ public class Display extends JFrame{
 		} catch (Exception e) {}
 		
 		//this.setCursor(c);
-		
-		
-		//TITLEBAR STUFUFS
-		tb = new TitleBar(this);
-		tb.setBoundsModified(10,10,getWidth()-20,30);
-		add(tb);
-		
 		
 
 		// STA Stuffs

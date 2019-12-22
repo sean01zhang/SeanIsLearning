@@ -19,7 +19,7 @@ import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
 
 
-public abstract class SeanButton extends JComponent implements MouseListener {
+public abstract class SeanButton extends SeanComponent implements MouseListener {
 	SeanDrawables sbg,soly;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
@@ -125,6 +125,10 @@ public abstract class SeanButton extends JComponent implements MouseListener {
 	public void setTextColor(Color c) {
 		this.textColor = c;
 		repaint();
+	}
+	
+	public Color getTextColor() {
+		return textColor;
 	}
 
 	public void setText(String s) {
