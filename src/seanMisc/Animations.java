@@ -168,8 +168,6 @@ public class Animations {
 	
 	
 	
-	
-	
 	// ROTATIONAL SHAKING ***************************************************
 	int rotCounter;
 	Boolean CW;

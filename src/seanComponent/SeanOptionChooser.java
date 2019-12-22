@@ -44,23 +44,7 @@ public class SeanOptionChooser extends SeanComponent {
 	
 	@SuppressWarnings("serial")
 	private void initButtons() {
-		for(int i=0;i<sba.length;i++) {
-			if(i==0) {
-				Boolean[] temp = {true,true,false,false};
-				sba[i] = new SeanButton(new SeanDimentedRect(0,0, getWidth(), buttonSpacing,
-															cornerRadius,cornerRadius,temp),sco.poll());
-			} else if (i==sba.length-1) {
-				Boolean[] temp = {false,false,true,true};
-				sba[i] = new SeanButton(new SeanDimentedRect(0,0, getWidth(), buttonSpacing,
-															cornerRadius,cornerRadius,temp),sco.poll());
-			} else {
-				sba[i] = new SeanButton(new SeanRoundedRect(0,0, getWidth(), buttonSpacing,
-															0,0),sco.poll());
-			}
-			sba[i].setBoundsModified(0, i*buttonSpacing, getWidth(), buttonSpacing);
-			System.out.println(sba[i].getBounds());
-			this.add(sba[i]);
-		}
+		
 	}
 
 
