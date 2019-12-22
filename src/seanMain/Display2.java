@@ -77,9 +77,9 @@ public class Display2 extends JFrame{
 		sta.setVisible(true);
 		add(sta);
 		
-		//Animations anim2 = new Animations(sta);
+		Animations anim2 = new Animations(sta);
 		
-		//anim2.fadeText(sta, 255, 0, 10);
+		anim2.fadeText(sta, 255, 0, 10);
 		
 		//anim.hor
 		//min, max, maxCount, interval

@@ -87,7 +87,7 @@ public class Animations {
 		int difference = finalOpacity - initialOpacity;
 		float rate = difference*5/milliseconds;
 		
-		fadT = new Timer(5,new ActionListener() {
+		fadT = new Timer(5, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), sComp.getTextColor().getAlpha()));
