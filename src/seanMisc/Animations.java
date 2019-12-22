@@ -61,10 +61,10 @@ public class Animations {
 	
 	
 	
-	// FADING ***************************************************************
+	// DRAWABLES FADING OUT ***************************************************************
 	Timer fadT;
 	
-	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int milliseconds) {
+	public void fadeOut(SeanDrawables sd, float finalOpacity, float initialOpacity, int milliseconds) {
 		float difference = finalOpacity -initialOpacity;
 		float rate = difference*5/milliseconds;
 		
@@ -82,24 +82,49 @@ public class Animations {
 		fadT.start();
 	}
 	
+	
+	// TEXT FADING OUT **********************************************************
+	int timeCounter = 0;
+	int makeInt = 0;
 	//initialOpacity, finalOpacity from 0 to 255
-	public void fadeText(SeanComponent sComp, int finalOpacity, int initialOpacity, int milliseconds){
-		int difference = finalOpacity - initialOpacity;
-		float rate = difference*5/milliseconds;
+	public void fadeOutText(SeanComponent sComp, int initOpacity, int finalOpacity, int milliseconds){
+		int difference = initOpacity - finalOpacity;
+		float rate;
 		
-		fadT = new Timer(5,new ActionListener() {
+		if((float)((float)difference*1/milliseconds) == 0){
+			rate = (float) 0.01;
+		} else {
+			rate = (float)difference*1/milliseconds;
+		}
+		//System.out.println(rate);
+		
+		//because of this, the timer is not EXACTLY accurate (maybe off by a couple of milliseconds)
+		while(initOpacity > finalOpacity && (double)(makeInt*rate) < 1){
+			makeInt++;
+		}//System.out.println(makeInt);
+		
+		fadT = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), sComp.getTextColor().getAlpha()));
-				sComp.repaint();
-				if ((-difference/Math.abs(difference))*(sComp.getTextColor().getAlpha() - finalOpacity) <= 0) {
+				timeCounter++;
+				//System.out.println("hi");
+				if(timeCounter == makeInt){
+					sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), sComp.getTextColor().getAlpha() - (int)(makeInt*rate)));
+					timeCounter = 0;
+					//System.out.println(sComp.getTextColor().getAlpha());
+				} //System.out.println(timeCounter);
+				if(sComp.getTextColor().getAlpha() - (int)(makeInt*rate) <= 0){
+					sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), 0));
 					fadT.stop();
 				}
+				sComp.repaint();
 			}
 		});
-		
 		fadT.start();
 	}
+	
+	
+	
 	
 	
 	// ROTATIONAL SHAKING ***************************************************
