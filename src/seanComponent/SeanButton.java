@@ -9,9 +9,11 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
+import java.util.Arrays;
 
 import javax.swing.JComponent;
 
+import seanEngine.SeanCausalityObj;
 import seanGeometry.SeanRoundedRect;
 import seanGeometry.SeanShape;
 import seanMisc.Animations;
@@ -19,7 +21,7 @@ import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
 
 
-public abstract class SeanButton extends SeanComponent implements MouseListener {
+public class SeanButton extends SeanComponent implements MouseListener {
 	SeanDrawables sbg,soly;
 	String displayText;
 	Color textColor,hoverShade,clickShade;
@@ -28,6 +30,7 @@ public abstract class SeanButton extends SeanComponent implements MouseListener 
 	final int DEFAULT = 1;
 	final int HOVER = 2;
 	int pressStatus =1;
+	String[] effects;
 	
 	Animations anime;
 
@@ -67,6 +70,34 @@ public abstract class SeanButton extends SeanComponent implements MouseListener 
 		this.setSize(200, 100);
 
 		displayText = s;
+		//background
+		sbg = new SeanDrawables(ss);
+		
+
+		// Default Font
+		f = new Font("Arial", Font.PLAIN, 20);
+		textColor = Color.black;
+		hoverShade = new Color(125,125,125,128);
+		clickShade = new Color(75,75,75,128);
+		
+		//overlay
+		soly = new SeanDrawables(ss,0f,hoverShade);
+		
+		anime = new Animations(this);
+	}
+	
+	public SeanButton(SeanShape ss, SeanCausalityObj sco) {
+		super();
+		this.setOpaque(false);
+		this.enableInputMethods(true);
+		this.addMouseListener(this);
+		this.setFocusable(true);
+		this.setVisible(true);
+		this.setSize(200, 100);
+
+		displayText = sco.getCause();
+		effects = sco.getEffects();
+		
 		//background
 		sbg = new SeanDrawables(ss);
 		
@@ -182,5 +213,9 @@ public abstract class SeanButton extends SeanComponent implements MouseListener 
 	}
 
 	@Override
-	public abstract void mouseClicked(MouseEvent e);
+	public void mouseClicked(MouseEvent e) {
+		if(effects != null) {
+			System.out.println(Arrays.deepToString(effects));
+		}
+	}
 }

@@ -13,6 +13,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -20,9 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import seanComponent.SeanButton;
+import seanComponent.SeanOptionChooser;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanBGPanel;
+import seanEngine.SeanCausalityObj;
 import seanEngine.SeanStoryInterpreter;
 import seanGeometry.SeanRoundedRect;
 import seanMisc.SeanDrawableForeground;
@@ -56,26 +61,38 @@ public class Display extends JFrame{
 		});
 
 		
-		/*
+		
 		try {
 			c = this.getToolkit().createCustomCursor(ImageIO.read(new File("src/images/cursor.png")) , new Point(this.getX(), 
 			           this.getY()), "img");
 		} catch (Exception e) {}
+		
+		
+		Queue<SeanCausalityObj> sco = new LinkedList<>();
+		sco.add(new SeanCausalityObj("Yes","Die"));
+		sco.add(new SeanCausalityObj("No","Live"));
+		sco.add(new SeanCausalityObj("Maybe","Oh"));
+			
+		SeanOptionChooser soc = new SeanOptionChooser(sco);
+		//soc.setBounds(20,20,100,60);
+		add(soc);
 		
 		//this.setCursor(c);
 		
 
 		// STA Stuffs
 
-				this.sta = new SeanTextArea();
+		
+		/*
+		this.sta = new SeanTextArea();
 
-				sta.setBoundsModified(10,getHeight()-135,780,125);
+		sta.setBoundsModified(10,getHeight()-135,780,125);
 
-				sta.repaint();
-				sta.setRadius(20);
-				sta.setScrollType(SeanTextArea.SCROLL_CHAR);
-				sta.setSpeed(50);
-				sta.setBackgroundColor(new Color(255,25,255,190));
+		sta.repaint();
+		sta.setRadius(20);
+		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
+		sta.setSpeed(50);
+		sta.setBackgroundColor(new Color(255,25,255,190));
 
 				/* Image setting in the text box
 				try {
@@ -143,13 +160,9 @@ public class Display extends JFrame{
 				
 				//sb.getAnime().slideh(sb, 1000, -100);
 				
-				
-				
 				*/
-		this.setLayout(new BorderLayout());	
-		JPanel jp = new JPanel();
-		
-		this.add(jp);
+				
+				
 		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

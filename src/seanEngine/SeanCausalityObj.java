@@ -10,7 +10,7 @@ public class SeanCausalityObj {
 	
 	public SeanCausalityObj(String cause, String effect) {
 		this.cause = cause;
-		this.effect = new LinkedList<>();
+		this.effect = new LinkedList<String>();
 		this.effect.add(effect);
 	}
 	
@@ -32,9 +32,11 @@ public class SeanCausalityObj {
 		return cause;
 	}
 	
-	public Object[] getEffects() {
-		return effect.toArray();
+	public String[] getEffects() {
+		Object[] ea = effect.toArray();
+		return Arrays.copyOf(ea, ea.length, String[].class);
 	}
+	
 	
 	public String toString() {
 		return ("~ " +cause +" "+ Arrays.toString(getEffects()) + " ~");

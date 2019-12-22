@@ -37,7 +37,6 @@ public class SeanDrawables extends Rectangle {
 		super(s.getBounds());
 		c = Color.white;
 		this.setShapeToDraw(s);
-		System.out.println("Hi im using this one0");
 		radians =0;
 		prevWidth = width;
 		prevHeight= height;
@@ -50,7 +49,6 @@ public class SeanDrawables extends Rectangle {
 		radians =0;
 		prevWidth = width;
 		prevHeight= height;
-		System.out.println("Hi im using this one1");
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity) {
@@ -61,7 +59,6 @@ public class SeanDrawables extends Rectangle {
 		this.opacity = opacity;
 		prevWidth = width;
 		prevHeight= height;
-		System.out.println("Hi im using this one2");
 	}
 	
 	public SeanDrawables(SeanShape s, float opacity, Color c) {
@@ -71,7 +68,6 @@ public class SeanDrawables extends Rectangle {
 		setShapeToDraw(s);
 		prevWidth = width;
 		prevHeight= height;
-		System.out.println("Hi im using this one3");
 	}
 	
 	public SeanDrawables(int x,int y,int width,int height,float opacity,Image i) {
@@ -82,7 +78,6 @@ public class SeanDrawables extends Rectangle {
 		prevWidth = width;
 		prevHeight= height;
 		setImage(i);
-		System.out.println("Hi im using this one4");
 	}
 	
 	// GETTERS AND SETTERS *******************************************
