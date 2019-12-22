@@ -1,6 +1,7 @@
 package seanComponent;
 
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -166,7 +167,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	public void setRadius(int r) {
 		radius = r;
 	}
-
+	
 	public String getScrollType() {
 		if (this.scrollType.equals("Word")) {
 			return " ";
