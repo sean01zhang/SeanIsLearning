@@ -4,8 +4,7 @@ To do:
 User Interface
 1) button **
   - modularity
-3) sliders
-  - animation
+3) slider animations
 4) txtarea
     - modularity for background
     - Clean up
