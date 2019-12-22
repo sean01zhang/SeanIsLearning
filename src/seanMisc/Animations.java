@@ -24,8 +24,6 @@ public class Animations {
 	int timeExpandCounter = 0;
 	public void expand(SeanDrawables sd, int max, int milliseconds){
 		
-		//height = ;
-		//width = ;
 		initHeight = sd.getBounds().height;
 		initWidth = sd.getBounds().width;
 		thresh = 0;
@@ -46,11 +44,10 @@ public class Animations {
 				if(timeFadeCounter == thresh){
 					sd.setBounds((int)sd.getX(), (int)sd.getY(), sd.getBounds().width + (int)((double)changePerMilli*thresh), sd.getBounds().height + (int)((double)changePerMilli*thresh));
 					timeFadeCounter = 0;
-					System.out.println(sd.getBounds().width);
+					//System.out.println(sd.getBounds().width);
 				}
 				
 				if(sd.getBounds().height - initHeight >= max){
-					System.out.println("stops");
 					exp.stop();
 				}
 				comp.repaint();
