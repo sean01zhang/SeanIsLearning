@@ -36,6 +36,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 	// bounding the position of the string
 	int strx,stry,boundx,boundy,boundw,boundh;
 	int endofstring;
+	Color textColor;
 	// for scrolling
 	String scrollType;
 	public final static String SCROLL_NONE = "None";
@@ -135,7 +136,7 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 		// paint background
 		getBG().draw(g);
 		// paint string
-		g.setColor(Color.black);
+		g.setColor(textColor);
 		g.setFont(f);
 
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
@@ -250,5 +251,13 @@ public class SeanTextArea extends JComponent implements MouseWheelListener {
 
 	public void setBG(SeanDrawables sbg) {
 		this.sbg = sbg;
+	}
+
+	public Color getTextColor() {
+		return textColor;
+	}
+
+	public void setTextColor(Color textColor) {
+		this.textColor = textColor;
 	}
 }

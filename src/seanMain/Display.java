@@ -48,9 +48,9 @@ public class Display extends JFrame{
 		this.setSize(800, 600);
 		this.setPreferredSize(new Dimension(800,600));
 		this.setMinimumSize(new Dimension(800,600));
-		this.setUndecorated(true);
+		//this.setUndecorated(true);
 		
-		this.setBackground(new Color(0, 0, 0, 0));
+		//this.setBackground(new Color(0, 0, 0, 0));
 		this.setContentPane(new ShadowPane());
 		
 		this.addComponentListener(new ComponentAdapter() {
@@ -60,8 +60,8 @@ public class Display extends JFrame{
 		});
 		
 		
-		ComponentResizer cr = new ComponentResizer();
-		cr.registerComponent(this);
+		//ComponentResizer cr = new ComponentResizer();
+		//cr.registerComponent(this);
 		
 		
 		/*
