@@ -38,7 +38,6 @@ public class Display extends JFrame{
 	SeanBGPanel sbgpanel;
 	SeanButton sb;
 	File f;
-	TitleBar tb;
 	Cursor c;
 	
 	public void invokeResize() {
