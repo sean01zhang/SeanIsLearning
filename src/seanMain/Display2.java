@@ -52,23 +52,26 @@ public class Display2 extends JFrame{
 		
 		//Color picker settings
 		//why is in a rounded rectangle!!!
-		SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
-		SeanDrawables bg = new SeanDrawables(0, 0, 300, 300);
-		in.setColor(Color.RED);
+		/*SeanDrawables in = new SeanDrawables(10, 10, 20, 20);
+		SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(0, 0, 300, 300, 30, 30));
+		in.setColor(Color.RED);*/
 
 		//Modern look settings
 		//why is in a rounded rectangle!!!
-		/*SeanDrawables in = new SeanDrawables(-400, 0, 400, 50);
+		SeanDrawables in = new SeanDrawables(-400, 0, 400, 50);
 		SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(0, 0, 400, 50, 30, 30));
 		in.setColor(Color.WHITE);
-		bg.setColor(Color.LIGHT_GRAY);*/
+		bg.setColor(Color.LIGHT_GRAY);
 		
-		ss = new MapSlider(100, 100, bg, in, 20, 0, 30, 30, "color picker");
+		ss = new MapSlider(100, 100, bg, in, 20, 0, 30, 30, "modern hor");
 		ss.setVisible(true);
 		ss.repaint();
 		add(ss);
-
-
+		
+		Animations anim = new Animations(ss);
+		anim.horShake(70, 70, 20, 1);
+		//anim.hor
+		//min, max, maxCount, interval
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
