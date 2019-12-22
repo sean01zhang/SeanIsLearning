@@ -16,7 +16,6 @@ import javax.swing.Timer;
 import seanComponent.SeanButton;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
-import seanComponent.MapDrawables;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanStoryInterpreter;
 import seanGeometry.SeanRoundedRect;
@@ -68,8 +67,20 @@ public class Display2 extends JFrame{
 		ss.repaint();
 		add(ss);
 		
-		Animations anim = new Animations(ss);
-		anim.horShake(70, 70, 20, 1);
+		//Animations anim = new Animations(ss);
+		//anim.horShake(70, 70, 20, 1);
+		
+		SeanTextArea sta = new SeanTextArea();
+		sta.setBounds(200, 200, 200, 100);
+		sta.setText("Hello World! I'm a Sean Text Area.");
+		sta.setTextColor(Color.BLACK);
+		sta.setVisible(true);
+		add(sta);
+		
+		//Animations anim2 = new Animations(sta);
+		
+		//anim2.fadeText(sta, 255, 0, 10);
+		
 		//anim.hor
 		//min, max, maxCount, interval
 		this.pack();

@@ -1,8 +1,12 @@
 package seanMisc;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+
+import seanComponent.SeanComponent;
+
 import javax.swing.JComponent;
 
 public class Animations {
@@ -60,9 +64,9 @@ public class Animations {
 	// FADING ***************************************************************
 	Timer fadT;
 	
-	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int miliseconds) {
+	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int milliseconds) {
 		float difference = finalOpacity -initialOpacity;
-		float rate = difference*5/miliseconds;
+		float rate = difference*5/milliseconds;
 		
 		fadT = new Timer(5,new ActionListener() {
 			@Override
@@ -70,6 +74,25 @@ public class Animations {
 				sd.setOpacity(sd.getOpacity()+rate);
 				comp.repaint();
 				if ((-difference/Math.abs(difference))*(sd.getOpacity()-finalOpacity)<=0) {
+					fadT.stop();
+				}
+			}
+		});
+		
+		fadT.start();
+	}
+	
+	//initialOpacity, finalOpacity from 0 to 255
+	public void fadeText(SeanComponent sComp, int finalOpacity, int initialOpacity, int milliseconds){
+		int difference = finalOpacity - initialOpacity;
+		float rate = difference*5/milliseconds;
+		
+		fadT = new Timer(5,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), sComp.getTextColor().getAlpha()));
+				sComp.repaint();
+				if ((-difference/Math.abs(difference))*(sComp.getTextColor().getAlpha() - finalOpacity) <= 0) {
 					fadT.stop();
 				}
 			}

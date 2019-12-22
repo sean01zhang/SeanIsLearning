@@ -173,7 +173,7 @@ public class SeanDrawables extends Rectangle {
 		g2d.rotate(radians,rx,ry);
 		
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-
+		
 		if (null == getScaledImage()) {
 			g.setColor(c);
 			getShapeToDraw().draw(g);
