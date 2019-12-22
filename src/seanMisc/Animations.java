@@ -61,10 +61,10 @@ public class Animations {
 	
 	
 	
-	// DRAWABLES FADING ***************************************************************
+	// DRAWABLES FADING OUT ***************************************************************
 	Timer fadT;
 	
-	public void fade(SeanDrawables sd, float finalOpacity, float initialOpacity, int milliseconds) {
+	public void fadeOut(SeanDrawables sd, float finalOpacity, float initialOpacity, int milliseconds) {
 		float difference = finalOpacity -initialOpacity;
 		float rate = difference*5/milliseconds;
 		
@@ -83,12 +83,12 @@ public class Animations {
 	}
 	
 	
-	// TEXT FADING **********************************************************
+	// TEXT FADING OUT **********************************************************
 	int timeCounter = 0;
 	int makeInt = 0;
 	//initialOpacity, finalOpacity from 0 to 255
-	public void fadeText(SeanComponent sComp, int finalOpacity, int initialOpacity, int milliseconds){
-		int difference = finalOpacity - initialOpacity;
+	public void fadeOutText(SeanComponent sComp, int initOpacity, int finalOpacity, int milliseconds){
+		int difference = initOpacity - finalOpacity;
 		float rate;
 		
 		if((float)((float)difference*1/milliseconds) == 0){
@@ -99,7 +99,7 @@ public class Animations {
 		//System.out.println(rate);
 		
 		//because of this, the timer is not EXACTLY accurate (maybe off by a couple of milliseconds)
-		while((double)(makeInt*rate) < 1){
+		while(initOpacity > finalOpacity && (double)(makeInt*rate) < 1){
 			makeInt++;
 		}//System.out.println(makeInt);
 		
