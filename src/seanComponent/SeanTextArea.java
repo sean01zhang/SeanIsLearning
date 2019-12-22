@@ -56,7 +56,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	Animations anime;
 
 	// CONSTRUCTORS *****************************************
-	public SeanTextArea() {
+	public SeanTextArea(SeanShape ss) {
 		super();
 		this.enableInputMethods(true);
 		this.addMouseWheelListener(this);
@@ -66,7 +66,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		setBG(new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),30,30)));
+		setBG(new SeanDrawables(ss));
 				
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {

@@ -70,8 +70,8 @@ public class Display2 extends JFrame{
 		//Animations anim = new Animations(ss);
 		//anim.horShake(70, 70, 20, 1);
 		
-		SeanTextArea sta = new SeanTextArea();
-		sta.setBounds(200, 200, 200, 100);
+		SeanTextArea sta = new SeanTextArea(new SeanRoundedRect(0,0,20,2,0,0));
+		sta.setBoundsModified(200, 200, 200, 100);
 		sta.setText("Hello World! I'm a Sean Text Area.");
 		sta.setTextColor(Color.BLACK);
 		sta.setVisible(true);
