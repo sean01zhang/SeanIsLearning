@@ -71,7 +71,6 @@ public class SeanRoundedRect extends RoundRectangle2D implements SeanShape {
 	
 	public void draw(Graphics g) {
 		g.fillRoundRect(x,y,width,height,arcw,arch);
-		System.out.println("Arc Width: "+arcw + "Arc Heigh: " + arch+ "W " + width);
 	}
 
 	@Override

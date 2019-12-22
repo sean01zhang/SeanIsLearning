@@ -199,10 +199,7 @@ public class SeanDrawables extends Rectangle {
 	
 	public void rescaleImage() {
 		if(getScaledImage() != null) {
-			if (SEAN_RESIZE == resizeMethod) {
-				System.out.println("oop");
-				System.out.println(getWidth() + " "+ getHeight());
-				
+			if (SEAN_RESIZE == resizeMethod) {	
 				double imgAspect = imageWidth/(double)imageHeight;
 				double frameAspect = getWidth()/getHeight();
 				

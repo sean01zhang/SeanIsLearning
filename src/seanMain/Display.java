@@ -1,5 +1,6 @@
 package seanMain;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import seanComponent.SeanButton;
@@ -35,10 +37,10 @@ public class Display extends JFrame{
 	Cursor c;
 	
 	public void invokeResize() {
-		sta.setBoundsModified(10,getHeight()-135,780,125);
+		//sta.setBoundsModified(10,getHeight()-135,780,125);
 		//sta.setBoundsModified((getWidth()-700)/2,getHeight()-155,700,125);
-		sbgpanel.resizePanel(getWidth(),getHeight());
-		tb.setBoundsModified(10,10,getWidth()-20,30);
+		//sbgpanel.resizePanel(getWidth(),getHeight());
+		//tb.setBoundsModified(10,10,getWidth()-20,30);
 	}
 	
 	public Display() {
@@ -48,7 +50,8 @@ public class Display extends JFrame{
 		this.setMinimumSize(new Dimension(800,600));
 		this.setUndecorated(true);
 		
-
+		this.setBackground(new Color(0, 0, 0, 0));
+		this.setContentPane(new ShadowPane());
 		
 		this.addComponentListener(new ComponentAdapter() {
 		    public void componentResized(ComponentEvent componentEvent) {
@@ -56,11 +59,12 @@ public class Display extends JFrame{
 		    }
 		});
 		
+		
 		ComponentResizer cr = new ComponentResizer();
 		cr.registerComponent(this);
 		
 		
-		
+		/*
 		try {
 			c = this.getToolkit().createCustomCursor(ImageIO.read(new File("src/images/cursor.png")) , new Point(this.getX(), 
 			           this.getY()), "img");
@@ -73,6 +77,8 @@ public class Display extends JFrame{
 		tb = new TitleBar(this);
 		tb.setBoundsModified(10,10,getWidth()-20,30);
 		add(tb);
+		
+		
 
 		// STA Stuffs
 
@@ -92,7 +98,7 @@ public class Display extends JFrame{
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				*/
+				
 				
 
 				add(sta);
@@ -154,11 +160,11 @@ public class Display extends JFrame{
 				
 				
 				
-				
-				
-				
-				
-				this.setVisible(true);
+				*/
+		this.setLayout(new BorderLayout());	
+		JPanel jp = new JPanel();
+		
+		this.add(jp);
 		
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

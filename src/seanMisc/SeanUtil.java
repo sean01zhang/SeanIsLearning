@@ -1,6 +1,10 @@
 package seanMisc;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.awt.Font;
 
 public class SeanUtil {
@@ -44,4 +48,29 @@ public class SeanUtil {
 		}
 		return y;
 	}
+  
+  public static BufferedImage getBlurredImage(BufferedImage bi, int radius) {
+
+      //this is for calculating the blur radius
+      int size = radius * 2 + 1;
+      float weight = 1.0f / (size * size);
+      float[] data = new float[size * size];
+      for (int i = 0; i < data.length; i++) {
+          data[i] = weight;
+      }
+
+      //creates an image kernel
+      Kernel kernel = new Kernel(size, size, data);
+      
+      //blurs the image, leaving the edges of the blur non-blurred. This will be cropped out using
+      //getSubImage.
+      ConvolveOp op = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
+      return op.filter(bi, null);
+      //return op.filter(bi, null).getSubimage(radius, radius, bi.getWidth()-(2*radius), bi.getHeight()-(2*radius));
+  }
+  
+  
+  
+  
+  
 }
