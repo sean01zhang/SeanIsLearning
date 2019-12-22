@@ -16,6 +16,51 @@ public class Animations {
 		comp = jc;
 	}
 	
+	// EXPAND **************************************************************
+	Timer exp;
+	int initHeight;
+	int initWidth;
+	int thresh;
+	int timeExpandCounter = 0;
+	public void expand(SeanDrawables sd, int max, int milliseconds){
+		
+		//height = ;
+		//width = ;
+		initHeight = sd.getBounds().height;
+		initWidth = sd.getBounds().width;
+		thresh = 0;
+		
+		double changePerMilli = (double)max/milliseconds; 
+		
+		//because of this, the timer is not EXACTLY accurate (maybe off by a couple of milliseconds)
+		while(changePerMilli*thresh < 1){
+			thresh++;
+		}
+		//System.out.println(thresh);
+		
+		exp = new Timer(1, new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				timeFadeCounter++;
+				
+				if(timeFadeCounter == thresh){
+					sd.setBounds((int)sd.getX(), (int)sd.getY(), sd.getBounds().width + (int)((double)changePerMilli*thresh), sd.getBounds().height + (int)((double)changePerMilli*thresh));
+					timeFadeCounter = 0;
+					System.out.println(sd.getBounds().width);
+				}
+				
+				if(sd.getBounds().height - initHeight >= max){
+					System.out.println("stops");
+					exp.stop();
+				}
+				comp.repaint();
+			}
+		});
+		
+		exp.start();
+	}
+	
+	
 	// SLIDE IN/OUT ***************************************************************
 	
 	Timer slideT;
@@ -84,8 +129,9 @@ public class Animations {
 	
 	
 	// TEXT FADING OUT **********************************************************
-	int timeCounter = 0;
+	int timeFadeCounter = 0;
 	int makeInt = 0;
+	Timer fadeText;
 	//initialOpacity, finalOpacity from 0 to 255
 	public void fadeOutText(SeanComponent sComp, int initOpacity, int finalOpacity, int milliseconds){
 		int difference = initOpacity - finalOpacity;
@@ -103,24 +149,24 @@ public class Animations {
 			makeInt++;
 		}//System.out.println(makeInt);
 		
-		fadT = new Timer(1, new ActionListener() {
+		fadeText = new Timer(1, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				timeCounter++;
+				timeFadeCounter++;
 				//System.out.println("hi");
-				if(timeCounter == makeInt){
+				if(timeFadeCounter == makeInt){
 					sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), sComp.getTextColor().getAlpha() - (int)(makeInt*rate)));
-					timeCounter = 0;
+					timeFadeCounter = 0;
 					//System.out.println(sComp.getTextColor().getAlpha());
 				} //System.out.println(timeCounter);
 				if(sComp.getTextColor().getAlpha() - (int)(makeInt*rate) <= 0){
 					sComp.setTextColor(new Color(sComp.getTextColor().getRed(), sComp.getTextColor().getGreen(), sComp.getTextColor().getBlue(), 0));
-					fadT.stop();
+					fadeText.stop();
 				}
 				sComp.repaint();
 			}
 		});
-		fadT.start();
+		fadeText.start();
 	}
 	
 	
@@ -247,7 +293,7 @@ public class Animations {
 		verT.start();
 	}
 
-
+	
 	// HORIZTONTAL SHAKING ***********************************
 	Boolean goingRight;
 	int horCounter;
