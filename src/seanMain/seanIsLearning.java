@@ -8,8 +8,8 @@ import seanMisc.SeanDrawables;
 
 public class seanIsLearning {
 	public static void main(String[]args) {
-		//Display sean = new Display();
-		Display2 lynn = new Display2();
+		Display sean = new Display();
+		//Display2 lynn = new Display2();
 		//System.out.println(sean.sip.readLine());
 		
 		String lineatm =" ";

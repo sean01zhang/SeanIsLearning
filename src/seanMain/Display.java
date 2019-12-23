@@ -29,6 +29,7 @@ import seanComponent.SeanTextArea;
 import seanComponent.SeanBGPanel;
 import seanEngine.SeanCausalityObj;
 import seanEngine.SeanStoryInterpreter;
+import seanGeometry.SeanDimentedRect;
 import seanGeometry.SeanRoundedRect;
 import seanMisc.SeanDrawableForeground;
 
@@ -78,7 +79,10 @@ public class Display extends JFrame{
 		
 		//this.setCursor(c);
 		
-
+		Boolean[] corners = {true,true,true,false};
+		SeanButton dimented = new SeanButton(new SeanDimentedRect(0,0,200,100,30,corners),"Help");
+		dimented.setBoundsModified(10, 10, 300, 100);
+		add(dimented);
 		// STA Stuffs
 
 		
