@@ -80,4 +80,16 @@ public class SeanRoundedRect extends RoundRectangle2D implements SeanShape {
 		this.width = width;
 		this.height = height;
 	}
+
+	@Override
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
+	public void setSize(int w, int h) {
+		this.width = w;
+		this.height = h;
+	}
 }

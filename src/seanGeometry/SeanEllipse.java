@@ -66,4 +66,16 @@ public class SeanEllipse extends Ellipse2D implements SeanShape {
 		this.height= (int)h;
 	}
 
+	@Override
+	public void setLocation(int x, int y) {
+		this.x = (int)x;
+		this.y = (int)y;
+	}
+
+	@Override
+	public void setSize(int w, int h) {
+		this.width = (int)w;
+		this.height= (int)h;
+	}
+
 }

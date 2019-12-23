@@ -39,6 +39,6 @@ public class SeanCausalityObj {
 	
 	
 	public String toString() {
-		return ("~ " +cause +" "+ Arrays.toString(getEffects()) + " ~");
+		return ("~~~ " +cause +" "+ Arrays.toString(getEffects()) + " ~~~");
 	}
 }

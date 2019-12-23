@@ -1,22 +1,25 @@
 package seanGeometry;
 
 import java.awt.Graphics;
-import java.awt.geom.AffineTransform;
+import java.awt.Graphics2D;
 import java.awt.geom.Path2D;
-import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
-public class SeanDimentedRect extends Path2D.Float {
-	Boolean topL,topR,botL,botR;
+public class SeanDimentedRect extends Path2D.Float implements SeanShape {
+	Boolean[] isRounded;
+	int x,y,w,h,arc;
 	
 	public SeanDimentedRect(int x, int y, int w, int h, int arc, Boolean[] isRounded) {
-		topL = isRounded[0];
-		topR = isRounded[1];
-		botL = isRounded[2];
-		botR = isRounded[3];
+		this.x = x;
+		this.y =y;
+		this.w = w;
+		this.h = h;
+		this.arc = arc;
+		this.isRounded = isRounded;
 		
-		moveTo(x,y);
+		alignPath();
+	}
+	
+	public void alignPath() {
 		for(int i=0;i<isRounded.length;i++) {
 			switch(i) {
 				case 0: if(isRounded[0]) {
@@ -26,35 +29,64 @@ public class SeanDimentedRect extends Path2D.Float {
 						}
 						break;
 				case 1: if(isRounded[1]) {
-							if(isRounded[0]) {
-								lineTo(w-2*arc,y);
-							} else {
-								lineTo(w-arc,y);
-							}
-							
+							lineTo(w-arc,y);
 							curveTo( w, 0, w, 0, w, arc);
 						} else {
-							if(isRounded[0]) {
-								lineTo(w-arc,y);
-							} else {
-								lineTo(w,y);
-							}
+							lineTo(w,y);
 						}
+						break;
 				case 2: if(isRounded[2]) {
-							if(isRounded[1]) {
-								lineTo(w,h-2*arc);
-							} else {
-								lineTo(w,h-arc);
-							}
+							lineTo(w,h-arc);
 							curveTo(w,h,w,h,w-arc,h);
 						} else {
-							
+							lineTo(w,h);
 						}
+						break;
+				case 3: if(isRounded[3]) {
+							lineTo(-w+arc,h);
+							curveTo(x,h,x,h,x,h-arc);
+						} else {
+							lineTo(-w,h);
+						}
+						break;
 			}
 		}
+		
+		if(isRounded[0]) {
+			lineTo(x,y+arc);
+			curveTo(x,y,x,y,x+arc,y);
+		} else {
+			lineTo(x,y);
+		}
+		closePath();
 	}
 	
 	public void draw(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.fill(this);
+	}
+
+	@Override
+	public void setBounds(int x, int y, int width, int height) {
+		this.x = x;
+		this.y =y;
+		this.w = width;
+		this.h = height;
 		
+		alignPath();
+	}
+
+	@Override
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y =y;
+		alignPath();
+	}
+
+	@Override
+	public void setSize(int w, int h) {
+		this.w = w;
+		this.h = w;
+		alignPath();
 	}
 }
