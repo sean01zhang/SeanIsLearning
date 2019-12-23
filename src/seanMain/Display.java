@@ -87,7 +87,7 @@ public class Display extends JFrame{
 	
 	public void initComponents() {
 		//SeanTextArea
-		Boolean[] thing = {false, false, true, true};
+		Boolean[] thing = {false, true, false, true};
 		sta = new SeanTextArea(new SeanDimentedRect(10,getHeight()-135,780,125,40,thing));
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
@@ -102,7 +102,7 @@ public class Display extends JFrame{
 		add(sta);
 		
 		//SeanButton
-		sb = new SeanButton(new SeanDimentedRect(10,10,100,50,20,thing),"Click Me") {
+		sb = new SeanButton(new SeanRoundedRect(10,10,100,50,20,20),"Click Me") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setText("Hello");

@@ -148,6 +148,8 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		g.setColor(textColor);
 		g.setFont(f);
 
+		//ss.draw(g);
+		
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
 	}
 

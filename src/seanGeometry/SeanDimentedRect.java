@@ -43,7 +43,7 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 						}
 						break;
 				case 3: if(isRounded[3]) {
-							lineTo(-w+arc,h);
+							lineTo(x+arc,h);
 							curveTo(x,h,x,h,x,h-arc);
 						} else {
 							lineTo(-w,h);
@@ -59,6 +59,7 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 			lineTo(x,y);
 		}
 		closePath();
+		
 	}
 	
 	public void draw(Graphics g) {
@@ -72,7 +73,7 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 		this.y =y;
 		this.w = width;
 		this.h = height;
-		
+		this.reset();
 		alignPath();
 	}
 
@@ -80,6 +81,7 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 	public void setLocation(int x, int y) {
 		this.x = x;
 		this.y =y;
+		this.reset();
 		alignPath();
 	}
 
@@ -87,6 +89,7 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 	public void setSize(int w, int h) {
 		this.w = w;
 		this.h = w;
+		this.reset();
 		alignPath();
 	}
 }
