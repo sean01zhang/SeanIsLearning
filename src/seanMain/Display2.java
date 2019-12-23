@@ -80,7 +80,7 @@ public class Display2 extends JFrame{
 		anim2.fadeOutText(sta, 255, 0, 100);
 		
 		Animations anim3 = new Animations(ss);
-		anim3.expand(in, 50, 50);
+		anim3.expand(in, 50, 500);
 		
 		//anim.hor
 		//min, max, maxCount, interval

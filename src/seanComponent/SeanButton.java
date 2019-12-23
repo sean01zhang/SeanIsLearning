@@ -30,35 +30,8 @@ public class SeanButton extends SeanComponent implements MouseListener {
 	final int DEFAULT = 1;
 	final int HOVER = 2;
 	int pressStatus =1;
-	String[] effects;
-	
+	String[] effects;	
 	Animations anime;
-
-	public SeanButton(String s) {
-		super();
-		this.setOpaque(false);
-		this.enableInputMethods(true);
-		this.addMouseListener(this);
-		this.setFocusable(true);
-		this.setVisible(true);
-		this.setSize(200, 100);
-
-		displayText = s;
-		//background
-		sbg = new SeanDrawables(getX(),getY(),getWidth(),getHeight());
-		
-		//overlay
-		soly = new SeanDrawables(getX(),getY(),getWidth(),getHeight(),0f);
-		
-
-		// Default Font
-		f = new Font("Arial", Font.PLAIN, 20);
-		textColor = Color.black;
-		hoverShade = new Color(125,125,125,128);
-		clickShade = new Color(75,75,75,128);
-		
-		anime = new Animations(this);
-	}
 	
 	public SeanButton(SeanShape ss, String s) {
 		super();
@@ -67,19 +40,19 @@ public class SeanButton extends SeanComponent implements MouseListener {
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
-		this.setSize(200, 100);
-
-		displayText = s;
-		//background
-		sbg = new SeanDrawables(ss);
+		// set location based on location of shape
+		this.setBounds(ss.getBounds());
 		
-
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
 		textColor = Color.black;
 		hoverShade = new Color(125,125,125,128);
 		clickShade = new Color(75,75,75,128);
+		displayText = s;
 		
+		//configure background
+		ss.setLocation(0, 0);
+		sbg = new SeanDrawables(ss);
 		//overlay
 		soly = new SeanDrawables(ss,0f,hoverShade);
 		
@@ -93,21 +66,20 @@ public class SeanButton extends SeanComponent implements MouseListener {
 		this.addMouseListener(this);
 		this.setFocusable(true);
 		this.setVisible(true);
-		this.setSize(200, 100);
-
-		displayText = sco.getCause();
-		effects = sco.getEffects();
-		
-		//background
-		sbg = new SeanDrawables(ss);
-		
+		// set location based on location of shape
+		this.setBounds(ss.getBounds());
 
 		// Default Font
 		f = new Font("Arial", Font.PLAIN, 20);
 		textColor = Color.black;
 		hoverShade = new Color(125,125,125,128);
 		clickShade = new Color(75,75,75,128);
+		displayText = sco.getCause();
+		effects = sco.getEffects();
 		
+		//configure background
+		ss.setLocation(0, 0);
+		sbg = new SeanDrawables(ss);
 		//overlay
 		soly = new SeanDrawables(ss,0f,hoverShade);
 		
@@ -116,7 +88,6 @@ public class SeanButton extends SeanComponent implements MouseListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		sbg.setBounds(0,0,getWidth(),getHeight());
 
 		// antialias
 		Graphics2D g2d = (Graphics2D) g;
@@ -215,6 +186,7 @@ public class SeanButton extends SeanComponent implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(effects != null) {
+			// do something w/ engine here
 			System.out.println(Arrays.deepToString(effects));
 		}
 	}

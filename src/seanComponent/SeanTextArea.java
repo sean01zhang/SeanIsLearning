@@ -56,18 +56,30 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	Animations anime;
 
 	// CONSTRUCTORS *****************************************
+	
+	/**
+	 * Takes in a SeanShape. This automatically makes the bounds of the textarea the 
+	 * bounds of the SeanShape.
+	 * @param ss
+	 */
 	public SeanTextArea(SeanShape ss) {
 		super();
 		this.enableInputMethods(true);
 		this.addMouseWheelListener(this);
 		this.setOpaque(false);
-		this.setSize(400,200);
+		
+		// bounds getting
+		this.setBounds(ss.getBounds());
+		
+		// configure background
+		ss.setLocation(0, 0);
+		setBG(new SeanDrawables(ss));
+		
 		// Default Scrolling Type
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
-		// configure background
-		setBG(new SeanDrawables(ss));
-				
+		
+		// Timer Stuffs
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	scrollText();
@@ -82,26 +94,24 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		boundy = 10;
 		strx= boundx;
 		stry= boundy;
-
-		radius =0;
-
+		textColor = Color.black;
 		text = "";
 		this.setText("");
 		
 		anime = new Animations(this);
 	}
 
-	public SeanTextArea(int width,int height) {
+	public SeanTextArea(int x, int y, int width,int height) {
 		super();
 		this.enableInputMethods(true);
 		this.addMouseWheelListener(this);
 		this.setOpaque(false);
-		this.setSize(width,height);
+		this.setBounds(x,y,width,height);
 		// Default Scrolling Type
 		scrollType = SCROLL_NONE;
 		queueString = new LinkedList<>();
 		// configure background
-		setBG(new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),20,20)));
+		setBG(new SeanDrawables(new SeanRoundedRect(0,0,getWidth(),getHeight(),0,0)));
 		
 		t = new Timer(70, new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
@@ -117,9 +127,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		boundy = 10;
 		strx= boundx;
 		stry= boundy;
-
-		radius=0;
-
+		textColor = Color.black;
 		text = "";
 		this.setText("");
 		
@@ -163,10 +171,6 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	public void setBackgroundColor(Color c) {
 		getBG().setColor(c);
 	}
-
-	public void setRadius(int r) {
-		radius = r;
-	}
 	
 	public String getScrollType() {
 		if (this.scrollType.equals("Word")) {
@@ -192,7 +196,6 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		t.start();
 		repaint();
 	}
-
 
 	public String getText() {
 		return text;

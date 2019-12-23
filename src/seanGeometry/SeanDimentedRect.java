@@ -75,4 +75,18 @@ public class SeanDimentedRect extends Path2D.Float implements SeanShape {
 		
 		alignPath();
 	}
+
+	@Override
+	public void setLocation(int x, int y) {
+		this.x = x;
+		this.y =y;
+		alignPath();
+	}
+
+	@Override
+	public void setSize(int w, int h) {
+		this.w = w;
+		this.h = w;
+		alignPath();
+	}
 }
