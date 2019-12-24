@@ -44,7 +44,7 @@ public class Display extends JFrame{
 	
 	public void invokeResize() {
 		//sta.setBoundsModified(10,getHeight()-135,780,125);
-		sta.setBoundsModified((this.getContentPane().getWidth()-700)/2,this.getContentPane().getHeight()-135,700,125);
+		sta.setBoundsModified((this.getContentPane().getWidth()-700)/2,this.getContentPane().getHeight()-sta.getHeight()-10,sta.getWidth(),sta.getHeight());
 		sbgpanel.resizePanel(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 		//tb.setBoundsModified(10,10,getWidth()-20,30);
 	}
@@ -90,7 +90,7 @@ public class Display extends JFrame{
 	
 	public void initComponents() {
 		//SeanTextArea
-		sta = new SeanTextArea(new SeanRoundedRect(10,getHeight()-135,780,125,40,40));
+		sta = new SeanTextArea(new SeanRoundedRect(10,getHeight()-135,700,125,40,40));
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
@@ -124,6 +124,8 @@ public class Display extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setSComp(null);
+				sb.scaleSComponent(1.1,sb.getX(),sb.getY());
+				invokeResize();
 			}
 		};
 		add(sb2);

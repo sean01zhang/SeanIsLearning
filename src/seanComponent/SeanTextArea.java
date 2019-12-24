@@ -57,6 +57,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	Animations anime;
 	
 	SeanComponent sc;
+	
 
 	// CONSTRUCTORS *****************************************
 	
@@ -295,7 +296,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	public SeanComponent getSComp() {
 		return sc;
 	}
-
+	
 	int sd = 0;
 	public void setSComp(SeanComponent sc) {
 		if(sd==0) {
