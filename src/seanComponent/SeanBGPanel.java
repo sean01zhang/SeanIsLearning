@@ -1,5 +1,6 @@
 package seanComponent;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import seanMisc.Animations;
 import seanMisc.SeanDrawableForeground;
 import seanMisc.SeanDrawables;
 
-public class SeanBGPanel extends JPanel {
+public class SeanBGPanel extends SeanComponent {
 	SeanDrawables background;
 	ArrayList<SeanDrawableForeground> foreground;
 	Animations anime;
@@ -73,6 +74,24 @@ public class SeanBGPanel extends JPanel {
 	
 	public SeanDrawables getDrawables(int index) {
 		return foreground.get(index);
+	}
+
+	@Override
+	public void setTextColor(Color c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Color getTextColor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setBoundsModified(int x, int y, int width, int height) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -10,9 +10,9 @@ import seanComponent.SeanComponent;
 import javax.swing.JComponent;
 
 public class Animations {
-	JComponent comp;
+	SeanComponent comp;
 	
-	public Animations(JComponent jc) {
+	public Animations(SeanComponent jc) {
 		comp = jc;
 	}
 	
@@ -333,19 +333,21 @@ public class Animations {
 		int absMin = comp.getX() - min;
 		goingRight = true;
 		horCounter = 0;
-
+		
 		horT = new Timer(interval, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					if(goingRight == true && comp.getX() < absMax){
-						comp.setLocation(comp.getX() + vel, comp.getY());
+						System.out.println(comp.getX());
+						comp.setBoundsModified(comp.getX() + vel, comp.getY(),comp.getWidth(),comp.getHeight());
 						comp.revalidate();
 						if(comp.getX() == absMax){
 							goingRight = false;
 							horCounter++;
 						}
 					} else if (goingRight == false && comp.getX() > absMin){
-						comp.setLocation(comp.getX() - vel, comp.getY());
+						System.out.println(comp.getX());
+						comp.setBoundsModified(comp.getX() - vel, comp.getY(),comp.getWidth(),comp.getHeight());
 						comp.revalidate();
 						if(comp.getX() == absMin){
 							goingRight = true;

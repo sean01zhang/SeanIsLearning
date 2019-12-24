@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
 import seanComponent.SeanButton;
-import seanComponent.SeanOptionChooser;
+import seanComponent.SeanButtonArray;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanBGPanel;
@@ -37,13 +37,14 @@ public class Display extends JFrame{
 	SeanTextArea sta;
 	SeanStoryInterpreter sip;
 	SeanBGPanel sbgpanel;
+	SeanButtonArray sba;
 	SeanButton sb;
 	File f;
 	Cursor c;
 	
 	public void invokeResize() {
 		//sta.setBoundsModified(10,getHeight()-135,780,125);
-		sta.setBoundsModified((this.getContentPane().getWidth()-700)/2,this.getContentPane().getHeight()-135,700,125);
+		sta.setBoundsModified((this.getContentPane().getWidth()-700)/2,this.getContentPane().getHeight()-sta.getHeight()-10,sta.getWidth(),sta.getHeight());
 		sbgpanel.resizePanel(this.getContentPane().getWidth(),this.getContentPane().getHeight());
 		//tb.setBoundsModified(10,10,getWidth()-20,30);
 	}
@@ -67,28 +68,29 @@ public class Display extends JFrame{
 		this.setCursor(c);
 		
 		*/
+		
+		
 		initComponents();
-		
-				
-		/* ANIMATIONS
-		sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
-	    sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
-		sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
-		sbgpanel.getAnime().fade(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400); 
-		*/				
-		
 		this.pack();
-		
-		System.out.println(this.getContentPane().getWidth());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+		
+		// DO ANIMATIONS HERE
+		sta.getAnime().horShake(5, 5, 500, 5);
+		
+		/*
+		sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
+	    sbgpanel.getAnime().horShake(10, 7, 50, 7,2);
+		sbgpanel.getAnime().vertShake( 7, 5, 50, 7);
+		sbgpanel.getAnime().fadeOut(sbgpanel.getBG(), 0.1f, sbgpanel.getBG().getOpacity(), 400); 
+		*/
 	}
 	
 	public void initComponents() {
 		//SeanTextArea
-		Boolean[] thing = {false, false, true, true};
-		sta = new SeanTextArea(new SeanDimentedRect(10,getHeight()-135,780,125,40,thing));
+		sta = new SeanTextArea(new SeanRoundedRect(10,getHeight()-135,700,125,40,40));
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
 		sta.setSpeed(50);
 		sta.setBackgroundColor(new Color(255,255,255,190));
@@ -102,13 +104,30 @@ public class Display extends JFrame{
 		add(sta);
 		
 		//SeanButton
-		sb = new SeanButton(new SeanDimentedRect(10,10,100,50,20,thing),"Click Me") {
+		sb = new SeanButton(new SeanRoundedRect(10,10,100,50,20,20),"Click Me") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				sta.setText("Hello");
+				//sta.setText("Why are you going to school?");
+				Queue sco = new LinkedList<SeanCausalityObj>();
+				sco.add(new SeanCausalityObj("Yes","Die"));
+				sco.add(new SeanCausalityObj("No","Die 2"));
+				sco.add(new SeanCausalityObj("Maybe","Die 3"));
+				sco.add(new SeanCausalityObj("OHSDFJ","Die 4"));
+				sba = new SeanButtonArray(sco);
+				sba.setBoundsModified(15, 15, 670, 120);
+				sta.setSComp(sba);
 			}
 		};
 		add(sb);
+		
+		SeanButton sb2 = new SeanButton(new SeanRoundedRect(120,10,100,50,20,20),"Delet") {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sta.setSComp(null);
+				invokeResize();
+			}
+		};
+		add(sb2);
 		
 		// SeanBGPanel
 		try {
