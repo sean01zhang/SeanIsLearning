@@ -124,7 +124,6 @@ public class Display extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				sta.setSComp(null);
-				sb.scaleSComponent(1.1,sb.getX(),sb.getY());
 				invokeResize();
 			}
 		};

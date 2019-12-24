@@ -13,9 +13,11 @@ public abstract class SeanComponent extends JComponent {
 	
 	public abstract void setBoundsModified(int x, int y, int width, int height);
 	
+	/* Sketchy... Needs work
 	public void scaleSComponent(double newScale, int x, int y) {
 		this.setBoundsModified(x,y,(int)(getWidth()*newScale/scale),
 				(int)(getHeight()*newScale/scale));
 		scale = newScale;
 	}
+	*/
 }
