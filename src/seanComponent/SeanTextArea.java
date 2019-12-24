@@ -56,7 +56,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	// Animations
 	Animations anime;
 	
-	SeanButtonArray sba;
+	SeanComponent sc;
 
 	// CONSTRUCTORS *****************************************
 	
@@ -152,11 +152,11 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
 		
-		if(sba != null) {
+		if(sc != null) {
 			if(outputText.equals("")) {
-				sba.setLocation(sba.getLocation().x, stry);
+				sc.setLocation(sc.getLocation().x, stry);
 			} else {
-				sba.setLocation(sba.getLocation().x, endofstring+boundy);
+				sc.setLocation(sc.getLocation().x, endofstring+boundy);
 			}
 		}
 	}
@@ -245,9 +245,9 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 // MOUSEWHEEL STUFF ***********************************************
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		if(endofstring<getHeight() && sba == null) {
+		if(endofstring<getHeight() && sc == null) {
 			stry=10;
-		} else if(sba == null) {
+		} else if(sc == null) {
 			Double omega = e.getPreciseWheelRotation()*6;
 			// move the text position
 			if(omega >= 0) {
@@ -256,7 +256,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 				stry= (int) Math.max(stry+omega,getHeight()-endofstring+stry-boundy);
 			}
 			repaint();
-		} else if(endofstring+2*boundy+sba.getHeight()<getHeight()) {
+		} else if(endofstring+2*boundy+sc.getHeight()<getHeight()) {
 			stry=10;
 		} else {
 			Double omega = e.getPreciseWheelRotation()*6;
@@ -266,9 +266,9 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 				repaint();
 			} else {
 				if(outputText.equals("")) {
-					stry= (int) Math.max(stry+omega,getHeight()-boundy-sba.getHeight());
+					stry= (int) Math.max(stry+omega,getHeight()-boundy-sc.getHeight());
 				} else {
-					stry= (int) Math.max(stry+omega,getHeight()-endofstring-boundy-sba.getHeight()+stry-boundy);
+					stry= (int) Math.max(stry+omega,getHeight()-endofstring-boundy-sc.getHeight()+stry-boundy);
 				}
 				
 				repaint();
@@ -292,25 +292,25 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		this.textColor = textColor;
 	}
 
-	public SeanButtonArray getSButtonArray() {
-		return sba;
+	public SeanComponent getSComp() {
+		return sc;
 	}
 
 	int sd = 0;
-	public void setSButtonArray(SeanButtonArray sba) {
+	public void setSComp(SeanComponent sc) {
 		if(sd==0) {
-			if(sba !=null) {
-				this.sba = sba;
-				add(this.sba);
+			if(sc !=null) {
+				this.sc = sc;
+				add(this.sc);
 				sd++;
 			}
 		} else {
-			if(sba == null) {
-				remove(this.sba);
+			if(sc == null) {
+				remove(this.sc);
 			} else {
-				remove(this.sba);
-				this.sba = sba;
-				add(this.sba);
+				remove(this.sc);
+				this.sc = sc;
+				add(this.sc);
 			}
 		}
 		

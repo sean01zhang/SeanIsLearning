@@ -115,7 +115,7 @@ public class Display extends JFrame{
 				sco.add(new SeanCausalityObj("OHSDFJ","Die 4"));
 				sba = new SeanButtonArray(sco);
 				sba.setBoundsModified(15, 15, 670, 120);
-				sta.setSButtonArray(sba);
+				sta.setSComp(sba);
 			}
 		};
 		add(sb);
@@ -123,7 +123,7 @@ public class Display extends JFrame{
 		SeanButton sb2 = new SeanButton(new SeanRoundedRect(120,10,100,50,20,20),"Delet") {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				sta.setSButtonArray(null);
+				sta.setSComp(null);
 			}
 		};
 		add(sb2);
