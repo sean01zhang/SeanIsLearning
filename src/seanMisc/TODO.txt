@@ -2,23 +2,39 @@ To do:
 **things that can be improved
 
 User Interface
-1) button **
-  - modularity
-4) txtarea
-    - modularity for background
-    - Clean up
 9) progress/loading bars
 7) cutscenes/video
 8) audio interface
 10) Implementation of a data structure to organize components in Display
+11) Multibutton array
+12) Moar Animations
+		- Expansion/ Retraction from any point of choice
+		- Animations should be compatible with both component and drawable
+			(excluding rotation)
 
-11) Make SeanDrawables rotatable
+FINAL GRAPHICAL USER INTERFACE
+- Menus with Options
 
 NGine
 1) SeanStoryInterpreter
     - SETTING: maybe also add transition method **
     - need interactions to game engine (command central)
 2) panel that does the Visuals Engine
+
+
+FILE (SeanStoryInterpreter, 
+CharacterFiles, SettingFiles)  Passing on SeanCausalityObj
+	^
+	|
+	v
+ENGINE <->
+	^ 
+	|
+	V
+VISUALS (Need to be initialized in the Engine) <-> 
+
+USER (Global KeyboardListener directly interacts with the game engine)
+									 (MouseListeners for Each)
 
 
 COMPLETE:
@@ -30,3 +46,4 @@ COMPLETE:
   - slider implementation done
   - text fade
   - pure FX/animation object (vertical, horizontal, rotational shaking, SeanDrawables fade, text fade, horizontal, vertical slide)
+  - Make SeanDrawables rotatable

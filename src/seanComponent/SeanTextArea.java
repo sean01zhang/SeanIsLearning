@@ -23,6 +23,7 @@ import java.util.Arrays;
 import javax.swing.JComponent;
 import javax.swing.Timer;
 
+import seanEngine.SeanCausalityObj;
 import seanGeometry.SeanRoundedRect;
 import seanGeometry.SeanShape;
 import seanMisc.Animations;
@@ -54,6 +55,8 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	
 	// Animations
 	Animations anime;
+	
+	SeanButtonArray sba;
 
 	// CONSTRUCTORS *****************************************
 	
@@ -90,14 +93,13 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 
 		// Default Font Metrics
 		f = new Font("Arial", Font.PLAIN, 20);
-		boundx = 10;
-		boundy = 10;
+		boundx = 15;
+		boundy = 15;
 		strx= boundx;
 		stry= boundy;
 		textColor = Color.black;
 		text = "";
 		this.setText("");
-		
 		anime = new Animations(this);
 	}
 
@@ -147,10 +149,16 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		// paint string
 		g.setColor(textColor);
 		g.setFont(f);
-
-		//ss.draw(g);
 		
 		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,f,getWidth()-20);
+		
+		if(sba != null) {
+			if(outputText.equals("")) {
+				sba.setLocation(sba.getLocation().x, stry);
+			} else {
+				sba.setLocation(sba.getLocation().x, endofstring+boundy);
+			}
+		}
 	}
 
 	// SETTERS AND GETTERS ********************************************
@@ -210,6 +218,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	public void setBoundsModified(int x, int y, int width, int height) {
 		this.setBounds(x,y,width,height);
 		getBG().setBounds(0, 0, width, height);
+		repaint();
 	}
 	
 
@@ -236,18 +245,34 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 // MOUSEWHEEL STUFF ***********************************************
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		if(endofstring<getHeight()) {
+		if(endofstring<getHeight() && sba == null) {
 			stry=10;
-		} else {
-			Double omega = e.getPreciseWheelRotation();
+		} else if(sba == null) {
+			Double omega = e.getPreciseWheelRotation()*6;
 			// move the text position
 			if(omega >= 0) {
-				stry= (int) Math.min(stry+omega,boundx );
+				stry= (int) Math.min(stry+omega,boundy );
 			} else {
 				stry= (int) Math.max(stry+omega,getHeight()-endofstring+stry-boundy);
 			}
-
 			repaint();
+		} else if(endofstring+2*boundy+sba.getHeight()<getHeight()) {
+			stry=10;
+		} else {
+			Double omega = e.getPreciseWheelRotation()*6;
+			// move the text position
+			if(omega >= 0) {
+				stry= (int) Math.min(stry+omega,boundy );
+				repaint();
+			} else {
+				if(outputText.equals("")) {
+					stry= (int) Math.max(stry+omega,getHeight()-boundy-sba.getHeight());
+				} else {
+					stry= (int) Math.max(stry+omega,getHeight()-endofstring-boundy-sba.getHeight()+stry-boundy);
+				}
+				
+				repaint();
+			}
 		}
 	}
 
@@ -266,4 +291,31 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	public void setTextColor(Color textColor) {
 		this.textColor = textColor;
 	}
+
+	public SeanButtonArray getSButtonArray() {
+		return sba;
+	}
+
+	int sd = 0;
+	public void setSButtonArray(SeanButtonArray sba) {
+		if(sd==0) {
+			if(sba !=null) {
+				this.sba = sba;
+				add(this.sba);
+				sd++;
+			}
+		} else {
+			if(sba == null) {
+				remove(this.sba);
+			} else {
+				remove(this.sba);
+				this.sba = sba;
+				add(this.sba);
+			}
+		}
+		
+		repaint();
+	}
+	
+	
 }

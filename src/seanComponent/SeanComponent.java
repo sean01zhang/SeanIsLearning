@@ -9,5 +9,5 @@ public abstract class SeanComponent extends JComponent {
 	
 	public abstract Color getTextColor();
 	
-	
+	public abstract void setBoundsModified(int x, int y, int width, int height);
 }
