@@ -27,6 +27,7 @@ import seanComponent.SeanButtonArray;
 import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanBGPanel;
+import seanEngine.KeyboardInput;
 import seanEngine.SeanCausalityObj;
 import seanEngine.SeanStoryInterpreter;
 import seanGeometry.SeanDimentedRect;
@@ -41,6 +42,7 @@ public class Display extends JFrame{
 	SeanButton sb;
 	File f;
 	Cursor c;
+	KeyboardInput ki;
 	
 	public void invokeResize() {
 		//sta.setBoundsModified(10,getHeight()-135,780,125);
@@ -71,6 +73,8 @@ public class Display extends JFrame{
 		
 		
 		initComponents();
+
+		this.setFocusable(true);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -89,6 +93,23 @@ public class Display extends JFrame{
 	}
 	
 	public void initComponents() {
+		//SeanButton
+				sb = new SeanButton(new SeanRoundedRect(10,getHeight()-135,400,110,40,40),"Click Me") {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						//sta.setText("Why are you going to school?");
+						Queue sco = new LinkedList<SeanCausalityObj>();
+						sco.add(new SeanCausalityObj("Yes","Die"));
+						sco.add(new SeanCausalityObj("No","Die 2"));
+						sco.add(new SeanCausalityObj("Maybe","Die 3"));
+						sco.add(new SeanCausalityObj("OHSDFJ","Die 4"));
+						sba = new SeanButtonArray(sco);
+						sba.setBoundsModified(15, 15, 670, 120);
+						sta.setSComp(sba);
+					}
+				};
+				add(sb);
+		
 		//SeanTextArea
 		sta = new SeanTextArea(new SeanRoundedRect(10,getHeight()-135,700,125,40,40));
 		sta.setScrollType(SeanTextArea.SCROLL_CHAR);
@@ -103,22 +124,7 @@ public class Display extends JFrame{
 		*/
 		add(sta);
 		
-		//SeanButton
-		sb = new SeanButton(new SeanRoundedRect(10,10,100,50,20,20),"Click Me") {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//sta.setText("Why are you going to school?");
-				Queue sco = new LinkedList<SeanCausalityObj>();
-				sco.add(new SeanCausalityObj("Yes","Die"));
-				sco.add(new SeanCausalityObj("No","Die 2"));
-				sco.add(new SeanCausalityObj("Maybe","Die 3"));
-				sco.add(new SeanCausalityObj("OHSDFJ","Die 4"));
-				sba = new SeanButtonArray(sco);
-				sba.setBoundsModified(15, 15, 670, 120);
-				sta.setSComp(sba);
-			}
-		};
-		add(sb);
+		
 		
 		SeanButton sb2 = new SeanButton(new SeanRoundedRect(120,10,100,50,20,20),"Delet") {
 			@Override

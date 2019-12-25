@@ -27,11 +27,15 @@ CharacterFiles, SettingFiles)  Passing on SeanCausalityObj
 	^
 	|
 	v
-ENGINE <->
+ENGINE <-> KEYBOARD
 	^ 
 	|
 	V
-VISUALS (Need to be initialized in the Engine) <-> 
+VISUALS (Need to be initialized in the Engine)
+
+1) StartScreen
+2) PlayScreen
+3) MenuOverlay/Setting
 
 USER (Global KeyboardListener directly interacts with the game engine)
 									 (MouseListeners for Each)
