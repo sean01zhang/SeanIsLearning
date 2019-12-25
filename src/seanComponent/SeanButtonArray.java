@@ -10,6 +10,7 @@ import java.util.Queue;
 import javax.swing.JComponent;
 
 import seanEngine.SeanCausalityObj;
+import seanEngine.SeanEngine;
 import seanGeometry.SeanDimentedRect;
 import seanGeometry.SeanRoundedRect;
 
@@ -42,19 +43,38 @@ public class SeanButtonArray extends SeanComponent {
 		}
 	}
 	
+	public void deletThis(SeanTextArea sta) {
+		sta.setSComp(null);
+	}
+	
 	private void initButtons() {
 		for(int i=0;i<sba.length;i++) {
 			if(i==0) {
 				Boolean[] temp = {true,true,false,false};
 				sba[i] = new SeanButton(new SeanDimentedRect(0,0, getWidth(), buttonSpacing,
-															cornerRadius,temp),sco.poll());
+															cornerRadius,temp),sco.poll()) {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						sco.enactEffect(true);
+					}
+				};
 			} else if (i==sba.length-1) {
 				Boolean[] temp = {false,false,true,true};
 				sba[i] = new SeanButton(new SeanDimentedRect(0,0, getWidth(), buttonSpacing,
-															cornerRadius,temp),sco.poll());
+															cornerRadius,temp),sco.poll()) {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						sco.enactEffect(true);
+					}
+				};
 			} else {
 				sba[i] = new SeanButton(new SeanRoundedRect(0,0, getWidth(), buttonSpacing,
-															0,0),sco.poll());
+															0,0),sco.poll()) {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						sco.enactEffect(true);
+					}
+				};
 			}
 			sba[i].setBoundsModified(0, i*buttonSpacing+i, getWidth(), buttonSpacing);
 			this.add(sba[i]);

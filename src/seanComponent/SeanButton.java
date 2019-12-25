@@ -30,7 +30,7 @@ public class SeanButton extends SeanComponent implements MouseListener {
 	final int DEFAULT = 1;
 	final int HOVER = 2;
 	int pressStatus =1;
-	String[] effects;	
+	SeanCausalityObj sco;
 	Animations anime;
 	
 	public SeanButton(SeanShape ss, String s) {
@@ -75,7 +75,7 @@ public class SeanButton extends SeanComponent implements MouseListener {
 		hoverShade = new Color(125,125,125,128);
 		clickShade = new Color(75,75,75,128);
 		displayText = sco.getCause();
-		effects = sco.getEffects();
+		this.sco = sco;
 		
 		//configure background
 		ss.setLocation(0, 0);
@@ -185,9 +185,6 @@ public class SeanButton extends SeanComponent implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(effects != null) {
-			// do something w/ engine here
-			System.out.println(Arrays.deepToString(effects));
-		}
+		sco.enactEffect();
 	}
 }

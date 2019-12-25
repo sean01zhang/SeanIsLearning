@@ -7,6 +7,14 @@ import java.util.Queue;
 public class SeanCausalityObj {
 	String cause;
 	Queue<String> effect;
+	SeanEngine se;
+	
+	public SeanCausalityObj(String cause, String effect, SeanEngine se) {
+		this.cause = cause;
+		this.effect = new LinkedList<String>();
+		this.effect.add(effect);
+		this.se = se;
+	}
 	
 	public SeanCausalityObj(String cause, String effect) {
 		this.cause = cause;
@@ -14,14 +22,16 @@ public class SeanCausalityObj {
 		this.effect.add(effect);
 	}
 	
-	public SeanCausalityObj(String cause) {
+	public SeanCausalityObj(String cause, SeanEngine se) {
 		this.cause = cause;
 		this.effect = new LinkedList<String>();
+		this.se = se;
 	}
 	
-	public SeanCausalityObj(String cause, Queue<String> effect) {
+	public SeanCausalityObj(String cause, Queue<String> effect, SeanEngine se) {
 		this.cause = cause;
 		this.effect = effect;
+		this.se = se;
 	}
 	
 	public void addEffect(String command) {
@@ -37,6 +47,20 @@ public class SeanCausalityObj {
 		return Arrays.copyOf(ea, ea.length, String[].class);
 	}
 	
+	public void enactEffect(Boolean kill) {
+		while(!effect.isEmpty()) {
+			se.suffixInterpreter(effect.poll());
+		}
+		if(kill) {
+			se.d.getSta().setSComp(null);
+		}
+	}
+	
+	public void enactEffect() {
+		while(!effect.isEmpty()) {
+			se.suffixInterpreter(effect.poll());
+		}
+	}
 	
 	public String toString() {
 		return ("~~~ " +cause +" "+ Arrays.toString(getEffects()) + " ~~~");

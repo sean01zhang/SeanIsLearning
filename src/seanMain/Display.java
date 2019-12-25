@@ -70,7 +70,7 @@ public class Display extends JFrame{
 		
 		
 		// DO ANIMATIONS HERE
-		sta.getAnime().horShake(5, 5, 500, 5);
+		//sta.getAnime().horShake(5, 5, 500, 5);
 		
 		/*
 		sbgpanel.getAnime().rotShake(sbgpanel.getBG(),0.07, 0.07, sbgpanel.getWidth()/2, sbgpanel.getHeight()/2, 200, 5);
@@ -82,7 +82,7 @@ public class Display extends JFrame{
 	
 	public void initComponents() {
 		//SeanButton
-				sb = new SeanButton(new SeanRoundedRect(10,getHeight()-135,400,110,40,40),"Click Me") {
+				sb = new SeanButton(new SeanRoundedRect(10,10,110,50,20,20),"Click Me") {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						//sta.setText("Why are you going to school?");

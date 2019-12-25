@@ -4,11 +4,15 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
+import seanComponent.SeanButtonArray;
+import seanComponent.SeanTextArea;
 import seanMain.Display;
 
 public class SeanEngine {
@@ -93,7 +97,8 @@ public class SeanEngine {
 			String temp = s.replaceFirst("EFFECT:", "").trim();
 
 			// tells the game engine what effect needs to be enacted
-
+			VFXInterpreter(temp);
+			
 			// Testing
 			System.out.println("EFFECT:" +temp);
 		} else if (s.startsWith("OPTION:")) {
@@ -113,7 +118,7 @@ public class SeanEngine {
 
 				if (sarr[i].contains("->")) {
 					cause.push(new SeanCausalityObj(sarr[i].
-							replaceFirst("->", "").trim()));
+							replaceFirst("->", "").trim(),this));
 				} else if (sarr[i].trim().isEmpty()) {
 				} else {
 					SeanCausalityObj top = cause.pop();
@@ -121,11 +126,28 @@ public class SeanEngine {
 					cause.push(top);
 				}
 			}
-			// Pass causality objects to the main engine
+			
+			
+			// Causality Objects obtained... now create the array and add it to the thing.
+			System.out.println(Arrays.toString(cause.toArray()));
+			
+			SeanTextArea sta = d.getSta();
+			Stack<SeanCausalityObj> sean = new Stack<>();
+			Queue<SeanCausalityObj> sean2 = new LinkedList<>();
+			while(!cause.isEmpty()) {
+				sean.push(cause.pop());
+			}
+			while(!sean.isEmpty()) {
+				sean2.add(sean.pop());
+			}
+			
+			SeanButtonArray sba = new SeanButtonArray(sean2);
+			sba.setBoundsModified(sta.getBoundx(), sta.getBoundy(), sta.getWidth()-2*sta.getBoundx(), 60);
+			sta.setSComp(sba);
 
 			// testing
 			//System.out.println(Arrays.toString(sarr));
-			System.out.println(Arrays.toString(cause.toArray()));
+			//System.out.println(Arrays.toString(cause.toArray()));
 		} else if(s.startsWith("CHANGESTAT:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("CHANGESTAT:", "").trim();
@@ -133,12 +155,14 @@ public class SeanEngine {
 			String[] sarr = temp.split(Pattern.quote("|"));
 			String charName = sarr[0];;
 			String stat = sarr[1];
-			int amt = Integer.parseInt(sarr[3]);
+			//int amt = Integer.parseInt(sarr[2]);
 
 			// pass this into the cmd control method.
 
 			// Testing
-			System.out.println(amt + "change in " + charName + "'s stat," + stat);
+			//System.out.println(amt + "change in " + charName + "'s stat," + stat);
+			
+			System.out.println("POOPIE");
 		} else if(s.startsWith("CHANGEFILE:")) {
 			// isolate the cmd from the body
 			String temp = s.replaceFirst("CHANGEFILE:", "").trim();
@@ -151,8 +175,14 @@ public class SeanEngine {
 	}
 	
 	
-	
 	// something to set Animations
-	
+	public void VFXInterpreter(String s) {
+		// is math related to science
+		if(s.equalsIgnoreCase("Shaking")) {
+			// WIP -> can tweak this later
+			d.getSbgpanel().getAnime().horShake(7, 13, 7, 1);
+			d.getSbgpanel().getAnime().vertShake(11, 9, 7, 1);
+		} 
+	}
 	
 }

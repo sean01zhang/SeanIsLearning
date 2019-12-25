@@ -246,7 +246,10 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 // MOUSEWHEEL STUFF ***********************************************
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
+		System.out.println(endofstring+ " sc status: " + sc);
+		
 		if(endofstring<getHeight() && sc == null) {
+			System.out.println("Hi imnull");
 			stry=10;
 		} else if(sc == null) {
 			Double omega = e.getPreciseWheelRotation()*6;
@@ -308,6 +311,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		} else {
 			if(sc == null) {
 				remove(this.sc);
+				this.sc = null;
 			} else {
 				remove(this.sc);
 				this.sc = sc;
@@ -316,6 +320,22 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		}
 		
 		repaint();
+	}
+
+	public int getBoundx() {
+		return boundx;
+	}
+
+	public void setBoundx(int boundx) {
+		this.boundx = boundx;
+	}
+
+	public int getBoundy() {
+		return boundy;
+	}
+
+	public void setBoundy(int boundy) {
+		this.boundy = boundy;
 	}
 	
 	
