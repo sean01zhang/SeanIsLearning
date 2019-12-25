@@ -10,10 +10,13 @@ import seanMain.Display;
 public class SeanEngine {
 	Display d;
 	SeanStoryInterpreter ssi;
+	KeyboardInput ki;
 	
 	public SeanEngine() {
 		d = new Display();
 		ssi = new SeanStoryInterpreter(new File("src/seanEngine/sean.txt"));
+		ki = new KeyboardInput(this);
+		d.addKeyListener(ki);
 	}
 	
 	// something to get the next line from Display
