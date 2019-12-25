@@ -41,6 +41,20 @@ USER (Global KeyboardListener directly interacts with the game engine)
 									 (MouseListeners for Each)
 
 
+
+
+RINT:
+GUI STUUFFFSSS
+1) Clean up Display and organize with JPanels
+2) Layout the three panels
+		1) MainMenu -> (start, exit, load... etc)
+		2) GameScreen
+		3) Settings "Overlay" 
+				-> 3 parts:
+					1) Actual Components of Menu
+					2) Intermediary Bg blur (need access to gamescreen)
+
+
 COMPLETE:
   - button needs to have user-generated actions (ActionListener)
   - rounded corner implementation for bg
