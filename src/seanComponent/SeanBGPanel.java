@@ -60,6 +60,11 @@ public class SeanBGPanel extends SeanComponent {
 		repaint();
 	}
 	
+	public void setBG(Image i) {
+		background.setImage(i);
+		repaint();
+	}
+	
 	public SeanDrawables getBG() {
 		return background;
 	}
@@ -70,6 +75,7 @@ public class SeanBGPanel extends SeanComponent {
 	
 	public void addDrawables(SeanDrawableForeground sd) {
 		foreground.add(sd);
+		repaint();
 	}
 	
 	public SeanDrawables getDrawables(int index) {

@@ -34,9 +34,10 @@ public class SeanStoryInterpreter
 		String str = "";
 
 		// consume raw input
-		if(input.hasNext());
+		if(input.hasNext()) {
 			str = input.next();
-
+		}
+		
 		return str;
 	}
 

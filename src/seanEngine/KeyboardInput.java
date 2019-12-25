@@ -28,6 +28,7 @@ public class KeyboardInput implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		input[e.getKeyCode()] = 1;
+		se.keyInterpreter(input);
 	}
 
 	@Override

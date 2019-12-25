@@ -1,9 +1,13 @@
 package seanEngine;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Stack;
 import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
 
 import seanMain.Display;
 
@@ -19,24 +23,30 @@ public class SeanEngine {
 		d.addKeyListener(ki);
 	}
 	
+	// Keyboard input interpretation
+	public void keyInterpreter(int[] keys) {
+		if(keys[KeyEvent.VK_ENTER] == 1) {
+			// do next line
+			cmdInterpreter(ssi.readLine());
+		} else if(keys[KeyEvent.VK_ESCAPE]==1) {
+			
+		}
+	}
+	
 	// something to get the next line from Display
-	
-	// something to set TextArea text
-	
-	// something to set Animations
-	
 	public void cmdInterpreter(String s)
 	{
 		// gets rid of whitespace
 		s= s.trim();
 
 		if (s.equals("") && ssi.firstTime){
-			cmdInterpreter(ssi.readLine());
 			ssi.firstTime = false;
+			cmdInterpreter(ssi.readLine());
+			
 		// "-" means that it does not require user input to invoke.
-		} else if(ssi.firstTime && s.startsWith("-")){
+		} else if(ssi.firstTime && s.startsWith("~")){
 			// removes the prefix "-" and invokes suffixInterpreter
-			suffixInterpreter(s.replaceFirst("-", "").trim());
+			suffixInterpreter(s.replaceFirst("~", "").trim());
 
 			cmdInterpreter(ssi.readLine());
 		// then if it is on autoRead then it will continue.
@@ -44,7 +54,7 @@ public class SeanEngine {
 			suffixInterpreter(s);
 
 			// options cannot be autoRead
-			if(!s.startsWith("OPTION:"));
+			if(!s.startsWith("OPTION:"))
 				cmdInterpreter(ssi.readLine());
 		} else {
 			suffixInterpreter(s);
@@ -60,7 +70,8 @@ public class SeanEngine {
 			String body = temp.substring(1+temp.indexOf(':')).trim();
 
 			// VisualEngine Part -> Give it body and character name.
-
+			d.getSta().setText(charName+ ": "+ body);
+			
 			// Testing
 			System.out.println("CHARNAME:" + charName + "\nBODY:" + body);
 		} else if (s.startsWith("SETTING:")) {
@@ -69,7 +80,11 @@ public class SeanEngine {
 
 			//visual engine part -> Give it image source and set
 			//it in the background
-			temp = temp.replace(' ', '_') + ".png";
+			try {
+				d.getSbgpanel().setBG(ImageIO.read(new File("src/images/" + temp)));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			// Testing
 			System.out.println("SETTING:" +temp);
@@ -134,5 +149,10 @@ public class SeanEngine {
 			System.out.println("FILE: " + temp);
 		}
 	}
+	
+	
+	
+	// something to set Animations
+	
 	
 }

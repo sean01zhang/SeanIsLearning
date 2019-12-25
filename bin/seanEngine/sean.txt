@@ -1,6 +1,6 @@
-;; ~ SETTING: 	    After School
+;; ~ SETTING: 	    after_school.jpeg
 
-;; ~ STORY: Yukari: Hitomi,did you get to see the guidance office?
+;; STORY: Yukari: Hitomi,did you get to see the guidance office?
 
 ;; STORY: Hitomi: Not yet.
 

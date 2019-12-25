@@ -1,13 +1,8 @@
 package seanMain;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
@@ -17,32 +12,24 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.Timer;
+import javax.swing.WindowConstants;
+
 import seanComponent.SeanButton;
 import seanComponent.SeanButtonArray;
-import seanComponent.MapSlider;
 import seanComponent.SeanTextArea;
 import seanComponent.SeanBGPanel;
 import seanEngine.KeyboardInput;
 import seanEngine.SeanCausalityObj;
 import seanEngine.SeanStoryInterpreter;
-import seanGeometry.SeanDimentedRect;
 import seanGeometry.SeanRoundedRect;
-import seanMisc.SeanDrawableForeground;
 
 public class Display extends JFrame{
 	SeanTextArea sta;
-	SeanStoryInterpreter sip;
 	SeanBGPanel sbgpanel;
 	SeanButtonArray sba;
 	SeanButton sb;
-	File f;
 	Cursor c;
-	KeyboardInput ki;
 	
 	public void invokeResize() {
 		//sta.setBoundsModified(10,getHeight()-135,780,125);
@@ -57,7 +44,8 @@ public class Display extends JFrame{
 		this.setMinimumSize(new Dimension(800,600));
 		this.setLayout(null);
 		this.addComponentListener(new ComponentAdapter() {
-		    public void componentResized(ComponentEvent componentEvent) {
+		    @Override
+			public void componentResized(ComponentEvent componentEvent) {
 		        invokeResize();
 		    }
 		});
@@ -76,7 +64,7 @@ public class Display extends JFrame{
 
 		this.setFocusable(true);
 		this.pack();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
@@ -145,5 +133,21 @@ public class Display extends JFrame{
 		
 	}
 
+	public SeanTextArea getSta() {
+		return sta;
+	}
 
+	public void setSta(SeanTextArea sta) {
+		this.sta = sta;
+	}
+
+	public SeanBGPanel getSbgpanel() {
+		return sbgpanel;
+	}
+
+	public void setSbgpanel(SeanBGPanel sbgpanel) {
+		this.sbgpanel = sbgpanel;
+	}
+
+	
 }
