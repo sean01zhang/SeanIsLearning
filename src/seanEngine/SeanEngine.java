@@ -1,8 +1,12 @@
 package seanEngine;
 
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -22,8 +26,10 @@ public class SeanEngine {
 	
 	public SeanEngine() {
 		d = new Display();
+		d.getSta().setFont(new Font("Arial Unicode MS", Font.PLAIN, 17));
 		d.getSta().setSpeed(20);
-		ssi = new SeanStoryInterpreter(new File("src/seanEngine/sean.txt"));
+		d.getSta().setText("おはようございます");
+		ssi = new SeanStoryInterpreter(new File("src/seanEngine/sean3.txt"));
 		ki = new KeyboardInput(this);
 		d.addKeyListener(ki);
 	}
@@ -33,6 +39,8 @@ public class SeanEngine {
 		if(keys[KeyEvent.VK_ENTER] == 1) {
 			// do next line
 			cmdInterpreter(ssi.readLine());
+			//d.getSta().setText(ssi.readLine());
+			
 		} else if(keys[KeyEvent.VK_ESCAPE]==1) {
 			
 		}
@@ -176,6 +184,8 @@ public class SeanEngine {
 
 			// change file of the storyInterpreter
 			ssi.changeStoryFile(new File("src/seanEngine/" + temp));
+			
+			
 			
 			// testing
 			System.out.println("FILE: " + temp);

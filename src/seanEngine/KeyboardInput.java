@@ -2,6 +2,7 @@ package seanEngine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JComboBox.KeySelectionManager;
 

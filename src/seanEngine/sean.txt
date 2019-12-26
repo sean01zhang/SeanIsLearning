@@ -15,7 +15,7 @@ Saeki's been looking for you.
 
 ;; OPTION:
 Yes -> [CHANGESTAT: CharacterName | Stat | Magnitude]
-[CHANGEFILE: sean2.txt]
+[CHANGEFILE: sean3.txt]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
 [CHANGESTAT: CharacterName | Stat | Magnitude]
 
