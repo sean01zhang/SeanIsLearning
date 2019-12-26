@@ -11,11 +11,11 @@ Saeki's been looking for you.
 
 ;; STORY: Hitomi: Saeki-sensei. I don't like him.
 
-;; STORY: Yukari: Did you decide on college yet?
+;; ~ STORY: Yukari: Did you decide on college yet?
 
 ;; OPTION:
 Yes -> [CHANGESTAT: CharacterName | Stat | Magnitude]
-[CHANGEFILE: Filename]
+[CHANGEFILE: sean2.txt]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
 [CHANGESTAT: CharacterName | Stat | Magnitude]
 
@@ -32,3 +32,4 @@ have to figure out where you're going!
 ;;STORY: Hitomi: It's not like that! I'm just not academically oriented like
 you.
 
+;; CHANGEFILE: sean2.txt

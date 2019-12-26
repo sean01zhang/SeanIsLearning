@@ -16,12 +16,6 @@ public class SeanCausalityObj {
 		this.se = se;
 	}
 	
-	public SeanCausalityObj(String cause, String effect) {
-		this.cause = cause;
-		this.effect = new LinkedList<String>();
-		this.effect.add(effect);
-	}
-	
 	public SeanCausalityObj(String cause, SeanEngine se) {
 		this.cause = cause;
 		this.effect = new LinkedList<String>();
@@ -34,7 +28,7 @@ public class SeanCausalityObj {
 		this.se = se;
 	}
 	
-	public void addEffect(String command) {
+	public void addEffect(String command) {		
 		this.effect.add(command);
 	}
 	
@@ -53,6 +47,7 @@ public class SeanCausalityObj {
 		}
 		if(kill) {
 			se.d.getSta().setSComp(null);
+			se.ki.ignoreInput = false;
 		}
 	}
 	

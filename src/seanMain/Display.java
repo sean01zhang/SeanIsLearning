@@ -82,20 +82,7 @@ public class Display extends JFrame{
 	
 	public void initComponents() {
 		//SeanButton
-				sb = new SeanButton(new SeanRoundedRect(10,10,110,50,20,20),"Click Me") {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						//sta.setText("Why are you going to school?");
-						Queue sco = new LinkedList<SeanCausalityObj>();
-						sco.add(new SeanCausalityObj("Yes","Die"));
-						sco.add(new SeanCausalityObj("No","Die 2"));
-						sco.add(new SeanCausalityObj("Maybe","Die 3"));
-						sco.add(new SeanCausalityObj("OHSDFJ","Die 4"));
-						sba = new SeanButtonArray(sco);
-						sba.setBoundsModified(15, 15, 670, 120);
-						sta.setSComp(sba);
-					}
-				};
+				sb = new SeanButton(new SeanRoundedRect(10,10,110,50,20,20),"Click Me");
 				add(sb);
 		
 		//SeanTextArea

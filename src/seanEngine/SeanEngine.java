@@ -22,6 +22,7 @@ public class SeanEngine {
 	
 	public SeanEngine() {
 		d = new Display();
+		d.getSta().setSpeed(20);
 		ssi = new SeanStoryInterpreter(new File("src/seanEngine/sean.txt"));
 		ki = new KeyboardInput(this);
 		d.addKeyListener(ki);
@@ -127,6 +128,7 @@ public class SeanEngine {
 				}
 			}
 			
+			ki.ignoreInput = true;
 			
 			// Causality Objects obtained... now create the array and add it to the thing.
 			System.out.println(Arrays.toString(cause.toArray()));
@@ -143,6 +145,11 @@ public class SeanEngine {
 			
 			SeanButtonArray sba = new SeanButtonArray(sean2);
 			sba.setBoundsModified(sta.getBoundx(), sta.getBoundy(), sta.getWidth()-2*sta.getBoundx(), 60);
+			
+			if(sba == null) {
+				System.out.println(12341234);
+			}
+			
 			sta.setSComp(sba);
 
 			// testing
@@ -167,8 +174,9 @@ public class SeanEngine {
 			// isolate the cmd from the body
 			String temp = s.replaceFirst("CHANGEFILE:", "").trim();
 
-			// change file of this class
-
+			// change file of the storyInterpreter
+			ssi.changeStoryFile(new File("src/seanEngine/" + temp));
+			
 			// testing
 			System.out.println("FILE: " + temp);
 		}

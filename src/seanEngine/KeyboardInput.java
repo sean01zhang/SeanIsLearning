@@ -13,6 +13,7 @@ public class KeyboardInput implements KeyListener {
 	
 	public KeyboardInput(SeanEngine e) {
 		initializeBindings();
+		ignoreInput = false;
 		se=e;
 	}
 	
@@ -27,8 +28,10 @@ public class KeyboardInput implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		input[e.getKeyCode()] = 1;
-		se.keyInterpreter(input);
+		if(!ignoreInput) {
+			input[e.getKeyCode()] = 1;
+			se.keyInterpreter(input);
+		}
 	}
 
 	@Override
