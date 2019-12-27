@@ -14,11 +14,12 @@ import java.util.Arrays;
 import javax.swing.JComponent;
 
 import seanEngine.SeanCausalityObj;
-import seanGeometry.SeanRoundedRect;
 import seanGeometry.SeanShape;
 import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 import seanMisc.SeanUtil;
+
+import seanComponent.SeanComponent;
 
 
 public class SeanButton extends SeanComponent implements MouseListener {
