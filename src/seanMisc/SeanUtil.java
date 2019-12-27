@@ -31,6 +31,7 @@ public class SeanUtil {
 	}
 
 	public static int drawString(String s,Graphics g, int x , int y, Font f,int width) {
+		g.setFont(f);
     for (String line : s.split("\n")) {
     	for (String subline : SeanUtil.breakString(line, g,width).split("\n")) {
 				g.drawString(subline, x, y += g.getFontMetrics(f).getAscent());
@@ -40,6 +41,7 @@ public class SeanUtil {
   }
 	
 	public static int drawString(String s,Graphics g, int x , int y, int spacing ,Font f,int width) {
+		g.setFont(f);
 	    for (String line : s.split("\n")) {
 	    	for (String subline : SeanUtil.breakString(line, g,width).split("\n")) {
 					g.drawString(subline, x, y += (g.getFontMetrics(f).getAscent()+spacing));
@@ -49,6 +51,7 @@ public class SeanUtil {
 	  }
 
   public static int drawString(String s, Graphics g, int x, int y, Font f, int width,int center) {
+	  g.setFont(f);
 		for (String line : s.split("\n")) {
 			for (String subline : SeanUtil.breakString(line, g,width).split("\n")) {
 				int temp = center-g.getFontMetrics().stringWidth(subline)/2;

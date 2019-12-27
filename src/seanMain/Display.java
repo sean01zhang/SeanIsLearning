@@ -103,7 +103,9 @@ public class Display extends JFrame{
 		
 		SeanButton sb2 = new SeanButton(new SeanRoundedRect(120,10,100,50,20,20),"Delet") {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mousePressed(MouseEvent e) {
+				pressStatus = this.PRESSED;
+				repaint();
 				sta.setSComp(null);
 				invokeResize();
 			}
