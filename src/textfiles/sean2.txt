@@ -19,7 +19,9 @@ homeland.
 
 ;; OPTION: 
 Ok Boomer -> [STORY: Folken: Kys bebard]
-But... I dont want to! -> [CHANGEFILE: sean.txt]
+But... I dont want to! -> [STORY: Sean: Wow I exist] [CHANGEFILE: sean.txt]
+Already did it -> [STORY: Sean: Stop hacking] [EFFECT: ShakIng]
+lmao -> [EFFECT: SHaking] [CHANGEFILE: sean3.txt ]
 
 ;; STORY: Van: Folken!
 

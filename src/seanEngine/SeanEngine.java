@@ -27,9 +27,8 @@ public class SeanEngine {
 	public SeanEngine() {
 		d = new Display();
 		d.getSta().setFont(new Font("Arial Unicode MS", Font.PLAIN, 17));
-		d.getSta().setSpeed(20);
-		d.getSta().setText("おはようございます");
-		ssi = new SeanStoryInterpreter(new File("src/seanEngine/sean3.txt"));
+		d.getSta().setSpeed(10);
+		ssi = new SeanStoryInterpreter(new File("src/textfiles/sean3.txt"));
 		ki = new KeyboardInput(this);
 		d.addKeyListener(ki);
 	}
@@ -150,13 +149,9 @@ public class SeanEngine {
 			while(!sean.isEmpty()) {
 				sean2.add(sean.pop());
 			}
-			
+			int length = sean2.toArray().length;
 			SeanButtonArray sba = new SeanButtonArray(sean2);
-			sba.setBoundsModified(sta.getBoundx(), sta.getBoundy(), sta.getWidth()-2*sta.getBoundx(), 60);
-			
-			if(sba == null) {
-				System.out.println(12341234);
-			}
+			sba.setBoundsModified(sta.getBoundx(), sta.getBoundy(), sta.getWidth()-2*sta.getBoundx(), 30*length);
 			
 			sta.setSComp(sba);
 
@@ -173,6 +168,7 @@ public class SeanEngine {
 			//int amt = Integer.parseInt(sarr[2]);
 
 			// pass this into the cmd control method.
+			
 
 			// Testing
 			//System.out.println(amt + "change in " + charName + "'s stat," + stat);
@@ -183,9 +179,10 @@ public class SeanEngine {
 			String temp = s.replaceFirst("CHANGEFILE:", "").trim();
 
 			// change file of the storyInterpreter
-			ssi.changeStoryFile(new File("src/seanEngine/" + temp));
+			ssi.changeStoryFile(new File("src/textfiles/" + temp));
 			
-			
+			// maybe some transition
+			cmdInterpreter(ssi.readLine());
 			
 			// testing
 			System.out.println("FILE: " + temp);

@@ -38,6 +38,15 @@ public class SeanUtil {
     }
     return y;
   }
+	
+	public static int drawString(String s,Graphics g, int x , int y, int spacing ,Font f,int width) {
+	    for (String line : s.split("\n")) {
+	    	for (String subline : SeanUtil.breakString(line, g,width).split("\n")) {
+					g.drawString(subline, x, y += (g.getFontMetrics(f).getAscent()+spacing));
+	    	}
+	    }
+	    return y;
+	  }
 
   public static int drawString(String s, Graphics g, int x, int y, Font f, int width,int center) {
 		for (String line : s.split("\n")) {
