@@ -2,16 +2,15 @@ package seanPanels;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.io.File;
+import java.awt.event.MouseEvent;
 
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import seanComponent.SeanButton;
 import seanGeometry.SeanRoundedRect;
-import seanGeometry.SeanShape;
 import seanMain.Display;
 
+@SuppressWarnings("serial")
 public class SeanMainMenu extends JPanel{
 
 	SeanButton[] sb = new SeanButton[3];
@@ -25,8 +24,31 @@ public class SeanMainMenu extends JPanel{
 		sbWidth = (int)(dis.getContentPane().getWidth()*0.8);
 		sbHeight = (int)(dis.getContentPane().getHeight()*0.1);
 		
+		sb[0] = new SeanButton(new SeanRoundedRect(0, 0, sbWidth, sbHeight, 30, 30), 0 + ""){
+			public void mousePressed(MouseEvent e){
+				pressStatus = this.PRESSED;
+				repaint();
+				System.out.println("New Game");
+			}
+		};
+		
+		sb[1] = new SeanButton(new SeanRoundedRect(0, 0, sbWidth, sbHeight, 30, 30), 0 + ""){
+			public void mousePressed(MouseEvent e){
+				pressStatus = this.PRESSED;
+				repaint();
+				System.out.println("Load Game");
+			}
+		};
+		
+		sb[2] = new SeanButton(new SeanRoundedRect(0, 0, sbWidth, sbHeight, 30, 30), 0 + ""){
+			public void mousePressed(MouseEvent e){
+				pressStatus = this.PRESSED;
+				repaint();
+				System.out.println("Exit");
+			}
+		};
+		
 		for(int i = 0; i < 3; i++){
-			sb[i] = new SeanButton(new SeanRoundedRect(0, 0, sbWidth, sbHeight, 30, 30), i + "");
 			sb[i].setBounds((int)(((double)dis.getContentPane().getWidth() - sbWidth)/2), (int)((double)(dis.getContentPane().getHeight() - sbHeight)/2) + (sbHeight + 10)*i + 80, sbWidth, sbHeight);
 			sb[i].setBackgroundColor(Color.DARK_GRAY);
 			//font size change not working properly???

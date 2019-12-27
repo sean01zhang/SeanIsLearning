@@ -26,10 +26,10 @@ public class SeanButton extends SeanComponent implements MouseListener {
 	String displayText;
 	Color textColor,hoverShade,clickShade;
 	Font f;
-	final int PRESSED = 0;
+	protected final int PRESSED = 0;
 	final int DEFAULT = 1;
 	final int HOVER = 2;
-	int pressStatus =1;
+	protected int pressStatus =1;
 	SeanCausalityObj sco;
 	Animations anime;
 	
