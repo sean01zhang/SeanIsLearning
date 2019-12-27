@@ -50,7 +50,7 @@ public class SeanMainMenu extends JPanel{
 		};
 
 		for(int i = 0; i < 3; i++){
-			sb[i].setBounds((int)(((double)dis.getContentPane().getWidth() - sbWidth)/2), (int)((double)(dis.getContentPane().getHeight() - sbHeight)/2) + (sbHeight + 10)*i + 80, sbWidth, sbHeight);
+			sb[i].setBoundsModified((int)(((double)dis.getContentPane().getWidth() - sbWidth)/2), (int)((double)(dis.getContentPane().getHeight() - sbHeight)/2) + (sbHeight + 10)*i + 80, sbWidth, sbHeight);
 			sb[i].setBackgroundColor(Color.DARK_GRAY);
 			//font size change not working properly???
 			sb[i].setFont(new Font("Consolas", Font.PLAIN, 20));
