@@ -19,6 +19,11 @@ Yes -> [CHANGESTAT: Yukari | Happiness | 30]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
 [CHANGESTAT: Yukari | Happiness | 0]
 
+;; ~ COND: [GETSTAT: Yukari-Respect] > 50 -> []
+		   30 > 50 -> []
+		   Yuakri-Generosity > 50 -> []
+[STORY: OmER GERD shuT uP nO ONE AsKED for YOUR OPINION]
+
 ;;STORY: Hitomi: I don't like studying as much as you. It's not even spring
 break yet. It's not realistic.
 

@@ -25,20 +25,10 @@ public class SeanStoryInterpreter
 		currentStory = f;
 
 		// initial string reader
-		
-		
 		try {
 			input = new Scanner(f,"UTF-8");
 			input.useDelimiter(";;");
 		} catch (Exception e) {}
-		
-
-		try {
-			in = new BufferedReader(
-					   new InputStreamReader(
-			                      new FileInputStream(f), "UTF8"));
-		} catch (Exception e) {e.printStackTrace();
-		}
 		
 		firstTime= true;
 		autoRead= false;
@@ -54,20 +44,6 @@ public class SeanStoryInterpreter
 		if(input.hasNext()) {
 			str = input.next();
 		}
-		
-		
-		/*
-		if(in == null) {
-			System.out.println("What du heck man");
-		}
-		try {
-			if((str = in.readLine()) != null) {
-				
-			} else {
-				str = "";
-			}
-		} catch (IOException e) {e.printStackTrace();}
-		*/
 		
 		System.out.println(str);
 		return str;

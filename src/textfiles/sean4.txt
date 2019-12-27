@@ -1,4 +1,4 @@
-﻿;; ~ SETTING: 	    after_school.jpeg
+;; ~ SETTING: 	    after_school.jpeg
 
 ;; STORY: Yukari: おはようございます林檎 desu waゴッドビー 
 
@@ -6,7 +6,8 @@
 
 ;; ~ EFFECT: Shaking
 
-;; STORY: Yukari: What's wrong with you? Mr. Saeki's been looking for you.
+;; STORY: Yukari: What's wrong with you? Mr.
+Saeki's been looking for you.
 
 ;; STORY: Hitomi: Saeki-sensei. I don't like him.
 
@@ -18,10 +19,9 @@ Yes -> [CHANGESTAT: CharacterName | Stat | Magnitude]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
 [CHANGESTAT: CharacterName | Stat | Magnitude]
 
-;; ~ COND: Yukari-Respect > 50 -> []
-		   Yukari-Happiness > 50 -> []
-		   Yuakri-Generosity > 50 -> []
-[STORY: OmER GERD shuT uP nO ONE AsKED for YOUR OPINION]
+;; ~ COND: Yukari-Respect > 5 -> []
+
+;; ~ COND : Yukari-Respect <= 5 -> []
 
 ;;STORY: Hitomi: I don't like studying as much as you. It's not even spring
 break yet. It's not realistic.

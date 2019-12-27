@@ -125,10 +125,7 @@ public class SeanEngine {
 			}
 			
 			ki.ignoreInput = true;
-			
-			// Causality Objects obtained... now create the array and add it to the thing.
-			System.out.println(Arrays.toString(cause.toArray()));
-			
+
 			SeanTextArea sta = d.getSta();
 			Stack<SeanCausalityObj> sean = new Stack<>();
 			Queue<SeanCausalityObj> sean2 = new LinkedList<>();
@@ -167,9 +164,51 @@ public class SeanEngine {
 			
 			// testing
 			System.out.println("FILE: " + temp);
+		} else if(s.startsWith("COND:")) {
+			System.out.println("Hi");
+			
+			// isolates the cmd from the body
+			String temp = s.replaceFirst("COND:", "").trim();
+			
+			// splits up the options and command and puts it into causality
+			// objects
+			String delim = Pattern.quote("[") +Pattern.compile("|")+
+													 Pattern.quote("]");
+			String[] sarr = temp.split(delim);
+			Stack<SeanCausalityObj> cause = new Stack<>();
+			// converts array into causality objects
+			for(int i=0;i<sarr.length;i++)
+			{
+				sarr[i] = sarr[i].replaceAll(Pattern.quote("]"), "");
+
+				if (sarr[i].contains("->")) {
+					cause.push(new SeanCausalityObj(sarr[i].
+								replaceFirst("->", "").trim(),this));
+				} else if (sarr[i].trim().isEmpty()) {
+				} else {
+					SeanCausalityObj top = cause.pop();
+					top.addEffect(sarr[i].trim());
+					cause.push(top);
+				}
+			}
+			System.out.println(Arrays.toString(cause.toArray()));
+			
+			// convert data retrieved things into numbers
+			
+			
+			// take converted string and convert it into a boolean expression
+			
 		}
 	}
 	
+	public Boolean condInterpreter(String exp) {
+		
+		
+		
+		
+		
+		return true;
+	}
 	
 	// something to set Animations
 	public void VFXInterpreter(String s) {

@@ -36,7 +36,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 	String text;
 	Font f;
 	// bounding the position of the string
-	int strx,stry,boundx,boundy,boundw,boundh;
+	int strx,stry,boundx,boundy,boundw,boundh,textSpacing;
 	int endofstring;
 	Color textColor;
 	// for scrolling
@@ -94,6 +94,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 
 		// Default Font Metrics
 		f = new Font("Arial", Font.PLAIN, 20);
+		textSpacing = 3;
 		boundx = 15;
 		boundy = 15;
 		strx= boundx;
@@ -126,6 +127,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 
 		// Default Font Metrics
 		f = new Font("Arial", Font.PLAIN, 20);
+		textSpacing = 3;
 		boundx = 10;
 		boundy = 10;
 		strx= boundx;
@@ -151,7 +153,7 @@ public class SeanTextArea extends SeanComponent implements MouseWheelListener {
 		g.setColor(textColor);
 		g.setFont(f);
 		
-		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,4,f,getWidth()-20);
+		endofstring = SeanUtil.drawString(outputText,g,boundx,stry,textSpacing,f,getWidth()-20);
 		
 		if(sc != null) {
 			if(outputText.equals("")) {
