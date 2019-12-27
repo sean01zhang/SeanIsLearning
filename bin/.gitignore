@@ -1,8 +1,8 @@
-/seanMisc/
-/seanPanels/
-/textfiles/
-/seanGeometry/
+/.DS_Store
+/.classpath
+/.project
+/.settings/
 /images/
 /seanComponent/
-/seanMain/
-/seanEngine/
+/seanGeometry/
+/seanPanels/

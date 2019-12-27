@@ -32,13 +32,13 @@ public class SeanFileWriter {
 		} catch (Exception e) {e.printStackTrace();}	
 	}
 	
-	public static void retrieveCharacterStat(File f, String charTrait) {
+	public static int retrieveCharacterStat(File f, String charTrait) {
 		try {
 			Scanner s = new Scanner(f,"UTF-8");
 			String verify,putData="";
 			while((verify=s.nextLine()) != null) {
 				if(verify.split(",")[0].equalsIgnoreCase(charTrait)) {
-					return Integer.parseInt(verify.split(",")[1])
+					return Integer.parseInt(verify.split(",")[1].trim());
 				} else {
 					
 				}
