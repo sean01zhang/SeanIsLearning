@@ -28,7 +28,7 @@ public class SeanEngine {
 		d = new Display();
 		d.getSta().setFont(new Font("Arial Unicode MS", Font.PLAIN, 17));
 		d.getSta().setSpeed(10);
-		ssi = new SeanStoryInterpreter(new File("src/textfiles/sean3.txt"));
+		ssi = new SeanStoryInterpreter(new File("src/textfiles/sean.txt"));
 		ki = new KeyboardInput(this);
 		d.addKeyListener(ki);
 	}
@@ -83,9 +83,6 @@ public class SeanEngine {
 
 			// VisualEngine Part -> Give it body and character name.
 			d.getSta().setText(charName+ ": "+ body);
-			
-			// Testing
-			System.out.println("CHARNAME:" + charName + "\nBODY:" + body);
 		} else if (s.startsWith("SETTING:")) {
 			// isloates the command from the body
 			String temp = s.replaceFirst("SETTING:","").trim();
@@ -94,21 +91,13 @@ public class SeanEngine {
 			//it in the background
 			try {
 				d.getSbgpanel().setBG(ImageIO.read(new File("src/images/" + temp)));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			// Testing
-			System.out.println("SETTING:" +temp);
+			} catch (IOException e) {e.printStackTrace();}
 		} else if (s.startsWith("EFFECT:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("EFFECT:", "").trim();
 
 			// tells the game engine what effect needs to be enacted
 			VFXInterpreter(temp);
-			
-			// Testing
-			System.out.println("EFFECT:" +temp);
 		} else if (s.startsWith("OPTION:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("OPTION:", "").trim();
@@ -154,26 +143,18 @@ public class SeanEngine {
 			sba.setBoundsModified(sta.getBoundx(), sta.getBoundy(), sta.getWidth()-2*sta.getBoundx(), 30*length);
 			
 			sta.setSComp(sba);
-
-			// testing
-			//System.out.println(Arrays.toString(sarr));
-			//System.out.println(Arrays.toString(cause.toArray()));
 		} else if(s.startsWith("CHANGESTAT:")) {
 			// isolates the cmd from the body
 			String temp = s.replaceFirst("CHANGESTAT:", "").trim();
 
 			String[] sarr = temp.split(Pattern.quote("|"));
-			String charName = sarr[0];;
-			String stat = sarr[1];
-			//int amt = Integer.parseInt(sarr[2]);
+			String charName = sarr[0].trim();
+			String stat = sarr[1].trim();
+			int amt = Integer.parseInt(sarr[2].trim());
 
 			// pass this into the cmd control method.
-			
-
-			// Testing
-			//System.out.println(amt + "change in " + charName + "'s stat," + stat);
-			
-			System.out.println("POOPIE");
+			SeanFileWriter.changeCharacterStat(new File("src/textfiles/characters/"+charName.toLowerCase()+".csv"),
+												stat, amt);
 		} else if(s.startsWith("CHANGEFILE:")) {
 			// isolate the cmd from the body
 			String temp = s.replaceFirst("CHANGEFILE:", "").trim();

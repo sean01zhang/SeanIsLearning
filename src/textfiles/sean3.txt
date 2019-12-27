@@ -19,7 +19,8 @@ Yes -> [CHANGESTAT: CharacterName | Stat | Magnitude]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
 [CHANGESTAT: CharacterName | Stat | Magnitude]
 
-;; IF: 
+;; COND: Yukari-Respect > 5 -> []
+	     Saeki-Respect > 5 -> [][]
 
 ;;STORY: Hitomi: I don't like studying as much as you. It's not even spring
 break yet. It's not realistic.
