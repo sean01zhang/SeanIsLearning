@@ -36,17 +36,13 @@ public class SeanFileWriter {
 		try {
 			Scanner s = new Scanner(f,"UTF-8");
 			String verify,putData="";
-			while((verify=br.readLine()) != null) {
+			while((verify=s.nextLine()) != null) {
 				if(verify.split(",")[0].equalsIgnoreCase(charTrait)) {
-					putData += verify.split(",")[0] +","+newValue+"\n";
+					return Integer.parseInt(verify.split(",")[1])
 				} else {
-					putData += verify+"\n";
+					
 				}
 			}
-			br.close();
-			PrintWriter pw = new PrintWriter(f);
-			pw.write(putData.trim());
-			pw.close();
 			
 		} catch (Exception e) {e.printStackTrace();}
 	}
