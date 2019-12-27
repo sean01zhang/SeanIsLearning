@@ -1,27 +1,26 @@
-;; ~ SETTING: 	    after_school.jpeg
+﻿;; ~ SETTING: 	    after_school.jpeg
 
-;; STORY: Yukari: Hitomi,did you get to see the guidance office?
+;; STORY: Yukari: おはようございます林檎 desu waゴッドビー 
 
 ;; STORY: Hitomi: Not yet.
 
 ;; ~ EFFECT: Shaking
 
-;; STORY: Yukari: What's wrong with you? Mr.
-Saeki's been looking for you.
+;; STORY: Yukari: What's wrong with you? Mr. Saeki's been looking for you.
 
 ;; STORY: Hitomi: Saeki-sensei. I don't like him.
 
 ;; ~ STORY: Yukari: Did you decide on college yet?
 
 ;; OPTION:
-Yes -> [CHANGESTAT: Yukari | Happiness | 30]
-[CHANGEFILE: sean.txt]
+Yes -> [CHANGESTAT: CharacterName | Stat | Magnitude]
+[CHANGEFILE: sean3.txt]
 No -> [STORY: Hitomi: Lmao xd you dum dum]
-[CHANGESTAT: Yukari | Happiness | 0]
+[CHANGESTAT: CharacterName | Stat | Magnitude]
 
-;; ~ COND: (Yukari-Respect) > 50 -> []
-		   30 > 50 -> []
-		   (Yuakri-Generosity) > 50 -> []
+;; ~ COND: Yukari-Respect > 50 -> []
+		   Yukari-Happiness > 50 -> []
+		   Yuakri-Generosity > 50 -> []
 [STORY: OmER GERD shuT uP nO ONE AsKED for YOUR OPINION]
 
 ;;STORY: Hitomi: I don't like studying as much as you. It's not even spring
@@ -37,4 +36,4 @@ have to figure out where you're going!
 ;;STORY: Hitomi: It's not like that! I'm just not academically oriented like
 you.
 
-;; CHANGEFILE: sean.txt
+;; CHANGEFILE: sean2.txt

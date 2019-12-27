@@ -1,0 +1,109 @@
+;; ~ SETTING: black.jpg
+
+;; STORY: Hitomi (n): In the darkness, filled with starlight, I am flying
+away. The cold air stirs up my hair. Where is this place? I was
+supposed to be on the roof of the school. Then from the river of
+stars, came a vast blue light. Floating above us in the sky, is a big
+blue star. Earth? Yes... that's the Earth floating in the sky. Why?
+The white-winged man, with black hair swaying, his name is... Van. Me,
+being carried in Van's arms, dropping from the sky towards the Earth.
+
+;; SETTING: anime-background.jpeg
+
+;; STORY: Van: Goddess of Wings, that blue star is my world, Gaea. Your
+homeland.
+
+;; STORY: Hitomi: Mine?
+
+;; ~ STORY: Folken: Deliver the Goddess of Wings to me.
+
+;; OPTION: 
+Ok Boomer -> [STORY: Folken: Kys bebard]
+But... I dont want to! -> [STORY: Sean: Wow I exist] [CHANGEFILE: sean.txt]
+Already did it -> [STORY: Sean: Stop hacking] [EFFECT: ShakIng]
+lmao -> [EFFECT: SHaking] [CHANGEFILE: sean3.txt ]
+
+;; STORY: Van: Folken!
+
+;; STORY: Hitomi: Van!
+
+;; STORY: Hitomi (n): Van's wings become engulfed in blue flame and burst into
+fire.
+
+;; STORY: Van: I will not part with the Goddess of Wings!
+
+;; STORY: Hitomi (n): Our descent speed increases steadily. My consciousness
+fades away. Next to me, the warmth of his body is the only thing I
+feel. The flowing starlight, filling all of space, extends above. The
+two of us are engulfed into the light.
+
+;; STORY: Merle: Mole Man! The sky... beyond the king a blue light is coming
+into view!
+
+;; STORY: Mole Man: Oooh! So it is just as Orm said. That's Allen's Mystic
+Moon. How beautiful! A perfectly round blue jewel...
+
+;; STORY: Merle: He's coming! He's coming, Mole Man! Van's coming back!
+
+;; STORY: Mole Man: Ho ho, is this just as in the old wives' tales?
+
+;; STORY: Merle: Let's go!
+
+;; STORY: Mole Man: Uh... don't panic... Wait!
+
+;; STORY: Hitomi (n): The light disappears, and I am once again enveloped in
+darkness. But, next to me, I can sense Van's presence. The weeds
+spread beneath our feet, and the smell of decomposing wood in the soft
+earth diffuses around us. Above in the sky that I thought was dark,
+the overflowing radiance spills down towards us, the starlight rising
+to the surface throughout the entire sky.
+
+;; STORY: Hitomi: Stars in the sky? The night sky is... Where? Where are we?
+
+;; STORY: Van: The planet of your birthplace. In order to meet with you, you
+have been brought to this land. To the place called the village of
+Adom.
+
+;; STORY: Hitomi (n): Van slowly draws away from me, and kneels.
+
+;; STORY: Van: Goddess of Wings, I am the king of the dragon tribe, Van. In
+order to bring justice to this Gaea, please deliver the dragon armor
+to me.
+
+;; STORY: Hitomi: Hold on a second, I...
+
+;; STORY: Hitomi (n): My breath has stopped. Behind Van, a gigantic blue
+moon... Earth? That's it, surely it's the Earth that I see. And below
+it is the Moon? It's about as big as the Moon from my world... but,
+the patterns on its surface are a little bit different. The king
+before me, Van, turns around and looks up at the Earth.
+
+;; STORY: Van: With the Mystic Moon having appeared, what better proof could
+there possibly be that you are in fact the Goddess of Wings?
+
+;; STORY: Hitomi: The Mystic Moon? The earth? Then, where is here?
+
+;; STORY: Van: A moon forged of steel, a world of fire and water, Gaea.
+
+;; STORY: Hitomi: Gaea?
+
+;; STORY: Van: A long time ago, when you were still incarnate upon this land,
+men and beast men were even then in a state of torment. But now,
+conflict between the human tribes has brought this world to ruin.
+Please give me the dragon armor, Escaflowne, so that I can end this
+conflict.
+
+;; STORY: Hitomi: Escaflowne?
+
+;; STORY: Hitomi (m): Escaflowne? What a strange sound. This strange world, is
+this my birthplace? My head is in turmoil. This kind of stuff, who
+would believe it? But, this world is beautiful. Spreading high in the
+sky, a countless sea of stars... such a beautiful night sky, it's the
+first time I've ever seen it. Pretty. Stretching out my hand, I can
+almost touch the light from the stars. Below the starry sky,
+underneath the blue Earth, kneeling, looking up to me is Van. His
+transparent eyes, staring at me as if they can see right through
+me. With bright black hair, and shining silver armor on one
+side. Leather hide wrapped around his hip. Bearing a sword with a
+Japanese blade. With the aura of an emperor, he looks at me. Van,
+that's his name.

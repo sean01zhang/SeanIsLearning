@@ -202,8 +202,8 @@ public class SeanEngine {
 	}
 	
 	public Boolean condInterpreter(String exp) {
-		
-		
+		String delim = Pattern.quote("(") +Pattern.compile("|")+
+				 Pattern.quote(")");
 		
 		
 		
