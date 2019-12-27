@@ -185,6 +185,10 @@ public class SeanButton extends SeanComponent implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		sco.enactEffect();
+		if(sco != null){
+			sco.enactEffect();
+		} else {
+			System.out.println("Sean Causality Object Isn't Initialized!");
+		}
 	}
 }
