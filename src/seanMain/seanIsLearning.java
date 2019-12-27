@@ -11,7 +11,7 @@ import seanMisc.SeanDrawables;
 
 public class seanIsLearning {
 	public static void main(String[]args) {
-		SeanEngine se = new SeanEngine();
-		//Display2 lynn = new Display2();
+		//SeanEngine se = new SeanEngine();
+		Display2 lynn = new Display2();
 	}
 }
