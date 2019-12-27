@@ -54,6 +54,12 @@ public class Display2 extends JFrame{
 		add(smm);
 		smm.setVisible(true);
 		
+		try {
+			sbgpanel = new SeanBGPanel(0, 0, getWidth(), getHeight(), ImageIO.read(new File("src/images/anime-background.jpeg")));
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		smm.add(sbgpanel);
 		/*
 		//Color picker settings
 		SeanDrawables in = new SeanDrawables(new SeanRoundedRect(10, 10, 20, 20, 30, 30));
