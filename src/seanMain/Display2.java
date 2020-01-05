@@ -23,6 +23,7 @@ import seanMisc.Animations;
 import seanMisc.SeanDrawables;
 import seanPanels.SeanMainMenu;
 
+@SuppressWarnings("serial")
 public class Display2 extends JFrame{
 	SeanStoryInterpreter sip;
 	File f;
@@ -50,7 +51,7 @@ public class Display2 extends JFrame{
 		    }
 		});
 		
-		smm = new SeanMainMenu();
+		smm = new SeanMainMenu(800, 600);
 		add(smm);
 		smm.setVisible(true);
 		
@@ -68,7 +69,7 @@ public class Display2 extends JFrame{
 		
 		//Modern look settings
 		//why is in a rounded rectangle!!!
-		/*SeanDrawables in = new SeanDrawables(-400, 0, 400, 50);
+		SeanDrawables in = new SeanDrawables(-400, 0, 400, 50);
 		SeanDrawables bg = new SeanDrawables(new SeanRoundedRect(0, 0, 400, 50, 30, 30));
 		in.setColor(Color.WHITE);
 		bg.setColor(Color.LIGHT_GRAY);
